@@ -2,7 +2,7 @@
 Proyecto preliminar.
 Programación Cliente Servidor.
 Universidad Fidélitas.
-Elaborado por: Freison Castro.
+Elaborado por: Freison Castro, Jose Carlo, Joshua
 Hola mundo
 
 */
