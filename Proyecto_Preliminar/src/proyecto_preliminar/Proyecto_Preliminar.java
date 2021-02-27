@@ -3,6 +3,8 @@ Proyecto preliminar.
 Programación Cliente Servidor.
 Universidad Fidélitas.
 Elaborado por: Freison Castro.
+Hola mundo
+
 */
 package proyecto_preliminar;
 
