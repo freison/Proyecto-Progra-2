@@ -14,6 +14,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import vistas.FrmMiembro;
 import vistas.FrmNuevoMiembro;
+import vistas.FrmMain;
 
 public class Proyecto_Final {
 
@@ -22,12 +23,12 @@ public class Proyecto_Final {
     }
     
     public static void LoadMainForm(){
-        FrmMiembro Main = new FrmMiembro();
+        FrmMain Main = new FrmMain();
         Main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension screeSize = Toolkit.getDefaultToolkit().getScreenSize();
         int height = screeSize.height;
         int width = screeSize.width;
-        Main.setSize(width/2, height/2);
+        // Main.setSize(width/2, height/2);
         Main.setLocationRelativeTo(null);
         Main.setVisible(true);
     }

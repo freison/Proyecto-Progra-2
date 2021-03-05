@@ -1,6 +1,9 @@
 
 package vistas;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
 import proyecto_final.Connection;
 import proyecto_final.Miembro;
 import proyecto_final.Administrador;
@@ -40,7 +43,7 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         TxtNombres = new javax.swing.JTextField();
         TxtApellidos = new javax.swing.JTextField();
-        BtnCancelar = new javax.swing.JButton();
+        BtnCerrar = new javax.swing.JButton();
         TxtUsuario = new javax.swing.JTextField();
         TxtClave = new javax.swing.JTextField();
         TxtCedula = new javax.swing.JTextField();
@@ -60,10 +63,10 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
 
         jLabel6.setText("Cedula");
 
-        BtnCancelar.setText("CANCELAR");
-        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        BtnCerrar.setText("CERRAR");
+        BtnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCancelarActionPerformed(evt);
+                BtnCerrarActionPerformed(evt);
             }
         });
 
@@ -114,7 +117,7 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
                             .addComponent(TipoMiembroComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(62, 62, 62))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
-                        .addComponent(BtnCancelar)
+                        .addComponent(BtnCerrar)
                         .addGap(48, 48, 48)
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(77, 77, 77))))
@@ -150,7 +153,7 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
                 .addComponent(TipoMiembroComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnCancelar)
+                    .addComponent(BtnCerrar)
                     .addComponent(btnGuardar))
                 .addContainerGap())
         );
@@ -169,9 +172,17 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
+    private void BtnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarActionPerformed
+        FrmMiembro miembro = new FrmMiembro();
+        miembro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = screenSize.height;
+        int width = screenSize.width;
+        miembro.setSize(width/2, height/2);
+        miembro.setLocationRelativeTo(null);
+        miembro.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_BtnCancelarActionPerformed
+    }//GEN-LAST:event_BtnCerrarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         Miembro miembro = new Administrador();
@@ -241,7 +252,7 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnCancelar;
+    private javax.swing.JButton BtnCerrar;
     private javax.swing.JPanel Panel;
     private javax.swing.JComboBox<String> TipoMiembroComboBox;
     private javax.swing.JTextField TxtApellidos;

@@ -1,6 +1,10 @@
 
 package proyecto_final;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class Proyecto {
     // ATRIBUTOS DE LA CLASE.
     private String ID;
@@ -9,6 +13,8 @@ public class Proyecto {
     private Tarea[] tareasPorHacer;
     private Tarea[] tareasEnProceso;
     private Tarea[] tareasFinalizadas;
+    
+    private Connection connection = new Connection();
     
     // CONSTRUCTORES DE LA CLASE.
     // Constructor sin parametros.
@@ -42,12 +48,20 @@ public class Proyecto {
         this.ID = ID;
     }
     
-    public String nombre(){
+    public String getNombre(){
         return this.nombre;
     }
     
     public void setNombre(String nombre){
         this.nombre = nombre;
+    }
+    
+    public String getDescripcion(){
+        return this.descripcion;
+    }
+    
+    public void setDescripcion(String descripcion){
+        this.descripcion = descripcion;
     }
     
     public Tarea[] getTareasPorHacer(){
@@ -65,4 +79,31 @@ public class Proyecto {
     public void setTareasEnProceso(Tarea[] tareasEnProceso){
         this.tareasEnProceso = tareasEnProceso;
     }
-}
+    
+    // METODOS DE LA CLASE.
+    public void Agregar(){
+        java.sql.Connection cn = null;
+        try{
+            cn = connection.getConnection();
+            
+            Statement stmt = cn.createStatement();
+            stmt.executeUpdate("insert into Proyectos(nombre, descripcion) values('"+this.getNombre()+"', '"+this.getDescripcion()+"')");
+            
+            System.out.println("Succesfull Query Execution");
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }finally{
+            System.out.println("Closing Connection");
+            try{
+                cn.close();
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
+    public void Listar(){
+        
+    }
+} // Fin de la clase Proyecto.

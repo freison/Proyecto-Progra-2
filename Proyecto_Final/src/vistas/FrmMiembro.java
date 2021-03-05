@@ -21,12 +21,13 @@ public class FrmMiembro extends javax.swing.JFrame {
     private static DefaultTableModel modelo = new DefaultTableModel();
     private static final String nombresDeColumna[] = 
                     {"Id", "Nombres", "Apellidos", "Usuario", "Cedula", "Rol"};
+    private int rowCount = 0;
 
     public FrmMiembro() {
         this.LlenarTabla();
         initComponents();
         this.BtnEditar.setEnabled(false);
-        String rol = Funciones.getRol(112);
+        modelo.addTableModelListener(GridMiembros);
     }
 
     @SuppressWarnings("unchecked")
@@ -47,8 +48,9 @@ public class FrmMiembro extends javax.swing.JFrame {
         BtnRefrescar = new javax.swing.JButton();
         CheckAdministradores = new javax.swing.JCheckBox();
         CheckEditores = new javax.swing.JCheckBox();
+        BtnAgregar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         LbTitulo.setText("MIEMBROS");
 
@@ -89,34 +91,42 @@ public class FrmMiembro extends javax.swing.JFrame {
             }
         });
 
+        BtnAgregar.setText("Agregar");
+        BtnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAgregarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(175, 175, 175)
-                .addComponent(LbTitulo)
-                .addContainerGap(513, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addComponent(CheckAdministradores)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CheckEditores)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CheckInvitados)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(298, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(BtnRefrescar)
+                        .addGap(31, 31, 31)
+                        .addComponent(BtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(BtnAgregar)
+                        .addGap(143, 143, 143))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(LbTitulo)
+                        .addGap(312, 312, 312))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(BtnRefrescar)
-                                    .addGap(60, 60, 60)
-                                    .addComponent(BtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(226, 226, 226))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(CheckAdministradores)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(CheckEditores)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(CheckInvitados)
-                                    .addGap(46, 46, 46)))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -124,21 +134,22 @@ public class FrmMiembro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(LbTitulo)
-                .addContainerGap(413, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckAdministradores)
+                    .addComponent(CheckEditores)
+                    .addComponent(CheckInvitados))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnEditar)
+                    .addComponent(BtnRefrescar)
+                    .addComponent(BtnAgregar))
+                .addGap(19, 19, 19))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(48, 48, 48)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(CheckAdministradores)
-                        .addComponent(CheckEditores)
-                        .addComponent(CheckInvitados))
-                    .addGap(18, 18, 18)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(BtnEditar)
-                        .addComponent(BtnRefrescar))
-                    .addContainerGap(48, Short.MAX_VALUE)))
+                    .addGap(87, 87, 87)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                    .addGap(83, 83, 83)))
         );
 
         pack();
@@ -149,37 +160,37 @@ public class FrmMiembro extends javax.swing.JFrame {
         if(evt.getStateChange()==1 && !CheckAdministradores.isSelected() && !CheckEditores.isSelected()){
             LlenarTabla("Invitado");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(true);
         }
         else if(evt.getStateChange()==1 && CheckAdministradores.isSelected() && !CheckEditores.isSelected()){
             LlenarTabla("Invitado", "Administrador");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(false);
         }
         else if(evt.getStateChange()==1 && !CheckAdministradores.isSelected() && CheckEditores.isSelected()){
             LlenarTabla("Invitado", "Editor");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(true);
         }
         else if(!CheckInvitados.isSelected() && CheckAdministradores.isSelected() && CheckEditores.isSelected()){
             LlenarTabla("Administrador", "Editor");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(false);
         }
         else if(!CheckInvitados.isSelected() && CheckAdministradores.isSelected() && !CheckEditores.isSelected()){
             LlenarTabla("Administrador");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(false);
         }
         else if(!CheckInvitados.isSelected() && !CheckAdministradores.isSelected() && CheckEditores.isSelected()){
             LlenarTabla("Editor");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(true);
         }
         else{
@@ -224,54 +235,57 @@ public class FrmMiembro extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnEditarActionPerformed
 
     private void BtnRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRefrescarActionPerformed
+        // GridMiembros = new JTable(modelo);
         this.LlenarTabla();
         GridMiembros.setModel(modelo);
-        CheckAdministradores.setSelected(false);
-        CheckEditores.setSelected(false);
-        CheckInvitados.setSelected(false);
+        BtnRefrescar.setEnabled(true);
+        BtnEditar.setEnabled(true);
+        
+        modelo.fireTableDataChanged();
+        modelo.fireTableStructureChanged();
     }//GEN-LAST:event_BtnRefrescarActionPerformed
-
+    
     private void CheckAdministradoresItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CheckAdministradoresItemStateChanged
         if(evt.getStateChange()==1 && !CheckEditores.isSelected() && !CheckInvitados.isSelected()){
             LlenarTabla("Administrador");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(false);
         }
         else if(evt.getStateChange()==1 && CheckEditores.isSelected() && !CheckInvitados.isSelected()){
             LlenarTabla("Administrador", "Editor");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(false);
         }
         else if(evt.getStateChange()==1 && !CheckEditores.isSelected() && CheckInvitados.isSelected()){
             LlenarTabla("Administrador", "Invitado");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(false);
         }
         else if(!CheckAdministradores.isSelected() && CheckEditores.isSelected() && CheckInvitados.isSelected()){
             LlenarTabla("Editor", "Invitado");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(true);
         }
         else if(!CheckAdministradores.isSelected() && CheckEditores.isSelected() && !CheckInvitados.isSelected()){
             LlenarTabla("Editor");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(true);
         }
         else if(!CheckAdministradores.isSelected() && !CheckEditores.isSelected() && CheckInvitados.isSelected()){
             LlenarTabla("Invitado");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(true);
         }
         else{
             LlenarTabla();
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(false);
+            BtnRefrescar.setEnabled(true);
             BtnEditar.setEnabled(true);
         }
     }//GEN-LAST:event_CheckAdministradoresItemStateChanged
@@ -280,46 +294,54 @@ public class FrmMiembro extends javax.swing.JFrame {
         if(evt.getStateChange()==1 && !CheckAdministradores.isSelected() && !CheckInvitados.isSelected()){
             LlenarTabla("Editor");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(true);
         }
         else if(evt.getStateChange()==1 && CheckAdministradores.isSelected() && !CheckInvitados.isSelected()){
             LlenarTabla("Editor", "Administrador");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(false);
         }
         else if(evt.getStateChange()==1 && !CheckAdministradores.isSelected() && CheckInvitados.isSelected()){
             LlenarTabla("Editor", "Invitado");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(true);
         }
         else if(!CheckEditores.isSelected() && CheckAdministradores.isSelected() && CheckInvitados.isSelected()){
             LlenarTabla("Administrador", "Invitado");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(false);
         }
         else if(!CheckEditores.isSelected() && CheckAdministradores.isSelected() && !CheckInvitados.isSelected()){
             LlenarTabla("Administrador");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(false);
         }
         else if(!CheckEditores.isSelected() && !CheckAdministradores.isSelected() && CheckInvitados.isSelected()){
             LlenarTabla("Invitado");
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(true);
+            BtnRefrescar.setEnabled(false);
             BtnEditar.setEnabled(true);
         }
         else{
             LlenarTabla();
             GridMiembros.setModel(modelo);
-            BtnRefrescar.setEnabled(false);
+            BtnRefrescar.setEnabled(true);
             BtnEditar.setEnabled(false);
         }
     }//GEN-LAST:event_CheckEditoresItemStateChanged
+
+    private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
+        FrmNuevoMiembro nuevoMiembro = new FrmNuevoMiembro();
+        nuevoMiembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        nuevoMiembro.setLocationRelativeTo(null);
+        nuevoMiembro.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnAgregarActionPerformed
 
     // METODOS DE LA CLASE.
     public void DatosMiembro(int Id, String nombres, String apellidos, String usuario,
@@ -332,6 +354,7 @@ public class FrmMiembro extends javax.swing.JFrame {
         // datosMiembro.setSize(width/2, height/2);
         datosMiembro.setLocationRelativeTo(null);
         datosMiembro.setVisible(true);
+        this.dispose();
     }
     
     /**
@@ -379,8 +402,10 @@ public class FrmMiembro extends javax.swing.JFrame {
             }
         };
         
-//        for(int i=0; i<5; i++){
-//            for(int j=0; j<5; j++){
+        // modelo.insertRow(modelo.getRowCount(), miembros[miembros.length-1]);
+        
+//        for(int i=0; i<miembros.length; i++){
+//            for(int j=0; j<6; j++){
 //                System.out.println(miembros[i][j]);
 //            }
 //        }
@@ -423,6 +448,9 @@ public class FrmMiembro extends javax.swing.JFrame {
             Administrador administrador = new Administrador();
             int total = administrador.totalMiembros();
             List[] Datos = administrador.listarMiembros();
+            System.out.println(Datos[1].get(total-1));
+            // System.out.println(total);
+            // System.out.println(Datos[0].size() + " - " + Datos.length);
             miembros = new Object[total][6];
             
             for(int i=0; i<Datos[0].size(); i++){
@@ -468,9 +496,20 @@ public class FrmMiembro extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void reloadTable(){
+        GridMiembros = new JTable();
+        LlenarTabla();
+        GridMiembros.setModel(modelo);
+        BtnRefrescar.setEnabled(false);
+        BtnEditar.setEnabled(false);
+        
+        System.out.println("ON CLOSE");
+    }
         
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAgregar;
     private javax.swing.JButton BtnEditar;
     private javax.swing.JButton BtnRefrescar;
     private javax.swing.JCheckBox CheckAdministradores;
