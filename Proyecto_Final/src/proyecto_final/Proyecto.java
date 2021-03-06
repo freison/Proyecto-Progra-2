@@ -2,8 +2,11 @@
 package proyecto_final;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Proyecto {
     // ATRIBUTOS DE LA CLASE.
@@ -103,7 +106,41 @@ public class Proyecto {
         }
     }
     
-    public void Listar(){
-        
+    public List[] Listar(){
+        java.sql.Connection cn = null;
+        List<Integer> id = new ArrayList<>();
+        List<String> nombres = new ArrayList<>();
+
+        List[] listas = new List[2];
+
+        try {
+            cn = connection.getConnection();
+
+            Statement stmt = cn.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "select Id, Nombre as Nombres from Proyectos"
+            );
+
+            while (rs.next()) {
+                id.add(rs.getInt("Id"));
+                nombres.add(rs.getString("Nombres"));
+            }
+
+            System.out.println("Succesfull Query Execution");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println("Closing Connection");
+            try {
+                cn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        listas[0] = id;
+        listas[1] = nombres;
+
+        return listas;
     }
 } // Fin de la clase Proyecto.

@@ -174,7 +174,7 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
 
     private void BtnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarActionPerformed
         FrmMiembro miembro = new FrmMiembro();
-        miembro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        miembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int height = screenSize.height;
         int width = screenSize.width;

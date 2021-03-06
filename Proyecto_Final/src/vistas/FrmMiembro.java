@@ -347,7 +347,7 @@ public class FrmMiembro extends javax.swing.JFrame {
     public void DatosMiembro(int Id, String nombres, String apellidos, String usuario,
                 String cedula, String rol){
         FrmDatosMiembro datosMiembro = new FrmDatosMiembro(Id, nombres, apellidos, usuario, cedula, rol);
-        datosMiembro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        datosMiembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int height = screenSize.height;
         int width = screenSize.width;
