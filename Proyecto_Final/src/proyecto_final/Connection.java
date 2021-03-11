@@ -15,8 +15,6 @@ public class Connection {
             String password = "root";
             connection = DriverManager.getConnection(dbURL, user, password);
             
-            System.out.println("Successfull Connection");
-            
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }

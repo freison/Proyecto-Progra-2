@@ -8,11 +8,12 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import proyecto_final.Administrador;
-import proyecto_final.Funciones;
+import proyecto_final.Proyecto;
 
 public class FrmMiembro extends javax.swing.JFrame {
 
@@ -21,13 +22,34 @@ public class FrmMiembro extends javax.swing.JFrame {
     private static DefaultTableModel modelo = new DefaultTableModel();
     private static final String nombresDeColumna[] = 
                     {"Id", "Nombres", "Apellidos", "Usuario", "Cedula", "Rol"};
-    private int rowCount = 0;
+    
+    private static List<String> Datos;
+    private String[] datosUsuario = new String[2];
 
     public FrmMiembro() {
         this.LlenarTabla();
         initComponents();
         this.BtnEditar.setEnabled(false);
+        this.BtnAgregarMiembro.setEnabled(false);
+        this.BtnAgregarMiembro.setVisible(false);
+        this.BtnCerrar.setEnabled(false);
+        this.BtnCerrar.setVisible(false);
         modelo.addTableModelListener(GridMiembros);
+    }
+    
+    public FrmMiembro(List<String> datos, String[] datosUsuario){
+        this.LlenarTabla();
+        initComponents();
+        this.BtnEditar.setEnabled(false);
+        this.BtnEditar.setVisible(false);
+        this.BtnAgregar.setEnabled(false);
+        this.BtnAgregar.setVisible(false);
+        this.BtnRefrescar.setEnabled(false);
+        this.BtnRefrescar.setVisible(false);
+        modelo.addTableModelListener(GridMiembros);
+        
+        Datos = datos;
+        this.datosUsuario = datosUsuario;
     }
 
     @SuppressWarnings("unchecked")
@@ -49,6 +71,9 @@ public class FrmMiembro extends javax.swing.JFrame {
         CheckAdministradores = new javax.swing.JCheckBox();
         CheckEditores = new javax.swing.JCheckBox();
         BtnAgregar = new javax.swing.JButton();
+        TxtBuscar = new javax.swing.JTextField();
+        BtnAgregarMiembro = new javax.swing.JButton();
+        BtnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -98,31 +123,59 @@ public class FrmMiembro extends javax.swing.JFrame {
             }
         });
 
+        TxtBuscar.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        TxtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TxtBuscarKeyPressed(evt);
+            }
+        });
+
+        BtnAgregarMiembro.setText("Agregar a Proyecto");
+        BtnAgregarMiembro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAgregarMiembroActionPerformed(evt);
+            }
+        });
+
+        BtnCerrar.setText("Cerrar");
+        BtnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCerrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(CheckAdministradores)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CheckEditores)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CheckInvitados)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(298, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(LbTitulo)
+                .addGap(312, 312, 312))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(CheckAdministradores)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CheckEditores)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CheckInvitados)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 6, Short.MAX_VALUE)
+                        .addComponent(BtnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnAgregarMiembro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnRefrescar)
                         .addGap(31, 31, 31)
                         .addComponent(BtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
-                        .addComponent(BtnAgregar)
-                        .addGap(143, 143, 143))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(LbTitulo)
-                        .addGap(312, 312, 312))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BtnAgregar)
+                            .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -134,16 +187,19 @@ public class FrmMiembro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(LbTitulo)
-                .addGap(32, 32, 32)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CheckAdministradores)
                     .addComponent(CheckEditores)
-                    .addComponent(CheckInvitados))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
+                    .addComponent(CheckInvitados)
+                    .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnEditar)
                     .addComponent(BtnRefrescar)
-                    .addComponent(BtnAgregar))
+                    .addComponent(BtnAgregar)
+                    .addComponent(BtnAgregarMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -343,6 +399,44 @@ public class FrmMiembro extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
+    private void TxtBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtBuscarKeyPressed
+        DefaultTableModel model = (DefaultTableModel) GridMiembros.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
+        GridMiembros.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(TxtBuscar.getText().trim()));
+    }//GEN-LAST:event_TxtBuscarKeyPressed
+
+    private void BtnAgregarMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarMiembroActionPerformed
+        int Id = 0;
+        
+        try{
+            System.out.println(">: " + GridMiembros.getValueAt(GridMiembros.getSelectedRow(), 0));
+            Id = Integer.parseInt(GridMiembros.getValueAt(GridMiembros.getSelectedRow(), 0).toString());
+        }catch(IndexOutOfBoundsException | NullPointerException e){
+            try{
+                System.out.println(">: " + GridMiembros.getModel().getValueAt(0, 0));
+                Id = Integer.parseInt(GridMiembros.getModel().getValueAt(0, 0).toString());
+            }catch(NullPointerException ex){
+
+            }
+        }finally{
+            Proyecto proyecto = new Proyecto();
+            proyecto.AgregarDetalleParticipacion(Id, Integer.parseInt(Datos.get(0).toString()));
+        }
+    }//GEN-LAST:event_BtnAgregarMiembroActionPerformed
+
+    private void BtnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarActionPerformed
+        FrmDatosProyecto datosMiembro = new FrmDatosProyecto(Datos, datosUsuario);
+        datosMiembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = screenSize.height;
+        int width = screenSize.width;
+        // datosMiembro.setSize(width/2, height/2);
+        datosMiembro.setLocationRelativeTo(null);
+        datosMiembro.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnCerrarActionPerformed
+
     // METODOS DE LA CLASE.
     public void DatosMiembro(int Id, String nombres, String apellidos, String usuario,
                 String cedula, String rol){
@@ -510,6 +604,8 @@ public class FrmMiembro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregar;
+    private javax.swing.JButton BtnAgregarMiembro;
+    private javax.swing.JButton BtnCerrar;
     private javax.swing.JButton BtnEditar;
     private javax.swing.JButton BtnRefrescar;
     private javax.swing.JCheckBox CheckAdministradores;
@@ -517,6 +613,7 @@ public class FrmMiembro extends javax.swing.JFrame {
     private javax.swing.JCheckBox CheckInvitados;
     private javax.swing.JTable GridMiembros;
     private javax.swing.JLabel LbTitulo;
+    private javax.swing.JTextField TxtBuscar;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

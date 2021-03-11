@@ -39,7 +39,7 @@ public class Editor extends Miembro {
         this.MiembroId = MiembroId;
     }
     
-    // METODOS DE LA CLASE.    
+    // METODOS DE LA CLASE.
     @Override
     public void Agregar(){
         java.sql.Connection cn = null;

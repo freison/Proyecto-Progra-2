@@ -5,15 +5,27 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import proyecto_final.Proyecto;
 
 public class FrmProyecto extends javax.swing.JFrame {
-    private static DefaultListModel listModel = new DefaultListModel();
+    private static DefaultListModel listModel;
+    private String[] datosUsuario = new String[2];
 
     public FrmProyecto() {
-        initComponents();
         llenarLista();
-        ListProyectos.setModel(listModel);
+        initComponents();
+        // ListProyectos.setModel(listModel);
+    }
+    
+    public FrmProyecto(String[] datosUsuario){
+        this.datosUsuario = datosUsuario;
+        
+        llenarLista();
+        initComponents();
+        validarRol(datosUsuario[1]);
+        
+        this.datosUsuario = datosUsuario;
     }
 
     @SuppressWarnings("unchecked")
@@ -28,6 +40,7 @@ public class FrmProyecto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
         BtnAgregar.setText("AGREGAR");
         BtnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -43,13 +56,13 @@ public class FrmProyecto extends javax.swing.JFrame {
             }
         });
 
-        ListProyectos.setBorder(null);
         ListProyectos.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
         ListProyectos.setForeground(new java.awt.Color(0, 51, 255));
-        ListProyectos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        ListProyectos.setModel(listModel);
+        ListProyectos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                ListProyectosValueChanged(evt);
+            }
         });
         jScrollPane1.setViewportView(ListProyectos);
 
@@ -93,7 +106,7 @@ public class FrmProyecto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
-        FrmNuevoProyecto miembro = new FrmNuevoProyecto();
+        FrmNuevoProyecto miembro = new FrmNuevoProyecto(datosUsuario);
         miembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int height = screenSize.height;
@@ -108,6 +121,22 @@ public class FrmProyecto extends javax.swing.JFrame {
         this.dispose();
         ListProyectos.getModel();
     }//GEN-LAST:event_BtnCerrrarActionPerformed
+
+    private void ListProyectosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListProyectosValueChanged
+        Proyecto proyecto = new Proyecto();
+        System.out.println(ListProyectos.getSelectedValue().toString());
+        var datos = proyecto.buscarProyecto(ListProyectos.getSelectedValue().toString());
+        
+        FrmDatosProyecto datosProyecto = new FrmDatosProyecto(datos, datosUsuario);
+        datosProyecto.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = screenSize.height;
+        int width = screenSize.width;
+        // miembro.setSize(width/2, height/2);
+        datosProyecto.setLocationRelativeTo(null);
+        datosProyecto.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ListProyectosValueChanged
 
     /**
      * @param args the command line arguments
@@ -147,10 +176,18 @@ public class FrmProyecto extends javax.swing.JFrame {
     // METODOS DE LA CLASE.
     public void llenarLista(){
         Proyecto proyecto = new Proyecto();
-        var datos = proyecto.Listar();
+        listModel = new DefaultListModel();
+        var datos = proyecto.Listar(datosUsuario[0]);
         
-        for(int i=0; i<datos.length; i++){
-            listModel.addElement(datos[1].get(i));
+        if(datos[0].size()>0)
+            for(int i=0; i<datos[0].size(); i++){
+                listModel.addElement(datos[1].get(i));
+            }
+    }
+    
+    public void validarRol(String rol){
+        if(rol.equals("Editor") || rol.equals("Invitado")){
+            this.BtnAgregar.setVisible(false);
         }
     }
 

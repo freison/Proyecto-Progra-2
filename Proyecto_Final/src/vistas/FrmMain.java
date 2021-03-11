@@ -7,9 +7,19 @@ import javax.swing.JFrame;
 
 public class FrmMain extends javax.swing.JFrame {
     
+    private String[] datosUsuario = new String[2];
+    
     public FrmMain() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+    
+    public FrmMain(String[] datosUsuario){
+        initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        validarRol(datosUsuario[1]);
+        this.datosUsuario = datosUsuario;
     }
 
     @SuppressWarnings("unchecked")
@@ -103,14 +113,14 @@ public class FrmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnMiembrosActionPerformed
 
     private void BtnProyectosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnProyectosActionPerformed
-        FrmProyecto miembro = new FrmProyecto();
-        miembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        FrmProyecto proyecto = new FrmProyecto(this.datosUsuario);
+        proyecto.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int height = screenSize.height;
         int width = screenSize.width;
         // miembro.setSize(width/2, height/2);
-        miembro.setLocationRelativeTo(null);
-        miembro.setVisible(true);
+        proyecto.setLocationRelativeTo(null);
+        proyecto.setVisible(true);
     }//GEN-LAST:event_BtnProyectosActionPerformed
 
     /**
@@ -146,6 +156,13 @@ public class FrmMain extends javax.swing.JFrame {
                 new FrmMain().setVisible(true);
             }
         });
+    }
+    
+    // METODOS DE LA CLASE.
+    public void validarRol(String rol){
+        if(rol.equals("Editor") || rol.equals("Invitado")){
+            this.BtnMiembros.setVisible(false);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

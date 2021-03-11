@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import vistas.FrmMiembro;
 import vistas.FrmNuevoMiembro;
 import vistas.FrmMain;
+import vistas.FrmLogin;
 
 public class Proyecto_Final {
 
@@ -23,7 +24,7 @@ public class Proyecto_Final {
     }
     
     public static void LoadMainForm(){
-        FrmMain Main = new FrmMain();
+        FrmLogin Main = new FrmLogin();
         Main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension screeSize = Toolkit.getDefaultToolkit().getScreenSize();
         int height = screeSize.height;

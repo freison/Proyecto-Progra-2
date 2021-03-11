@@ -506,7 +506,7 @@ public abstract class Miembro {
      * Metodo que retorna el Rol de un Miembro en especifico.
      *
      * @param Id
-     * @return
+     * @return String
      */
     public String getRol(int Id) {
         String rol = "";
@@ -557,4 +557,133 @@ public abstract class Miembro {
         }
         return rol;
     }
+    
+    /***
+     * Retorna el rol de un Miembro en base al usuario.
+     * @param usuario
+     * @return String
+     */
+    public String getRol(String usuario) {
+        String rol = "";
+        java.sql.Connection cn = null;
+
+        try {
+            cn = connection.getConnection();
+
+            String query = "select Rol from(\n"
+                    + "    select m.ID,\n"
+                    + "    m.NOMBRES as Nombres,\n"
+                    + "    m.APELLIDOS as Apellidos,\n"
+                    + "    m.USUARIO as Usuario,\n"
+                    + "    m.CEDULA as Cedula,\n"
+                    + "case a.ID\n"
+                    + "    when is not null then 'Administrador'\n"
+                    + "    else\n"
+                    + "        case e.ID\n"
+                    + "            when is not null then 'Editor'\n"
+                    + "            else 'Invitado'\n"
+                    + "        end\n"
+                    + "end as Rol\n"
+                    + "from Miembros as m\n"
+                    + "left join Administradores as a on m.ID = a.MIEMBROID\n"
+                    + "left join Editores as e on m.ID = e.MIEMBROID\n"
+                    + "left join Invitados as i on m.ID = i.MIEMBROID\n"
+                    + "where \n"
+                    + "m.USUARIO = ?\n"
+                    + ") as Rol";
+
+            PreparedStatement pstmt = cn.prepareStatement(query);
+            pstmt.setString(1, usuario);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                rol = rs.getString("Rol");
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println("Closing Connection");
+            try {
+                cn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return rol;
+    }
+    
+    /***
+     * Inicia sesion en el sistema
+     * @param usuario
+     * @param clave
+     * @return boolean
+     */
+    public boolean IniciarSesion(String usuario, String clave){
+        boolean flag = false;
+        java.sql.Connection cn = null;
+
+        try {
+            cn = connection.getConnection();
+
+            Statement stmt = cn.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "select * from Miembros where usuario = '"+usuario+"' and clave = '"+clave+"'"
+            );
+
+            while (rs.next()) {
+                flag = true;
+            }
+
+            System.out.println("Succesfull Query Execution");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println("Closing Connection");
+            try {
+                cn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        
+        return flag;
+    }
+    
+    /**
+     * Obtiene el Id de Miembro en base al usuario.
+     * @param usuario
+     * @return 
+     */
+    public int obtenerId(String usuario){
+        int Id = 0;
+        
+        java.sql.Connection cn = null;
+        try{
+            cn = connection.getConnection();
+            
+            Statement stmt = cn.createStatement();
+            ResultSet rs = stmt.executeQuery("select m.ID from Miembros as m\n" +
+                                             "where m.usuario =   '"+usuario+"'");
+            
+            System.out.println("Succesfull Query Execution");
+            
+            while(rs.next()){
+                Id = rs.getInt("ID");
+            }
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }finally{
+            System.out.println("Closing Connection");
+            try{
+                cn.close();
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        
+        return Id;
+    }
+    
 }// Fin de Clase Abstracta Miembro.

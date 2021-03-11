@@ -10,6 +10,11 @@ public class Funciones {
     private static Connection connection = new Connection();
     
     // METODOS DE LA CLASE.
+    /***
+     * Determina el rol de un Miembro en base a su Id.
+     * @param Id
+     * @return String
+     */
     public static String getRol(int Id){
         String rol = "";
         java.sql.Connection cn = null;

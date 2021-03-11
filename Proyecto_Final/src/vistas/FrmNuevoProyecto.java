@@ -7,9 +7,16 @@ import javax.swing.JFrame;
 import proyecto_final.Proyecto;
 
 public class FrmNuevoProyecto extends javax.swing.JFrame {
+    
+    private String[] datosUsuario = new String[2];
 
     public FrmNuevoProyecto() {
         initComponents();
+    }
+    
+    public FrmNuevoProyecto(String[] datosUsuario){
+        initComponents();
+        this.datosUsuario = datosUsuario;
     }
 
     @SuppressWarnings("unchecked")
@@ -25,6 +32,7 @@ public class FrmNuevoProyecto extends javax.swing.JFrame {
         BtnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         LbTitulo.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         LbTitulo.setText("Nuevo Proyecto");
@@ -104,7 +112,7 @@ public class FrmNuevoProyecto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarActionPerformed
-        FrmProyecto miembro = new FrmProyecto();
+        FrmProyecto miembro = new FrmProyecto(this.datosUsuario);
         miembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int height = screenSize.height;
@@ -119,7 +127,7 @@ public class FrmNuevoProyecto extends javax.swing.JFrame {
         Proyecto proyecto = new Proyecto();
         proyecto.setNombre(this.TxtNombre.getText().trim());
         proyecto.setDescripcion(this.TxtDescripcion.getText().trim());
-        proyecto.Agregar();
+        proyecto.Agregar(datosUsuario);
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
     /**

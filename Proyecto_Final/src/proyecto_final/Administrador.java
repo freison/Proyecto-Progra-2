@@ -89,14 +89,10 @@ public class Administrador extends Miembro {
         }
     }
     
-    public void Modificar(){
-    
-    }
-    
-    public void Listar(){
-    
-    }
-    
+    /***
+     * Calcula el total de Miembros existentes.
+     * @return int
+     */
     public int totalMiembros(){
         int total = 0;
         java.sql.Connection cn = null;
@@ -123,5 +119,55 @@ public class Administrador extends Miembro {
         }
         
         return total;
+    }
+    
+    /***
+     * Obtiene el Id de Administrador en base al usuario.
+     * @param usuario
+     * @return int
+     */
+    @Override
+    public int obtenerId(String usuario){
+        int Id = 0;
+        
+        java.sql.Connection cn = null;
+        try{
+            cn = connection.getConnection();
+            
+            Statement stmt = cn.createStatement();
+            ResultSet rs = stmt.executeQuery("select a.ID from Miembros as m\n" +
+                                             "left join Administradores as a\n" +
+                                             "on m.ID = a.MIEMBROID\n" +
+                                             "where m.usuario =  '"+usuario+"'");
+            
+            System.out.println("Succesfull Query Execution");
+            
+            while(rs.next()){
+                Id = rs.getInt("ID");
+            }
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }finally{
+            System.out.println("Closing Connection");
+            try{
+                cn.close();
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        
+        return Id;
+    }
+    
+    /***
+     * Obtiene el Id de Miembro en base al usuario.
+     * @param usuario
+     * @return Int
+     */
+    public int obtenerMiembroId(String usuario){
+        int Id = super.obtenerId(usuario);
+        
+        return Id;
     }
 }

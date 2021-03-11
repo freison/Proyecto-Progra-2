@@ -34,7 +34,6 @@ public class FrmNuevoMiembro extends javax.swing.JFrame {
         TxtNombres = new javax.swing.JTextField();
         TxtApellidos = new javax.swing.JTextField();
         TxtUsuario = new javax.swing.JTextField();
-        TxtClave = new javax.swing.JTextField();
         TxtCedula = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -43,6 +42,7 @@ public class FrmNuevoMiembro extends javax.swing.JFrame {
         BtnGuardar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         BtnCerrar = new javax.swing.JButton();
+        TxtClave = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,7 +94,6 @@ public class FrmNuevoMiembro extends javax.swing.JFrame {
                         .addComponent(BtnGuardar))
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TxtCedula, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TxtClave, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TxtUsuario, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TxtApellidos, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -105,9 +104,10 @@ public class FrmNuevoMiembro extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel5)
                                 .addComponent(jLabel6))
-                            .addGap(24, 24, 24)))
+                            .addGap(39, 39, 39)))
                     .addComponent(TxtNombres, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TipoMiembroComboBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TipoMiembroComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 261, Short.MAX_VALUE)
+                    .addComponent(TxtClave, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
@@ -162,7 +162,7 @@ public class FrmNuevoMiembro extends javax.swing.JFrame {
         }
         else if(tipoMiembro == "Editor"){
             Editor editor = new Editor("", TxtNombres.getText().trim(), TxtApellidos.getText().trim(),
-                    TxtUsuario.getText().trim(), TxtClave.getText().trim(), TxtCedula.getText().trim());
+                    TxtUsuario.getText().trim(), TxtClave.getText().trim().trim(), TxtCedula.getText().trim());
 
             editor.Agregar();
             // Metodo que limpia todos los TextBox;
@@ -170,7 +170,7 @@ public class FrmNuevoMiembro extends javax.swing.JFrame {
 
         else if(tipoMiembro == "Invitado"){
             Invitado invitado = new Invitado("", TxtNombres.getText().trim(), TxtApellidos.getText().trim(),
-                    TxtUsuario.getText().trim(), TxtClave.getText().trim(), TxtCedula.getText().trim());
+                    TxtUsuario.getText().trim(), TxtClave.getText().trim().trim(), TxtCedula.getText().trim());
 
             invitado.Agregar();
             // Metodo que limpia todos los TextBox;
@@ -248,7 +248,7 @@ public class FrmNuevoMiembro extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> TipoMiembroComboBox;
     private javax.swing.JTextField TxtApellidos;
     private javax.swing.JTextField TxtCedula;
-    private javax.swing.JTextField TxtClave;
+    private javax.swing.JPasswordField TxtClave;
     private javax.swing.JTextField TxtNombres;
     private javax.swing.JTextField TxtUsuario;
     private javax.swing.JLabel jLabel1;
