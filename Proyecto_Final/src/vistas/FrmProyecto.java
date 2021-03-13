@@ -59,6 +59,7 @@ public class FrmProyecto extends javax.swing.JFrame {
         ListProyectos.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
         ListProyectos.setForeground(new java.awt.Color(0, 51, 255));
         ListProyectos.setModel(listModel);
+        ListProyectos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ListProyectos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 ListProyectosValueChanged(evt);

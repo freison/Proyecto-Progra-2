@@ -492,7 +492,7 @@ public class FrmMiembro extends javax.swing.JFrame {
         modelo = new DefaultTableModel(miembros, nombresDeColumna){
             private static final long serialVersionUID = 1L;
             public Class<?> getColumnClass(int column) {
-                return column == 1 ? DefaultComboBoxModel.class : String.class;
+                return column == 1 ? DefaultTableModel.class : String.class; // DefaultComboBoxModel
             }
         };
         

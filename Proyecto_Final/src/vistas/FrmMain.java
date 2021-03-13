@@ -3,10 +3,17 @@ package vistas;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import proyecto_final.Tarea;
 
 public class FrmMain extends javax.swing.JFrame {
     
+    private static DefaultMutableTreeNode root = new DefaultMutableTreeNode("Tareas Asignadas"); 
+    private static DefaultTreeModel model;
     private String[] datosUsuario = new String[2];
     
     public FrmMain() {
@@ -15,11 +22,13 @@ public class FrmMain extends javax.swing.JFrame {
     }
     
     public FrmMain(String[] datosUsuario){
-        initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-        validarRol(datosUsuario[1]);
         this.datosUsuario = datosUsuario;
+        
+        LlenarTree();
+        initComponents();
+        validarRol(datosUsuario[1]);
+        TreeTareas.setModel(model);
     }
 
     @SuppressWarnings("unchecked")
@@ -29,6 +38,9 @@ public class FrmMain extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         BtnProyectos = new javax.swing.JButton();
         BtnMiembros = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TreeTareas = new javax.swing.JTree();
+        BtnRefresh = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -54,26 +66,43 @@ public class FrmMain extends javax.swing.JFrame {
             }
         });
 
+        TreeTareas.setModel(model);
+        TreeTareas.setBorder(null);
+        TreeTareas.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
+        jScrollPane2.setViewportView(TreeTareas);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnMiembros, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnProyectos, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(789, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(BtnMiembros, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnProyectos, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(724, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(BtnMiembros, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnProyectos, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(321, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnMiembros, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnProyectos, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        BtnRefresh.setText("Refresh");
+        BtnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRefreshActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Miembros");
         jMenuBar1.add(jMenu1);
@@ -87,15 +116,19 @@ public class FrmMain extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(BtnRefresh)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnRefresh)
+                .addContainerGap())
         );
 
         pack();
@@ -122,6 +155,10 @@ public class FrmMain extends javax.swing.JFrame {
         proyecto.setLocationRelativeTo(null);
         proyecto.setVisible(true);
     }//GEN-LAST:event_BtnProyectosActionPerformed
+
+    private void BtnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRefreshActionPerformed
+        this.LlenarTree();
+    }//GEN-LAST:event_BtnRefreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,13 +201,32 @@ public class FrmMain extends javax.swing.JFrame {
             this.BtnMiembros.setVisible(false);
         }
     }
+    
+    public void LlenarTree(){
+        Tarea tarea = new Tarea();
+        List<List<String>> Datos = tarea.listarTareasPorUsuario(this.datosUsuario[0]);
+        
+        for(int i=0; i<Datos.size(); i++){
+            for(int j=0; j<Datos.get(i).size(); j++){
+                if(i==0){
+                    DefaultMutableTreeNode nuevo = new DefaultMutableTreeNode(Datos.get(i).get(j) + " -> " + Datos.get(i+1).get(j) + " -> " + Datos.get(i + 2).get(j));
+                    root.add(nuevo);
+                }
+            }
+        }
+        
+        model = new DefaultTreeModel(root);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnMiembros;
     private javax.swing.JButton BtnProyectos;
+    private javax.swing.JButton BtnRefresh;
+    private javax.swing.JTree TreeTareas;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

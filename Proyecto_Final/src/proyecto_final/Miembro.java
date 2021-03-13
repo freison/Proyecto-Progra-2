@@ -231,6 +231,81 @@ public abstract class Miembro {
 
         return listas;
     }
+    
+    public List[] listarMiembrosPorProyecto(int ProyectoId) {
+        java.sql.Connection cn = null;
+        List<Integer> id = new ArrayList<>();
+        List<String> nombres = new ArrayList<>();
+        List<String> apellidos = new ArrayList<>();
+        List<String> usuarios = new ArrayList<>();
+        List<String> cedulas = new ArrayList<>();
+        List<String> roles = new ArrayList<>();
+
+        List[] listas = new List[6];
+
+        try {
+            cn = connection.getConnection();
+            
+            String sqlQuery = "select m.ID,\n" +
+                            "    m.NOMBRES,\n" +
+                            "    m.APELLIDOS,\n" +
+                            "    m.USUARIO,\n" +
+                            "    m.CEDULA,\n" +
+                            "    case a.ID\n" +
+                            "        when is not null then 'Administrador'\n" +
+                            "        else\n" +
+                            "            case e.ID\n" +
+                            "                when is not null then 'Editor'\n" +
+                            "                else 'Invitado'\n" +
+                            "            end\n" +
+                            "        end as Rol\n" +
+                            "from PROYECTOS as p\n" +
+                            "inner join DETALLE_PROYECTOS_PARTICIPACION as dmp\n" +
+                            "on p.ID = dmp.PROYECTOID\n" +
+                            "inner join MIEMBROS as m\n" +
+                            "on dmp.MIEMBROID = m.ID\n" +
+                            "left join ADMINISTRADORES as a\n" +
+                            "on m.ID = a.MIEMBROID\n" +
+                            "left join EDITORES as e\n" +
+                            "on m.ID = e.MIEMBROID\n" +
+                            "left join INVITADOS as i\n" +
+                            "on m.ID = i.MIEMBROID\n" +
+                            "where p.ID = ?";
+            
+            PreparedStatement ps = cn.prepareStatement(sqlQuery);
+            ps.setInt(1, ProyectoId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                id.add(rs.getInt("Id"));
+                nombres.add(rs.getString("Nombres"));
+                apellidos.add(rs.getString("Apellidos"));
+                usuarios.add(rs.getString("Usuario"));
+                cedulas.add(rs.getString("Cedula"));
+                roles.add(rs.getString("Rol"));
+            }
+
+            System.out.println("Succesfull Query Execution");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println("Closing Connection");
+            try {
+                cn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        listas[0] = id;
+        listas[1] = nombres;
+        listas[2] = apellidos;
+        listas[3] = usuarios;
+        listas[4] = cedulas;
+        listas[5] = roles;
+
+        return listas;
+    }
 
     /**
      * *
