@@ -271,7 +271,18 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnPorHacer_To_EnProcesoActionPerformed
 
     private void BtnEnProceso_To_FinalizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnProceso_To_FinalizadoActionPerformed
-        // TODO add your handling code here:
+        int index = this.ListEnProceso.getSelectedIndex();
+        int tareaId = Integer.parseInt(this.enProceso.get(0).get(index));
+        Tarea tarea = new Tarea();
+        
+        this.listFinalizadoModel.addElement(this.enProceso.get(1).get(this.ListEnProceso.getSelectedIndex()));
+        this.listEnProcesoModel.removeElement(listEnProcesoModel.get(index));
+        this.finalizado.get(0).add(enProceso.get(0).get(index));
+        this.finalizado.get(1).add(enProceso.get(1).get(index));
+        this.enProceso.get(0).remove(index);
+        this.enProceso.get(1).remove(index);
+        
+        tarea.modificarEstado(tareaId, 3);
     }//GEN-LAST:event_BtnEnProceso_To_FinalizadoActionPerformed
 
     private void BtnEnProceso_To_PorHacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnProceso_To_PorHacerActionPerformed
