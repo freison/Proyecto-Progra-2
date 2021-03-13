@@ -410,8 +410,6 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         
         this.finalizado.add(finalizadoIdTEMP);
         this.finalizado.add(finalizadoDescripcionesTEMP);
-        
-        this.enProceso.get(0).add("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
