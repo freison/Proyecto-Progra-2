@@ -68,8 +68,6 @@ public class Administrador extends Miembro {
                 + "values('"+ this.getNombres() + "', '"+ this.getApellidos()+ "', '"+ this.getUsuario() +"', "
                 + "'"+ this.getClave() +"', '"+ this.getCedula() +"')");
             
-            System.out.println("Succesfull Query Execution");
-            
             this.setMiembroId(this.buscarUltimoMiembro());
             
             String sqlQuery = "Insert into Administradores(MiembroId) values(?)";
@@ -80,7 +78,6 @@ public class Administrador extends Miembro {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }finally{
-            System.out.println("Closing Connection");
             try{
                 cn.close();
             }catch(SQLException e){
@@ -110,7 +107,6 @@ public class Administrador extends Miembro {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }finally{
-            System.out.println("Closing Connection");
             try{
                 cn.close();
             }catch(SQLException e){
@@ -140,8 +136,6 @@ public class Administrador extends Miembro {
                                              "on m.ID = a.MIEMBROID\n" +
                                              "where m.usuario =  '"+usuario+"'");
             
-            System.out.println("Succesfull Query Execution");
-            
             while(rs.next()){
                 Id = rs.getInt("ID");
             }
@@ -149,7 +143,6 @@ public class Administrador extends Miembro {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }finally{
-            System.out.println("Closing Connection");
             try{
                 cn.close();
             }catch(SQLException e){
