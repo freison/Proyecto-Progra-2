@@ -142,13 +142,9 @@ public abstract class Miembro {
                 System.out.println(rs.getInt("Id"));
                 Id = rs.getInt("Id");
             }
-            System.out.println(Id == 105);
-
-            System.out.println("Succesfull Query Execution");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Closing Connection");
             try {
                 cn.close();
             } catch (SQLException e) {
@@ -209,12 +205,9 @@ public abstract class Miembro {
                 cedulas.add(rs.getString("Cedula"));
                 roles.add(rs.getString("Rol"));
             }
-
-            System.out.println("Succesfull Query Execution");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Closing Connection");
             try {
                 cn.close();
             } catch (SQLException e) {
@@ -284,12 +277,9 @@ public abstract class Miembro {
                 cedulas.add(rs.getString("Cedula"));
                 roles.add(rs.getString("Rol"));
             }
-
-            System.out.println("Succesfull Query Execution");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Closing Connection");
             try {
                 cn.close();
             } catch (SQLException e) {
@@ -366,12 +356,9 @@ public abstract class Miembro {
                 cedulas.add(rs.getString("Cedula"));
                 roles.add(rs.getString("Rol"));
             }
-
-            System.out.println("Succesfull Query Execution");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Closing Connection");
             try {
                 cn.close();
             } catch (SQLException e) {
@@ -457,12 +444,9 @@ public abstract class Miembro {
                 cedulas.add(rs.getString("Cedula"));
                 roles.add(rs.getString("Rol"));
             }
-
-            System.out.println("Succesfull Query Execution");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Closing Connection");
             try {
                 cn.close();
             } catch (SQLException e) {
@@ -516,7 +500,6 @@ public abstract class Miembro {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Closing Connection");
             try {
                 cn.close();
             } catch (SQLException e) {
@@ -562,12 +545,11 @@ public abstract class Miembro {
 
             PreparedStatement pst = cn.prepareStatement(query);
             pst.setInt(1, Id);
-            pst.executeUpdate(); // LAST INTERACTION.
+            pst.executeUpdate();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Closing Connection");
             try {
                 cn.close();
             } catch (SQLException e) {
@@ -623,7 +605,6 @@ public abstract class Miembro {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Closing Connection");
             try {
                 cn.close();
             } catch (SQLException e) {
@@ -678,7 +659,6 @@ public abstract class Miembro {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Closing Connection");
             try {
                 cn.close();
             } catch (SQLException e) {
@@ -709,12 +689,9 @@ public abstract class Miembro {
             while (rs.next()) {
                 flag = true;
             }
-
-            System.out.println("Succesfull Query Execution");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Closing Connection");
             try {
                 cn.close();
             } catch (SQLException e) {
@@ -741,8 +718,6 @@ public abstract class Miembro {
             ResultSet rs = stmt.executeQuery("select m.ID from Miembros as m\n" +
                                              "where m.usuario =   '"+usuario+"'");
             
-            System.out.println("Succesfull Query Execution");
-            
             while(rs.next()){
                 Id = rs.getInt("ID");
             }
@@ -750,7 +725,6 @@ public abstract class Miembro {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }finally{
-            System.out.println("Closing Connection");
             try{
                 cn.close();
             }catch(SQLException e){

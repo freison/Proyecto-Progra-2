@@ -51,8 +51,6 @@ public class Editor extends Miembro {
                 + "values('"+ this.getNombres() + "', '"+ this.getApellidos()+ "', '"+ this.getUsuario() +"', "
                 + "'"+ this.getClave() +"', '"+ this.getCedula() +"')");
             
-            System.out.println("Succesfull Query Execution");
-            
             this.setMiembroId(this.buscarUltimoMiembro());
             
             String sqlQuery = "Insert into Editores(MiembroId) values(?)";
@@ -63,7 +61,6 @@ public class Editor extends Miembro {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }finally{
-            System.out.println("Closing Connection");
             try{
                 cn.close();
             }catch(SQLException e){

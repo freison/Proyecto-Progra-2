@@ -62,7 +62,6 @@ public class Invitado extends Miembro {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }finally{
-            System.out.println("Closing Connection");
             try{
                 cn.close();
             }catch(SQLException e){
