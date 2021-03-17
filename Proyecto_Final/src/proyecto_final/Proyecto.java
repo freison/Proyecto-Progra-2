@@ -99,8 +99,6 @@ public class Proyecto {
             Statement stmt = cn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from Proyectos order by Id desc fetch first row only");
             
-            System.out.println("Succesfull Query Execution");
-            
             while(rs.next()){
                 Id = rs.getInt("ID");
             }
@@ -108,7 +106,6 @@ public class Proyecto {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }finally{
-            System.out.println("Closing Connection");
             try{
                 cn.close();
             }catch(SQLException e){
@@ -134,8 +131,6 @@ public class Proyecto {
             Statement stmt = cn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from proyectos where nombre = '"+proyecto+"'");
             
-            System.out.println("Succesfull Query Execution");
-            
             while(rs.next()){
                 datos.add(Integer.toString(rs.getInt("ID")));
                 datos.add(rs.getString("Nombre"));
@@ -145,7 +140,6 @@ public class Proyecto {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }finally{
-            System.out.println("Closing Connection");
             try{
                 cn.close();
             }catch(SQLException e){
@@ -173,8 +167,6 @@ public class Proyecto {
             
             ProyectoId = this.buscarUltimoProyecto();
             
-            System.out.println("Succesfull Query Execution");
-            
             String sqlQuery = "insert into Detalle_Proyectos_Participacion(MiembroId, ProyectoId) values(?, ?)";
             PreparedStatement p = cn.prepareStatement(sqlQuery);
             p.setInt(1, MiembroId);
@@ -187,7 +179,6 @@ public class Proyecto {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, e.getMessage());
         }finally{
-            System.out.println("Closing Connection");
             try{
                 cn.close();
             }catch(SQLException e){
@@ -214,7 +205,6 @@ public class Proyecto {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, e.getMessage());
         }finally{
-            System.out.println("Closing Connection");
             try{
                 cn.close();
             }catch(SQLException e){
@@ -254,12 +244,9 @@ public class Proyecto {
                 id.add(rs.getInt("Id"));
                 nombres.add(rs.getString("Nombre"));
             }
-
-            System.out.println("Succesfull Query Execution");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Closing Connection");
             try {
                 cn.close();
             } catch (SQLException e) {
@@ -296,7 +283,6 @@ public class Proyecto {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, e.getMessage());
         }finally{
-            System.out.println("Closing Connection");
             try{
                 cn.close();
             }catch(SQLException e){
@@ -332,7 +318,6 @@ public class Proyecto {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, e.getMessage());
         }finally{
-            System.out.println("Closing Connection");
             try{
                 cn.close();
             }catch(SQLException e){
