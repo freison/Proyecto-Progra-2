@@ -158,6 +158,7 @@ public class FrmNuevoMiembro extends javax.swing.JFrame {
                     TxtUsuario.getText().trim(), TxtClave.getText().trim(), TxtCedula.getText().trim());
 
             administrador.Agregar();
+            this.mensaje();
             // Metodo que limpia todos los TextBox;
         }
         else if(tipoMiembro == "Editor"){
@@ -165,6 +166,7 @@ public class FrmNuevoMiembro extends javax.swing.JFrame {
                     TxtUsuario.getText().trim(), TxtClave.getText().trim().trim(), TxtCedula.getText().trim());
 
             editor.Agregar();
+            this.mensaje();
             // Metodo que limpia todos los TextBox;
         }
 
@@ -173,6 +175,7 @@ public class FrmNuevoMiembro extends javax.swing.JFrame {
                     TxtUsuario.getText().trim(), TxtClave.getText().trim().trim(), TxtCedula.getText().trim());
 
             invitado.Agregar();
+            this.mensaje();
             // Metodo que limpia todos los TextBox;
         }
     }//GEN-LAST:event_BtnGuardarActionPerformed
@@ -240,6 +243,10 @@ public class FrmNuevoMiembro extends javax.swing.JFrame {
         else if(miembro == "Invitado")
             return "Invitado";
         return "";
+    }
+    
+    public void mensaje(){
+        JOptionPane.showMessageDialog(null, "Miembro Agregado");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
