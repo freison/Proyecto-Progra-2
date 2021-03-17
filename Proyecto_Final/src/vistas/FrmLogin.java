@@ -4,6 +4,7 @@ package vistas;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import proyecto_final.Miembro;
 import proyecto_final.Administrador;
 
@@ -103,7 +104,7 @@ public class FrmLogin extends javax.swing.JFrame {
             this.dispose();
         }
         else{
-            System.out.println("False");
+            JOptionPane.showMessageDialog(null, "Usuario y/o clave incorrectos");
         }
     }//GEN-LAST:event_BtnLoginActionPerformed
 
