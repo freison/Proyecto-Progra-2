@@ -61,7 +61,6 @@ public class Tarea {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }finally{
-            System.out.println("Closing Connection");
             try{
                 cn.close();
             }catch(SQLException e){
@@ -84,7 +83,6 @@ public class Tarea {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }finally{
-            System.out.println("Closing Connection");
             try{
                 cn.close();
             }catch(SQLException e){
@@ -107,13 +105,9 @@ public class Tarea {
                 System.out.println(rs.getInt("Id"));
                 Id = rs.getInt("Id");
             }
-            System.out.println(Id == 105);
-
-            System.out.println("Succesfull Query Execution");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Closing Connection");
             try {
                 cn.close();
             } catch (SQLException e) {
@@ -162,12 +156,9 @@ public class Tarea {
                 proyectos.add(rs.getString("PROYECTO"));
                 estados.add(rs.getString("ESTADO"));
             }
-
-            System.out.println("Succesfull Query Execution");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Closing Connection");
             try {
                 cn.close();
             } catch (SQLException e) {
@@ -210,12 +201,9 @@ public class Tarea {
                 descripciones.add(rs.getString("DESCRIPCION"));
                 estados.add(Integer.toString(rs.getInt("ESTADOTAREAID")));
             }
-
-            System.out.println("Succesfull Query Execution");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Closing Connection");
             try {
                 cn.close();
             } catch (SQLException e) {
@@ -242,12 +230,9 @@ public class Tarea {
             ps.setInt(1, nuevoEstado);
             ps.setInt(2, tareaId);
             ps.executeUpdate();
-
-            System.out.println("Succesfull Query Execution");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            System.out.println("Closing Connection");
             try {
                 cn.close();
             } catch (SQLException e) {
