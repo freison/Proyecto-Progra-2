@@ -36,6 +36,12 @@ public class FrmLogin extends javax.swing.JFrame {
         LbClave.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
         LbClave.setText("Clave");
 
+        TxtClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TxtClaveKeyPressed(evt);
+            }
+        });
+
         BtnLogin.setText("Iniciar Sesión");
         BtnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,22 +97,14 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLoginActionPerformed
-        Miembro miembro = new Administrador();
-        if(miembro.IniciarSesion(TxtUsuario.getText().trim(), TxtClave.getText().trim())){
-            String usuario = TxtUsuario.getText().trim();
-            String rol = miembro.getRol(TxtUsuario.getText().trim());
-            String[] datosUsuario = new String[]{usuario, rol};
-            
-            FrmMain Main = new FrmMain(datosUsuario);
-            Main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            Main.setLocationRelativeTo(null);
-            Main.setVisible(true);
-            this.dispose();
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Usuario y/o clave incorrectos");
-        }
+        this.iniciarSession();
     }//GEN-LAST:event_BtnLoginActionPerformed
+
+    private void TxtClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtClaveKeyPressed
+        if(evt.getKeyCode() == 10){
+            this.iniciarSession();
+        }
+    }//GEN-LAST:event_TxtClaveKeyPressed
 
     /**
      * @param args the command line arguments
@@ -141,6 +139,25 @@ public class FrmLogin extends javax.swing.JFrame {
                 new FrmLogin().setVisible(true);
             }
         });
+    }
+    
+    // METODOS DE LA CLASE.
+    public void iniciarSession(){
+        Miembro miembro = new Administrador();
+        if(miembro.IniciarSesion(TxtUsuario.getText().trim(), TxtClave.getText().trim())){
+            String usuario = TxtUsuario.getText().trim();
+            String rol = miembro.getRol(TxtUsuario.getText().trim());
+            String[] datosUsuario = new String[]{usuario, rol};
+            
+            FrmMain Main = new FrmMain(datosUsuario);
+            Main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            Main.setLocationRelativeTo(null);
+            Main.setVisible(true);
+            this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Usuario y/o clave incorrectos");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
