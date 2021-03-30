@@ -24,6 +24,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
     private List<String> datos = new ArrayList<>();
     private String[] datosUsuario = new String[2];
     
+    private List<String> datosTarea = new ArrayList<>();
     private Integer tareaId = null;
 
     public FrmNuevaTarea() {
@@ -41,7 +42,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
     
     public FrmNuevaTarea(List<String> datos, String[] datosUsuario, Integer tareaId){
         Tarea tarea = new Tarea();
-        List<String> datosTarea = tarea.buscarTareaPorId(tareaId);
+        datosTarea = tarea.buscarTareaPorId(tareaId);
         
         this.datos = datos;
         this.datosUsuario = datosUsuario;
@@ -208,7 +209,9 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
             }
         }
         else{
-            System.out.println("Else");
+            if(!this.TxtDescripcion.getText().trim().equalsIgnoreCase(this.datosTarea.get(0))){
+                
+            }
         }
     }//GEN-LAST:event_BtnAgregarActionPerformed
 

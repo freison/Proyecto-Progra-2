@@ -272,6 +272,29 @@ public class Tarea {
         }
     }
     
+    public void modificarTarea(String descripcion, int tareaId){
+        java.sql.Connection cn = null;
+
+        try {
+            cn = connection.getConnection();
+
+            String sqlQuery = "update TAREAS set DESCRIPCION = ? where Id = ?";
+            
+            PreparedStatement ps = cn.prepareStatement(sqlQuery);
+            ps.setString(1, descripcion);
+            ps.setInt(2, tareaId);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                cn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
     public void eliminarDetalle(int detalleId){
         java.sql.Connection cn = null;
 
