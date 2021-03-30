@@ -1,10 +1,13 @@
 
 package vistas;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyecto_final.Administrador;
@@ -19,14 +22,16 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
                     {"Id", "Nombres", "Apellidos", "Rol"};
     
     private List<String> datos = new ArrayList<>();
+    private String[] datosUsuario = new String[2];
 
     public FrmNuevaTarea() {
         this.LlenarTabla();
         initComponents();
     }
     
-    public FrmNuevaTarea(List<String> datos){
+    public FrmNuevaTarea(List<String> datos, String[] datosUsuario){
         this.datos = datos;
+        this.datosUsuario = datosUsuario;
         this.LlenarTabla();
         initComponents();
         this.ListMiembrosAgregados.removeAll();
@@ -173,7 +178,15 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarActionPerformed
-        // TODO add your handling code here:
+        FrmDatosProyecto datosMiembro = new FrmDatosProyecto(datos, datosUsuario);
+        datosMiembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = screenSize.height;
+        int width = screenSize.width;
+        // datosMiembro.setSize(width/2, height/2);
+        datosMiembro.setLocationRelativeTo(null);
+        datosMiembro.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BtnCerrarActionPerformed
 
     public static void main(String args[]) {

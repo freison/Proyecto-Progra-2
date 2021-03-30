@@ -250,7 +250,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAgregarMiembroActionPerformed
 
     private void BtnAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarTareaActionPerformed
-        FrmNuevaTarea nuevaTarea = new FrmNuevaTarea(this.Datos);
+        FrmNuevaTarea nuevaTarea = new FrmNuevaTarea(this.Datos, this.datosUsuario);
         nuevaTarea.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int height = screenSize.height;
