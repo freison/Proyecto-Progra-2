@@ -3,6 +3,8 @@ package vistas;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -83,6 +85,11 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         ListPorHacer.setFont(new java.awt.Font("Open Sans", 0, 14));
         ListPorHacer.setForeground(new java.awt.Color(255, 102, 102));
         ListPorHacer.setModel(listPorHacerModel);
+        ListPorHacer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ListPorHacerMouseClicked(evt);
+            }
+        });
         ListPorHacer.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 ListPorHacerValueChanged(evt);
@@ -327,6 +334,13 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         
         tarea.modificarEstado(tareaId, 2);
     }//GEN-LAST:event_BtnFinalizado_To_EnProcesoActionPerformed
+
+    private void ListPorHacerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListPorHacerMouseClicked
+
+        if(evt.getButton() == MouseEvent.BUTTON3){
+            System.out.println(ListPorHacer.getSelectedValue().toString());
+        }
+    }//GEN-LAST:event_ListPorHacerMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

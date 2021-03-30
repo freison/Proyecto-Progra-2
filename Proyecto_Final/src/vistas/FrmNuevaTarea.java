@@ -23,6 +23,8 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
     
     private List<String> datos = new ArrayList<>();
     private String[] datosUsuario = new String[2];
+    
+    private Integer tareaId = null;
 
     public FrmNuevaTarea() {
         this.LlenarTabla();
@@ -35,6 +37,10 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         this.LlenarTabla();
         initComponents();
         this.ListMiembrosAgregados.removeAll();
+    }
+    
+    public FrmNuevaTarea(Integer tareaId){
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -53,6 +59,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         BtnAgregar = new javax.swing.JButton();
         BtnCerrar = new javax.swing.JButton();
+        BtnRemover = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -89,6 +96,15 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
             }
         });
 
+        BtnRemover.setBackground(new java.awt.Color(255, 51, 51));
+        BtnRemover.setForeground(new java.awt.Color(255, 255, 255));
+        BtnRemover.setText("Remover");
+        BtnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRemoverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
         Panel.setLayout(PanelLayout);
         PanelLayout.setHorizontalGroup(
@@ -111,7 +127,9 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelLayout.createSequentialGroup()
                         .addComponent(BtnAgregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnRemover)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnCerrar)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
@@ -136,7 +154,8 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnAgregar)
-                    .addComponent(BtnCerrar))
+                    .addComponent(BtnCerrar)
+                    .addComponent(BtnRemover))
                 .addContainerGap())
         );
 
@@ -160,20 +179,25 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         int MiembroId = obtenerIdSeleccionado();
         Tarea tarea = new Tarea();
         int ultimaTareaId = 0;
-        if(TxtDescripcion.isEnabled()){
-            tarea.Agregar(TxtDescripcion.getText().trim(), 1, Integer.parseInt(this.datos.get(0)));
-            
-            ultimaTareaId = tarea.buscarUltimaTarea();
-            tarea.AgregarDetalle(MiembroId, ultimaTareaId);
-            
-            listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
-            
-            this.TxtDescripcion.setEnabled(false);
+        if(this.tareaId == null){
+                if(TxtDescripcion.isEnabled()){
+                tarea.Agregar(TxtDescripcion.getText().trim(), 1, Integer.parseInt(this.datos.get(0)));
+
+                ultimaTareaId = tarea.buscarUltimaTarea();
+                tarea.AgregarDetalle(MiembroId, ultimaTareaId);
+
+                listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
+
+                this.TxtDescripcion.setEnabled(false);
+            }
+            else{
+                ultimaTareaId = tarea.buscarUltimaTarea();
+                tarea.AgregarDetalle(MiembroId, ultimaTareaId);
+                listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
+            }
         }
         else{
-            ultimaTareaId = tarea.buscarUltimaTarea();
-            tarea.AgregarDetalle(MiembroId, ultimaTareaId);
-            listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
+            
         }
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
@@ -188,6 +212,10 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         datosMiembro.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnCerrarActionPerformed
+
+    private void BtnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnRemoverActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -268,6 +296,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregar;
     private javax.swing.JButton BtnCerrar;
+    private javax.swing.JButton BtnRemover;
     private javax.swing.JLabel LbDescripcion;
     private javax.swing.JLabel LbMiembros;
     private javax.swing.JLabel LbTitle;

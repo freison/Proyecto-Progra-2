@@ -65,7 +65,9 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="BtnAgregar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="BtnRemover" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="BtnCerrar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -98,6 +100,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="BtnAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="BtnCerrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="BtnRemover" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -191,6 +194,20 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCerrarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="BtnRemover">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Remover"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnRemoverActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

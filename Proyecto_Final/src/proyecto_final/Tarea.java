@@ -240,4 +240,26 @@ public class Tarea {
             }
         }
     }
+    
+    public void eliminarDetalle(int detalleId){
+        java.sql.Connection cn = null;
+
+        try {
+            cn = connection.getConnection();
+
+            String sqlQuery = "delete from DETALLE_TAREAS_MIEMBRO where MIEMBROID = ?";
+            
+            PreparedStatement ps = cn.prepareStatement(sqlQuery);
+            ps.setInt(1, detalleId);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                cn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
