@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import proyecto_final.Proyecto;
 import proyecto_final.Tarea;
 
@@ -338,19 +339,22 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     private void ListPorHacerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListPorHacerMouseClicked
 
         if(evt.getButton() == MouseEvent.BUTTON3){
-            int index = this.ListPorHacer.getSelectedIndex();
-            int tareaId = Integer.parseInt(this.porHacer.get(0).get(index));
-            System.out.println(tareaId);
-            
-            FrmNuevaTarea nuevaTarea = new FrmNuevaTarea(this.Datos, this.datosUsuario, tareaId);
-            nuevaTarea.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-            int height = screenSize.height;
-            int width = screenSize.width;
-            // miembro.setSize(width/2, height/2);
-            nuevaTarea.setLocationRelativeTo(null);
-            nuevaTarea.setVisible(true);
-            this.dispose();
+            try{
+                int index = this.ListPorHacer.getSelectedIndex();
+                int tareaId = Integer.parseInt(this.porHacer.get(0).get(index));
+                
+                FrmNuevaTarea nuevaTarea = new FrmNuevaTarea(this.Datos, this.datosUsuario, tareaId);
+                nuevaTarea.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                int height = screenSize.height;
+                int width = screenSize.width;
+                // miembro.setSize(width/2, height/2);
+                nuevaTarea.setLocationRelativeTo(null);
+                nuevaTarea.setVisible(true);
+                this.dispose();
+            }catch(IndexOutOfBoundsException e){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar una tarea");
+            }
         }
     }//GEN-LAST:event_ListPorHacerMouseClicked
 

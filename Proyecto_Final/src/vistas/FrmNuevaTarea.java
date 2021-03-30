@@ -50,6 +50,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         initComponents();
         this.ListMiembrosAgregados.removeAll();
         
+        this.TxtDescripcion.setEditable(false);
         this.TxtDescripcion.setText(datosTarea.get(0));
     }
 
