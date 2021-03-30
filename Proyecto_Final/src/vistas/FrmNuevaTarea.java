@@ -219,7 +219,21 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         else{
             if(!this.TxtDescripcion.getText().trim().equals(this.datosTarea.get(0))){
                 tarea.modificarTarea(this.TxtDescripcion.getText().trim(), this.tareaId);
+                if(MiembroId > 0){
+                    tarea.AgregarDetalle(MiembroId, tareaId);
+                    listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
+                    listaIdMiembros.add(tarea.listarUltimoDetalle(tareaId));
+                    listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
+                    
+                }
             }
+            else if(this.TxtDescripcion.getText().trim().equals(this.datosTarea.get(0)) && MiembroId > 0){
+                tarea.AgregarDetalle(MiembroId, tareaId);
+                listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
+                listaIdMiembros.add(tarea.listarUltimoDetalle(tareaId));
+                listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
+            }
+            
         }
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
@@ -318,7 +332,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         try{
             Id = Integer.parseInt(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 0).toString());
         }catch(IndexOutOfBoundsException e){
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un Miembro");
+            System.out.println("Debe seleccionar un Miembro");
         }
         
         return Id;

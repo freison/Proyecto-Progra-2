@@ -263,7 +263,15 @@ public abstract class Miembro {
                             "on m.ID = e.MIEMBROID\n" +
                             "left join INVITADOS as i\n" +
                             "on m.ID = i.MIEMBROID\n" +
-                            "where p.ID = ?";
+                            "where p.ID = ? and \n" +
+                            "case a.ID\n" +
+                            "when is not null then 'Administrador'\n" +
+                            "else\n" +
+                            "    case e.ID\n" +
+                            "        when is not null then 'Editor'\n" +
+                            "        else 'Invitado'\n" +
+                            "    end\n" +
+                            "end != 'Invitado'";
             
             PreparedStatement ps = cn.prepareStatement(sqlQuery);
             ps.setInt(1, ProyectoId);
