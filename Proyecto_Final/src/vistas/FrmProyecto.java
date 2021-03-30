@@ -125,7 +125,6 @@ public class FrmProyecto extends javax.swing.JFrame {
 
     private void ListProyectosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListProyectosValueChanged
         Proyecto proyecto = new Proyecto();
-        System.out.println(ListProyectos.getSelectedValue().toString());
         var datos = proyecto.buscarProyecto(ListProyectos.getSelectedValue().toString());
         
         FrmDatosProyecto datosProyecto = new FrmDatosProyecto(datos, datosUsuario);

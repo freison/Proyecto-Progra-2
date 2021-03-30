@@ -258,7 +258,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         // miembro.setSize(width/2, height/2);
         nuevaTarea.setLocationRelativeTo(null);
         nuevaTarea.setVisible(true);
-        this.dispose(); // LAST INTERACTION.
+        this.dispose();
     }//GEN-LAST:event_BtnAgregarTareaActionPerformed
 
     private void ListPorHacerValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListPorHacerValueChanged

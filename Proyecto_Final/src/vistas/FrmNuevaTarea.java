@@ -236,7 +236,6 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         try{
             Administrador administrador = new Administrador();
             int total = administrador.totalMiembros();
-            System.out.println(datos.get(0));
             List[] Datos = administrador.listarMiembrosPorProyecto(Integer.parseInt(datos.get(0)));
             miembros = new Object[Datos[0].size()][4];
             
