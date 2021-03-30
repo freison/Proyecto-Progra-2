@@ -338,7 +338,9 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     private void ListPorHacerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListPorHacerMouseClicked
 
         if(evt.getButton() == MouseEvent.BUTTON3){
-            System.out.println(ListPorHacer.getSelectedValue().toString());
+            int index = this.ListPorHacer.getSelectedIndex();
+            int tareaId = Integer.parseInt(this.porHacer.get(0).get(index));
+            System.out.println(tareaId);
         }
     }//GEN-LAST:event_ListPorHacerMouseClicked
 
