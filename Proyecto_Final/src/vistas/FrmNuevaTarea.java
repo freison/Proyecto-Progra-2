@@ -18,6 +18,8 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
     private static Object[][] miembros;
     private static DefaultTableModel modelo = new DefaultTableModel();
     private static DefaultListModel listModel = new DefaultListModel();
+    private List<Integer> listaIdMiembros = new ArrayList<>();
+    private List<String> listaNombresMiembros = new ArrayList<>();
     private static final String nombresDeColumna[] = 
                     {"Id", "Nombres", "Apellidos", "Rol"};
     
@@ -47,11 +49,13 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         this.datos = datos;
         this.datosUsuario = datosUsuario;
         this.tareaId = tareaId;
+        listModel.removeAllElements();
         this.LlenarTabla();
+        this.LlenarLista();
         initComponents();
         this.ListMiembrosAgregados.removeAll();
         
-        this.TxtDescripcion.setEditable(false);
+        this.TxtDescripcion.setEnabled(true);
         this.TxtDescripcion.setText(datosTarea.get(0));
     }
 
@@ -199,6 +203,8 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
                 tarea.AgregarDetalle(MiembroId, ultimaTareaId);
 
                 listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
+                listaIdMiembros.add(tarea.listarUltimoDetalle(ultimaTareaId));
+                listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
 
                 this.TxtDescripcion.setEnabled(false);
             }
@@ -206,11 +212,13 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
                 ultimaTareaId = tarea.buscarUltimaTarea();
                 tarea.AgregarDetalle(MiembroId, ultimaTareaId);
                 listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
+                listaIdMiembros.add(tarea.listarUltimoDetalle(ultimaTareaId));
+                listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
             }
         }
         else{
-            if(!this.TxtDescripcion.getText().trim().equalsIgnoreCase(this.datosTarea.get(0))){
-                
+            if(!this.TxtDescripcion.getText().trim().equals(this.datosTarea.get(0))){
+                tarea.modificarTarea(this.TxtDescripcion.getText().trim(), this.tareaId);
             }
         }
     }//GEN-LAST:event_BtnAgregarActionPerformed
@@ -272,6 +280,15 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
                 return column == 1 ? DefaultTableModel.class : String.class;
             }
         };
+    }
+    
+    private void LlenarLista(){
+        Tarea tarea = new Tarea();
+        List<List<String>> detalles = tarea.listarDetalles(this.tareaId);
+        
+        for(String dato: detalles.get(1)){
+            listModel.addElement(dato);
+        }
     }
     
     public void obtenerDatos(){

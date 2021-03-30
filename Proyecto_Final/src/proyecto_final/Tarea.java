@@ -249,6 +249,80 @@ public class Tarea {
         return lista;
     }
     
+    public List listarDetalles(int tareaId){
+        List<List<String>> lista = new ArrayList<>();
+        
+        java.sql.Connection cn = null;
+        List<String> Id = new ArrayList<>();
+        List<String> nombres = new ArrayList<>();
+
+        try {
+            cn = connection.getConnection();
+
+            String sqlQuery = "select m.ID, m.NOMBRES\n" +
+                            "from DETALLE_TAREAS_MIEMBRO as dtm\n" +
+                            "inner join MIEMBROS as m\n" +
+                            "on dtm.MIEMBROID = m.ID\n" +
+                            "where dtm.TAREAID = ?";
+            
+            PreparedStatement ps = cn.prepareStatement(sqlQuery);
+            ps.setInt(1, tareaId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Id.add(Integer.toString(rs.getInt("ID")));
+                nombres.add(rs.getString("NOMBRES"));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                cn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        lista.add(Id);
+        lista.add(nombres);
+        
+        return lista;
+    }
+    
+    public int listarUltimoDetalle(int tareaId){
+        java.sql.Connection cn = null;
+        
+        int detalleId = 0;
+
+        try {
+            cn = connection.getConnection();
+
+            String sqlQuery = "select m.ID, m.NOMBRES\n" +
+                            "from DETALLE_TAREAS_MIEMBRO as dtm\n" +
+                            "inner join MIEMBROS as m\n" +
+                            "on dtm.MIEMBROID = m.ID\n" +
+                            "where dtm.TAREAID = ?";
+            
+            PreparedStatement ps = cn.prepareStatement(sqlQuery);
+            ps.setInt(1, tareaId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                detalleId = rs.getInt("ID");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                cn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        
+        return detalleId;
+    }
+    
     public void modificarEstado(int tareaId, int nuevoEstado){        
         java.sql.Connection cn = null;
 
