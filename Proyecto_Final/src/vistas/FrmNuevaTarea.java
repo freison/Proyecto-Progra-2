@@ -39,8 +39,18 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         this.ListMiembrosAgregados.removeAll();
     }
     
-    public FrmNuevaTarea(Integer tareaId){
+    public FrmNuevaTarea(List<String> datos, String[] datosUsuario, Integer tareaId){
+        Tarea tarea = new Tarea();
+        List<String> datosTarea = tarea.buscarTareaPorId(tareaId);
         
+        this.datos = datos;
+        this.datosUsuario = datosUsuario;
+        this.tareaId = tareaId;
+        this.LlenarTabla();
+        initComponents();
+        this.ListMiembrosAgregados.removeAll();
+        
+        this.TxtDescripcion.setText(datosTarea.get(0));
     }
 
     @SuppressWarnings("unchecked")
@@ -197,7 +207,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
             }
         }
         else{
-            
+            System.out.println("Else");
         }
     }//GEN-LAST:event_BtnAgregarActionPerformed
 

@@ -118,6 +118,37 @@ public class Tarea {
         return Id;
     }
     
+    public List<String> buscarTareaPorId(int tareaId){
+        java.sql.Connection cn = null;
+        
+        List<String> tarea = new ArrayList<>();
+
+        try {
+            cn = connection.getConnection();
+
+            String sqlQuery = "select * from Tareas where id = ?";
+            
+            PreparedStatement ps = cn.prepareStatement(sqlQuery);
+            ps.setInt(1, tareaId);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                tarea.add(rs.getString("Descripcion"));
+                tarea.add(Integer.toString(rs.getInt("EstadoTareaId")));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                cn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        
+        return tarea;
+    }
+    
     public List<List<String>> listarTareasPorUsuario(String usuario){
         List<List<String>> lista = new ArrayList<>();
         

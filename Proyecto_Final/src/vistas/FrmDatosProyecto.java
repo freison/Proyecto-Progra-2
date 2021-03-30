@@ -341,6 +341,16 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
             int index = this.ListPorHacer.getSelectedIndex();
             int tareaId = Integer.parseInt(this.porHacer.get(0).get(index));
             System.out.println(tareaId);
+            
+            FrmNuevaTarea nuevaTarea = new FrmNuevaTarea(this.Datos, this.datosUsuario, tareaId);
+            nuevaTarea.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            int height = screenSize.height;
+            int width = screenSize.width;
+            // miembro.setSize(width/2, height/2);
+            nuevaTarea.setLocationRelativeTo(null);
+            nuevaTarea.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_ListPorHacerMouseClicked
 
