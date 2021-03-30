@@ -4,6 +4,7 @@ package vistas;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import proyecto_final.Connection;
 import proyecto_final.Miembro;
 import proyecto_final.Administrador;
@@ -195,8 +196,9 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
         
         if(!rol.equalsIgnoreCase(rolPrevio)){
             miembro.actualizarRol(ID, rolPrevio, rol);
-            System.out.println("ENTER");
         }
+        
+        JOptionPane.showMessageDialog(null, "Se ha modificado correctamente");
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
