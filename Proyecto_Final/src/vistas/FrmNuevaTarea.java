@@ -255,7 +255,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         int detalleId = this.listaIdMiembros.get(this.ListMiembrosAgregados.getSelectedIndex());
         
         tarea.eliminarDetalle(detalleId);
-        listModel.remove(this.ListMiembrosAgregados.getSelectedIndex());
+        listModel.remove(this.ListMiembrosAgregados.getSelectedIndex()); // LAST INTERACTION.
     }//GEN-LAST:event_BtnRemoverActionPerformed
 
     public static void main(String args[]) {
