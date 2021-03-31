@@ -369,6 +369,43 @@ public class Tarea {
         }
     }
     
+    public boolean validarDetalleAsignado(String miembroNombre, int tareaId){
+        boolean isAsignado = false;
+        
+        java.sql.Connection cn = null;
+
+        try {
+            cn = connection.getConnection();
+
+            String sqlQuery = "select t.DESCRIPCION\n" +
+                            "from Miembros as m\n" +
+                            "inner join DETALLE_TAREAS_MIEMBRO as dtm\n" +
+                            "on m.ID = dtm.MIEMBROID\n" +
+                            "inner join TAREAS as t\n" +
+                            "on dtm.TAREAID = t.ID\n" +
+                            "where m.NOMBRES = ? and t.ID = ?";
+            
+            PreparedStatement ps = cn.prepareStatement(sqlQuery);
+            ps.setString(1, miembroNombre);
+            ps.setInt(2, tareaId);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                isAsignado = true;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                cn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        
+        return isAsignado;
+    }
+    
     public void eliminarDetalle(int detalleId){
         java.sql.Connection cn = null;
 

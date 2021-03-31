@@ -340,11 +340,12 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
 
     private void ListPorHacerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListPorHacerMouseClicked
 
-        if(evt.getButton() == MouseEvent.BUTTON3){
+        Tarea tarea = new Tarea();
+        int index = this.ListPorHacer.getSelectedIndex();
+        int tareaId = Integer.parseInt(this.porHacer.get(0).get(index));
+        
+        if(evt.getButton() == MouseEvent.BUTTON3 && this.owner){
             try{
-                int index = this.ListPorHacer.getSelectedIndex();
-                int tareaId = Integer.parseInt(this.porHacer.get(0).get(index));
-                
                 FrmNuevaTarea nuevaTarea = new FrmNuevaTarea(this.Datos, this.datosUsuario, tareaId);
                 nuevaTarea.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -356,6 +357,21 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
                 this.dispose();
             }catch(IndexOutOfBoundsException e){
                 JOptionPane.showMessageDialog(null, "Debe seleccionar una tarea");
+            }
+        }
+        else if(evt.getButton() == MouseEvent.BUTTON3 && tarea.validarDetalleAsignado(this.datosUsuario[0], tareaId)){
+            try{
+                FrmNuevaTarea nuevaTarea = new FrmNuevaTarea(this.Datos, this.datosUsuario, tareaId);
+                nuevaTarea.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                int height = screenSize.height;
+                int width = screenSize.width;
+                // miembro.setSize(width/2, height/2);
+                nuevaTarea.setLocationRelativeTo(null);
+                nuevaTarea.setVisible(true);
+                this.dispose();
+            }catch(IndexOutOfBoundsException e){
+                JOptionPane.showMessageDialog(null, "No ha sido asignado a esta tarea");
             }
         }
     }//GEN-LAST:event_ListPorHacerMouseClicked
