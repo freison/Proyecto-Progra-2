@@ -37,6 +37,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
     public FrmNuevaTarea(List<String> datos, String[] datosUsuario){
         this.datos = datos;
         this.datosUsuario = datosUsuario;
+        listModel.removeAllElements();
         this.LlenarTabla();
         initComponents();
         this.ListMiembrosAgregados.removeAll();
@@ -250,7 +251,11 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnCerrarActionPerformed
 
     private void BtnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoverActionPerformed
-        // TODO add your handling code here:
+        Tarea tarea = new Tarea();
+        int detalleId = this.listaIdMiembros.get(this.ListMiembrosAgregados.getSelectedIndex());
+        
+        tarea.eliminarDetalle(detalleId);
+        listModel.remove(this.ListMiembrosAgregados.getSelectedIndex());
     }//GEN-LAST:event_BtnRemoverActionPerformed
 
     public static void main(String args[]) {
@@ -302,6 +307,10 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         
         for(String dato: detalles.get(1)){
             listModel.addElement(dato);
+        }
+        
+        for(String dato: detalles.get(0)){
+            this.listaIdMiembros.add(Integer.parseInt(dato));
         }
     }
     
