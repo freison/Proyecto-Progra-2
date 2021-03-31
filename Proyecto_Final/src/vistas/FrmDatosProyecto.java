@@ -24,6 +24,8 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     private List<List<String>> finalizado = new ArrayList<>();
     private List<String> Datos = new ArrayList<>();
     private String[] datosUsuario = new String[2];
+    
+    private boolean owner = false;
 
     public FrmDatosProyecto() {
         initComponents();
@@ -78,12 +80,12 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         LbTitulo.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
         LbTitulo.setText("Proyecto");
 
-        ListEnProceso.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        ListEnProceso.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         ListEnProceso.setForeground(new java.awt.Color(255, 153, 0));
         ListEnProceso.setModel(listEnProcesoModel);
         jScrollPane1.setViewportView(ListEnProceso);
 
-        ListPorHacer.setFont(new java.awt.Font("Open Sans", 0, 14));
+        ListPorHacer.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         ListPorHacer.setForeground(new java.awt.Color(255, 102, 102));
         ListPorHacer.setModel(listPorHacerModel);
         ListPorHacer.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,7 +100,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(ListPorHacer);
 
-        ListFinalizado.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        ListFinalizado.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         ListFinalizado.setForeground(new java.awt.Color(51, 153, 0));
         ListFinalizado.setModel(listFinalizadoModel);
         jScrollPane3.setViewportView(ListFinalizado);
@@ -401,6 +403,11 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         }
     }
     
+    /***
+     * Obtiene el propietario del proyecto en base a proyecto Id.
+     * @param Id
+     * @param usuario 
+     */
     public void validarPropietario(int Id, String usuario){
         Proyecto proyecto = new Proyecto();
         String propietario = proyecto.obtenerCreador(Id);
@@ -409,13 +416,24 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
             this.BtnAgregarMiembro.setEnabled(false);
             this.BtnAgregarMiembro.setVisible(false);
         }
+        else{
+            this.owner = true;
+        }
     }
     
     public void validarRol(String rol){
         if(rol.equals("Invitado")){
-            this.ListPorHacer.setEnabled(false);
-            this.ListEnProceso.setEnabled(false);
-            this.ListFinalizado.setEnabled(false);
+            this.mostrarListas(false);
+            
+            this.ocultarBotones();
+        }
+        else if(rol.equals("Editor")){
+            this.mostrarListas(true);
+            
+            this.BtnAgregarTarea.setVisible(false);
+        }
+        else if(rol.equals("Administrador") && !this.owner){
+            this.mostrarListas(true);
         }
     }
     
@@ -479,6 +497,21 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         
         this.finalizado.add(finalizadoIdTEMP);
         this.finalizado.add(finalizadoDescripcionesTEMP);
+    }
+    
+    public void ocultarBotones(){
+        this.BtnPorHacer_To_EnProceso.setVisible(false);
+        this.BtnEnProceso_To_PorHacer.setVisible(false);
+        this.BtnEnProceso_To_Finalizado.setVisible(false);
+        this.BtnFinalizado_To_EnProceso.setVisible(false);
+
+        this.BtnAgregarTarea.setVisible(false);
+    }
+    
+    public void mostrarListas(boolean mostrar){
+        this.ListPorHacer.setEnabled(mostrar);
+        this.ListEnProceso.setEnabled(mostrar);
+        this.ListFinalizado.setEnabled(mostrar);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
