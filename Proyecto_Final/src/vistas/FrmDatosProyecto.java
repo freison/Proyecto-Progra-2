@@ -342,7 +342,12 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
 
         Tarea tarea = new Tarea();
         int index = this.ListPorHacer.getSelectedIndex();
-        int tareaId = Integer.parseInt(this.porHacer.get(0).get(index));
+        int tareaId = 0;
+        try{
+            tareaId = Integer.parseInt(this.porHacer.get(0).get(index));
+        }catch(IndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una tarea");
+        }
         
         if(evt.getButton() == MouseEvent.BUTTON3 && this.owner){
             try{
@@ -359,6 +364,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Debe seleccionar una tarea");
             }
         }
+        // Implementar rol.
         else if(evt.getButton() == MouseEvent.BUTTON3 && tarea.validarDetalleAsignado(this.datosUsuario[0], tareaId)){
             try{
                 FrmNuevaTarea nuevaTarea = new FrmNuevaTarea(this.Datos, this.datosUsuario, tareaId);
@@ -373,6 +379,9 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
             }catch(IndexOutOfBoundsException e){
                 JOptionPane.showMessageDialog(null, "No ha sido asignado a esta tarea");
             }
+        }
+        else if(evt.getButton() == MouseEvent.BUTTON3 && !tarea.validarDetalleAsignado(this.datosUsuario[0], tareaId)){
+            JOptionPane.showMessageDialog(null, "No ha sido asignado a esta tarea");
         }
     }//GEN-LAST:event_ListPorHacerMouseClicked
 

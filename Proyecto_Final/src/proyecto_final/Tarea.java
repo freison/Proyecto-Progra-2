@@ -383,7 +383,7 @@ public class Tarea {
                             "on m.ID = dtm.MIEMBROID\n" +
                             "inner join TAREAS as t\n" +
                             "on dtm.TAREAID = t.ID\n" +
-                            "where m.NOMBRES = ? and t.ID = ?";
+                            "where m.USUARIO = ? and t.ID = ?";
             
             PreparedStatement ps = cn.prepareStatement(sqlQuery);
             ps.setString(1, miembroNombre);
