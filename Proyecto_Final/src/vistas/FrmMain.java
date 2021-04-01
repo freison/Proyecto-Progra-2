@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.BoxLayout;
 import proyecto_final.Tarea;
 
 public class FrmMain extends javax.swing.JFrame {
@@ -29,6 +30,7 @@ public class FrmMain extends javax.swing.JFrame {
         initComponents();
         validarRol(datosUsuario[1]);
         TreeTareas.setModel(model);
+        TreeTareas.setLayout(new BoxLayout(this.TreeTareas, BoxLayout.Y_AXIS));
     }
 
     @SuppressWarnings("unchecked")
@@ -157,7 +159,10 @@ public class FrmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnProyectosActionPerformed
 
     private void BtnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRefreshActionPerformed
+        root.removeAllChildren();
         this.LlenarTree();
+        TreeTareas.setModel(model);
+        this.TreeTareas.revalidate();
     }//GEN-LAST:event_BtnRefreshActionPerformed
 
     /**
