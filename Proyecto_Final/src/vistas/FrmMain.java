@@ -162,7 +162,7 @@ public class FrmMain extends javax.swing.JFrame {
         root.removeAllChildren();
         this.LlenarTree();
         TreeTareas.setModel(model);
-        this.TreeTareas.revalidate(); // LAST INTERACTION.
+        this.TreeTareas.revalidate();
     }//GEN-LAST:event_BtnRefreshActionPerformed
 
     /**
