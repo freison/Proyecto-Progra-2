@@ -1,6 +1,10 @@
 
 package proyecto_final;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 public class EstadoTarea {
     // ATRIBUTOS DE LA CLASE.
     private String ID;
@@ -40,7 +44,26 @@ public class EstadoTarea {
     }
     
     // METODOS DE LA CLASE.
-    public void Agregar(){
+    public void Agregar(int proyectoId){
+        java.sql.Connection cn = null;
         
+        try{
+            cn = connection.getConnection();
+            
+            PreparedStatement stmt = cn.prepareStatement("insert into ESTADOSTAREA(Descripcion, ProyectoId) values(?, ?)");
+            stmt.setString(1, this.getDescripcion());
+            stmt.setInt(2, proyectoId);
+            stmt.executeUpdate();
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }finally{
+            try{
+                cn.close();
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
