@@ -1,10 +1,13 @@
 
 package vistas;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
 
 public class FrmDatosProyectos extends javax.swing.JFrame {
+    
+    private List<PnLista> listaComponentes = new ArrayList<>();
 
     public FrmDatosProyectos() {
         initComponents();
@@ -35,6 +38,8 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         LbAgregarLista = new javax.swing.JLabel();
         TxtTituloNuevaLista = new javax.swing.JTextField();
         BtnAgregar = new javax.swing.JButton();
+        BtnForward = new javax.swing.JButton();
+        BtnBackward = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,6 +69,17 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
             }
         });
 
+        BtnForward.setFont(new java.awt.Font("Open Sans", 1, 24)); // NOI18N
+        BtnForward.setText(">");
+        BtnForward.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnForwardActionPerformed(evt);
+            }
+        });
+
+        BtnBackward.setFont(new java.awt.Font("Open Sans", 1, 24)); // NOI18N
+        BtnBackward.setText("<");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,6 +98,12 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnAgregar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtnBackward)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BtnForward)
+                .addGap(513, 513, 513))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,8 +115,12 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
                     .addComponent(LbAgregarLista)
                     .addComponent(TxtTituloNuevaLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnAgregar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnForward)
+                    .addComponent(BtnBackward))
                 .addContainerGap())
         );
 
@@ -102,16 +128,28 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
-        PnLista panel = new PnLista(this.TxtTituloNuevaLista.getText().trim());
+      
+        PnLista panel = new PnLista(this.TxtTituloNuevaLista.getText().trim(), 1, listaComponentes.size());
+        listaComponentes.add(panel);
         
         PnPanel.add(panel);
         PnPanel.revalidate();
+        
+        
         
         for(var dato: PnPanel.getComponents()){
             PnLista t = (PnLista)PnPanel.getComponent(0);
             System.out.println(t.getLbTitulo().getText().trim());
         }
     }//GEN-LAST:event_BtnAgregarActionPerformed
+
+    private void BtnForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnForwardActionPerformed
+        for(var dato: PnPanel.getComponents()){
+            if(!listaComponentes.get(0).getListLista().isSelectionEmpty()){
+                System.out.println(listaComponentes.get(0).getListLista().getSelectedValue().toString());
+            }
+        }
+    }//GEN-LAST:event_BtnForwardActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,6 +188,8 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregar;
+    private javax.swing.JButton BtnBackward;
+    private javax.swing.JButton BtnForward;
     private javax.swing.JLabel LbAgregarLista;
     private javax.swing.JLabel LbTitulo;
     private javax.swing.JPanel PnPanel;

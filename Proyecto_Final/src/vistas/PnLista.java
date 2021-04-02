@@ -1,7 +1,9 @@
 
 package vistas;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
+import javax.swing.JList;
 
 public class PnLista extends javax.swing.JPanel {
 
@@ -9,7 +11,12 @@ public class PnLista extends javax.swing.JPanel {
         initComponents();
     }
     
-    public PnLista(String titulo){
+    public PnLista(String titulo, int estadoId, int index){
+        initComponents();
+        this.LbTitulo.setText(titulo);
+    }
+    
+    public PnLista(String titulo, int estadoId, int index, DefaultListModel model){
         initComponents();
         this.LbTitulo.setText(titulo);
     }
@@ -21,7 +28,7 @@ public class PnLista extends javax.swing.JPanel {
         PnPanel = new javax.swing.JPanel();
         LbTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        ListLista = new javax.swing.JList<>();
         BtnForward = new javax.swing.JButton();
         BtnBackward = new javax.swing.JButton();
         BtnAgregarTarea = new javax.swing.JButton();
@@ -29,8 +36,13 @@ public class PnLista extends javax.swing.JPanel {
         LbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LbTitulo.setText("Titulo");
 
-        jList1.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
-        jScrollPane1.setViewportView(jList1);
+        ListLista.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
+        ListLista.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Elemento1", "Elemento2", "Elemento3" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(ListLista);
 
         BtnForward.setText(">");
 
@@ -90,18 +102,27 @@ public class PnLista extends javax.swing.JPanel {
         return LbTitulo;
     }
 
-    // GETTERS Y SETTERS DE LA CLASE.
     public void setLbTitulo(JLabel LbTitulo) {
         this.LbTitulo = LbTitulo;
-    }    
+    }  
+
+    public JList<String> getListLista() {
+        return ListLista;
+    }
+
+    public void setListLista(JList<String> ListLista) {
+        this.ListLista = ListLista;
+    }
+    
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregarTarea;
     private javax.swing.JButton BtnBackward;
     private javax.swing.JButton BtnForward;
     private javax.swing.JLabel LbTitulo;
+    private javax.swing.JList<String> ListLista;
     private javax.swing.JPanel PnPanel;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
