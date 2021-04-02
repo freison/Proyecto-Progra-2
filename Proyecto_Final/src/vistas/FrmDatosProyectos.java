@@ -1,6 +1,7 @@
 
 package vistas;
 
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
@@ -144,9 +145,14 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnForwardActionPerformed
-        for(var dato: PnPanel.getComponents()){
-            if(!listaComponentes.get(0).getListLista().isSelectionEmpty()){
-                System.out.println(listaComponentes.get(0).getListLista().getSelectedValue().toString());
+        
+        for(int i=0; i<listaComponentes.size(); i++){
+            // System.out.println(listaComponentes.get(i).getListLista());
+            if(listaComponentes.get(i).getSelected() > -1){
+                System.out.println(listaComponentes.get(i).getLbTitulo().getText().trim() + " " + 
+                        listaComponentes.get(i).getSelected());
+                
+                listaComponentes.get(i).setSelected(-1);
             }
         }
     }//GEN-LAST:event_BtnForwardActionPerformed

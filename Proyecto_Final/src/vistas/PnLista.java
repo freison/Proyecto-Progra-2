@@ -1,11 +1,16 @@
 
 package vistas;
 
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
 public class PnLista extends javax.swing.JPanel {
+    
+    private int selected = -1;
 
     public PnLista() {
         initComponents();
@@ -33,6 +38,12 @@ public class PnLista extends javax.swing.JPanel {
         BtnBackward = new javax.swing.JButton();
         BtnAgregarTarea = new javax.swing.JButton();
 
+        PnPanel.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PnPanelFocusLost(evt);
+            }
+        });
+
         LbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LbTitulo.setText("Titulo");
 
@@ -41,6 +52,13 @@ public class PnLista extends javax.swing.JPanel {
             String[] strings = { "Elemento1", "Elemento2", "Elemento3" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        ListLista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ListLista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ListLista.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ListListaFocusLost(evt);
+            }
         });
         jScrollPane1.setViewportView(ListLista);
 
@@ -96,6 +114,20 @@ public class PnLista extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ListListaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ListListaFocusLost
+        this.setSelected(this.ListLista.getSelectedIndex());
+        try {
+            sleep(300);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
+        this.ListLista.clearSelection();
+    }//GEN-LAST:event_ListListaFocusLost
+
+    private void PnPanelFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PnPanelFocusLost
+        
+    }//GEN-LAST:event_PnPanelFocusLost
+
 
     // GETTERS Y SETTERS DE LA CLASE.
     public JLabel getLbTitulo() {
@@ -113,8 +145,14 @@ public class PnLista extends javax.swing.JPanel {
     public void setListLista(JList<String> ListLista) {
         this.ListLista = ListLista;
     }
-    
-    
+
+    public int getSelected() {
+        return selected;
+    }
+
+    public void setSelected(int selected) {
+        this.selected = selected;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregarTarea;
