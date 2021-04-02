@@ -28,29 +28,51 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
 
         ScrollPane = new javax.swing.JScrollPane();
         LbTitulo = new javax.swing.JLabel();
+        LbAgregarLista = new javax.swing.JLabel();
+        TxtTituloNuevaLista = new javax.swing.JTextField();
+        BtnAgregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        LbTitulo.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
+        LbTitulo.setFont(new java.awt.Font("Open Sans", 1, 16)); // NOI18N
         LbTitulo.setText("Proyecto");
+
+        LbAgregarLista.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        LbAgregarLista.setText("Agregar Lista");
+
+        BtnAgregar.setText("Agregar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ScrollPane)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 244, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(LbTitulo)
-                .addContainerGap(1120, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LbTitulo)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(LbAgregarLista)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TxtTituloNuevaLista, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnAgregar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(LbTitulo)
-                .addGap(18, 18, 18)
-                .addComponent(ScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LbAgregarLista)
+                    .addComponent(TxtTituloNuevaLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnAgregar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -93,7 +115,10 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAgregar;
+    private javax.swing.JLabel LbAgregarLista;
     private javax.swing.JLabel LbTitulo;
     private javax.swing.JScrollPane ScrollPane;
+    private javax.swing.JTextField TxtTituloNuevaLista;
     // End of variables declaration//GEN-END:variables
 }
