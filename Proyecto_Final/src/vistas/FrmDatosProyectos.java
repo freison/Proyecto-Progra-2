@@ -2,6 +2,7 @@
 package vistas;
 
 import java.util.List;
+import javax.swing.BoxLayout;
 
 public class FrmDatosProyectos extends javax.swing.JFrame {
 
@@ -12,6 +13,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     public FrmDatosProyectos(List datos, String[] datosUsuario){
 //        llenarListaMiembros(Integer.parseInt(datos.get(0).toString()));
         initComponents();
+        PnPanel.setLayout(new BoxLayout(this.PnPanel, BoxLayout.X_AXIS));
 //        LbTitulo.setText(LbTitulo.getText() + " " + datos.get(1));
 //        
 //        this.Datos = datos;
@@ -28,12 +30,26 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     private void initComponents() {
 
         ScrollPane = new javax.swing.JScrollPane();
+        PnPanel = new javax.swing.JPanel();
         LbTitulo = new javax.swing.JLabel();
         LbAgregarLista = new javax.swing.JLabel();
         TxtTituloNuevaLista = new javax.swing.JTextField();
         BtnAgregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout PnPanelLayout = new javax.swing.GroupLayout(PnPanel);
+        PnPanel.setLayout(PnPanelLayout);
+        PnPanelLayout.setHorizontalGroup(
+            PnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 942, Short.MAX_VALUE)
+        );
+        PnPanelLayout.setVerticalGroup(
+            PnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 491, Short.MAX_VALUE)
+        );
+
+        ScrollPane.setViewportView(PnPanel);
 
         LbTitulo.setFont(new java.awt.Font("Open Sans", 1, 16)); // NOI18N
         LbTitulo.setText("Proyecto");
@@ -42,6 +58,11 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         LbAgregarLista.setText("Agregar Lista");
 
         BtnAgregar.setText("Agregar");
+        BtnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAgregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,6 +100,13 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
+        PnLista panel = new PnLista();
+        
+        PnPanel.add(panel);
+        PnPanel.revalidate();
+    }//GEN-LAST:event_BtnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,6 +147,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     private javax.swing.JButton BtnAgregar;
     private javax.swing.JLabel LbAgregarLista;
     private javax.swing.JLabel LbTitulo;
+    private javax.swing.JPanel PnPanel;
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JTextField TxtTituloNuevaLista;
     // End of variables declaration//GEN-END:variables
