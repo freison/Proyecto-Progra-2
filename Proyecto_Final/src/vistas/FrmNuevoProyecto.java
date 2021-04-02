@@ -30,6 +30,7 @@ public class FrmNuevoProyecto extends javax.swing.JFrame {
         TxtDescripcion = new javax.swing.JTextField();
         BtnGuardar = new javax.swing.JButton();
         BtnCerrar = new javax.swing.JButton();
+        ChkTablero = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -57,6 +58,9 @@ public class FrmNuevoProyecto extends javax.swing.JFrame {
             }
         });
 
+        ChkTablero.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        ChkTablero.setText("Tablero");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,11 +86,15 @@ public class FrmNuevoProyecto extends javax.swing.JFrame {
                             .addComponent(TxtDescripcion))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(76, 76, 76)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnCerrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(59, 59, 59)
                 .addComponent(BtnGuardar)
-                .addGap(71, 71, 71))
+                .addGap(73, 73, 73))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ChkTablero)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,11 +109,13 @@ public class FrmNuevoProyecto extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TxtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
+                .addComponent(ChkTablero)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnGuardar)
                     .addComponent(BtnCerrar))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -168,6 +178,7 @@ public class FrmNuevoProyecto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCerrar;
     private javax.swing.JButton BtnGuardar;
+    private javax.swing.JCheckBox ChkTablero;
     private javax.swing.JLabel LbNombre;
     private javax.swing.JLabel LbTitulo;
     private javax.swing.JTextField TxtDescripcion;
