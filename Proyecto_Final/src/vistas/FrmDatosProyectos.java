@@ -102,10 +102,15 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
-        PnLista panel = new PnLista();
+        PnLista panel = new PnLista(this.TxtTituloNuevaLista.getText().trim());
         
         PnPanel.add(panel);
         PnPanel.revalidate();
+        
+        for(var dato: PnPanel.getComponents()){
+            PnLista t = (PnLista)PnPanel.getComponent(0);
+            System.out.println(t.getLbTitulo().getText().trim());
+        }
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     /**
