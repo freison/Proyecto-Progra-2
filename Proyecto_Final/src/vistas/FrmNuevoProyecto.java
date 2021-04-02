@@ -137,7 +137,7 @@ public class FrmNuevoProyecto extends javax.swing.JFrame {
         Proyecto proyecto = new Proyecto();
         proyecto.setNombre(this.TxtNombre.getText().trim());
         proyecto.setDescripcion(this.TxtDescripcion.getText().trim());
-        proyecto.Agregar(datosUsuario);
+        proyecto.Agregar(datosUsuario, this.ChkTablero.isSelected());
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
     /**

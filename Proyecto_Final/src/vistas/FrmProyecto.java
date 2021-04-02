@@ -127,15 +127,28 @@ public class FrmProyecto extends javax.swing.JFrame {
         Proyecto proyecto = new Proyecto();
         var datos = proyecto.buscarProyecto(ListProyectos.getSelectedValue().toString());
         
-        FrmDatosProyecto datosProyecto = new FrmDatosProyecto(datos, datosUsuario);
-        datosProyecto.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int height = screenSize.height;
-        int width = screenSize.width;
-        // miembro.setSize(width/2, height/2);
-        datosProyecto.setLocationRelativeTo(null);
-        datosProyecto.setVisible(true);
-        this.dispose();
+        if(Boolean.parseBoolean(datos.get(datos.size() - 1).toString())){
+            FrmDatosProyectos datosProyecto = new FrmDatosProyectos(datos, datosUsuario);
+            datosProyecto.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            int height = screenSize.height;
+            int width = screenSize.width;
+            // miembro.setSize(width/2, height/2);
+            datosProyecto.setLocationRelativeTo(null);
+            datosProyecto.setVisible(true);
+            this.dispose();
+        }
+        else{
+            FrmDatosProyecto datosProyecto = new FrmDatosProyecto(datos, datosUsuario);
+            datosProyecto.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            int height = screenSize.height;
+            int width = screenSize.width;
+            // miembro.setSize(width/2, height/2);
+            datosProyecto.setLocationRelativeTo(null);
+            datosProyecto.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_ListProyectosValueChanged
 
     /**

@@ -135,6 +135,7 @@ public class Proyecto {
                 datos.add(Integer.toString(rs.getInt("ID")));
                 datos.add(rs.getString("Nombre"));
                 datos.add(rs.getString("Descripcion"));
+                datos.add(Boolean.toString(rs.getBoolean("Tipo")));
             }
 
         }catch(Exception e){
@@ -150,7 +151,7 @@ public class Proyecto {
         return datos;
     }
     
-    public void Agregar(String[] datosUsuario){
+    public void Agregar(String[] datosUsuario, boolean tipo){
         Administrador administrador = new Administrador();
         java.sql.Connection cn = null;
         int MiembroId = administrador.obtenerMiembroId(datosUsuario[0]);
@@ -159,10 +160,11 @@ public class Proyecto {
         try{
             cn = connection.getConnection();
             
-            PreparedStatement stmt = cn.prepareStatement("insert into Proyectos(nombre, descripcion, AdministradorId) values(?, ?, ?)");
+            PreparedStatement stmt = cn.prepareStatement("insert into Proyectos(nombre, descripcion, AdministradorId, Tipo) values(?, ?, ?, ?)");
             stmt.setString(1, this.getNombre());
             stmt.setString(2, this.getDescripcion());
             stmt.setInt(3, AdministradorId);
+            stmt.setBoolean(4, tipo);
             stmt.executeUpdate();
             
             ProyectoId = this.buscarUltimoProyecto();
