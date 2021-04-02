@@ -38,4 +38,9 @@ public class EstadoTarea {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    
+    // METODOS DE LA CLASE.
+    public void Agregar(){
+        
+    }
 }
