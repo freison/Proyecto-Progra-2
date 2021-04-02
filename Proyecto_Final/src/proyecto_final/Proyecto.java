@@ -175,6 +175,19 @@ public class Proyecto {
             p.setInt(2, ProyectoId);
             p.executeUpdate();
             
+            if(!tipo){
+                EstadoTarea estados = new EstadoTarea();
+                
+                estados.setDescripcion("Por Hacer");
+                estados.Agregar(ProyectoId);
+                
+                estados.setDescripcion("En Proceso");
+                estados.Agregar(ProyectoId);
+                
+                estados.setDescripcion("Finalizado");
+                estados.Agregar(ProyectoId);
+            }
+            
             JOptionPane.showMessageDialog(null, "Proyecto Agregado");
 
         }catch(Exception e){

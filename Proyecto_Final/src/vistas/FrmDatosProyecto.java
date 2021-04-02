@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import proyecto_final.Proyecto;
 import proyecto_final.Tarea;
+import proyecto_final.EstadoTarea;
 
 public class FrmDatosProyecto extends javax.swing.JFrame {
     
@@ -24,6 +25,11 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     private List<List<String>> finalizado = new ArrayList<>();
     private List<String> Datos = new ArrayList<>();
     private String[] datosUsuario = new String[2];
+    
+    int proyectoId = 0;
+    
+    private EstadoTarea estados = new EstadoTarea();
+    private List<List> datosEstado;
     
     private boolean owner = false;
 
@@ -44,6 +50,10 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         
         this.Datos = datos;
         this.datosUsuario = datosUsuario;
+        
+        proyectoId = Integer.parseInt(this.Datos.get(0));
+        
+        datosEstado = estados.listarEstadosPorProyecto(proyectoId);
         
         llenarListas();
         
@@ -290,7 +300,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         this.porHacer.get(0).remove(index);
         this.porHacer.get(1).remove(index);
         
-        tarea.modificarEstado(tareaId, 2);
+        tarea.modificarEstado(tareaId, (int)datosEstado.get(0).get(1));
     }//GEN-LAST:event_BtnPorHacer_To_EnProcesoActionPerformed
 
     private void BtnEnProceso_To_FinalizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnProceso_To_FinalizadoActionPerformed
@@ -305,7 +315,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         this.enProceso.get(0).remove(index);
         this.enProceso.get(1).remove(index);
         
-        tarea.modificarEstado(tareaId, 3);
+        tarea.modificarEstado(tareaId, (int)datosEstado.get(0).get(2));
     }//GEN-LAST:event_BtnEnProceso_To_FinalizadoActionPerformed
 
     private void BtnEnProceso_To_PorHacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnProceso_To_PorHacerActionPerformed
@@ -320,7 +330,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         this.enProceso.get(0).remove(index);
         this.enProceso.get(1).remove(index);
         
-        tarea.modificarEstado(tareaId, 1);
+        tarea.modificarEstado(tareaId, (int)datosEstado.get(0).get(0));
     }//GEN-LAST:event_BtnEnProceso_To_PorHacerActionPerformed
 
     private void BtnFinalizado_To_EnProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFinalizado_To_EnProcesoActionPerformed
@@ -335,7 +345,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         this.finalizado.get(0).remove(index);
         this.finalizado.get(1).remove(index);
         
-        tarea.modificarEstado(tareaId, 2);
+        tarea.modificarEstado(tareaId, (int)datosEstado.get(0).get(1));
     }//GEN-LAST:event_BtnFinalizado_To_EnProcesoActionPerformed
 
     private void ListPorHacerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListPorHacerMouseClicked
@@ -464,7 +474,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     
     public void llenarListas(){
         Tarea tarea = new Tarea();
-        var datosTareas = tarea.listarTareasPorProyecto(Integer.parseInt(this.Datos.get(0)));
+        var datosTareas = tarea.listarTareasPorProyecto(proyectoId);
         
         List<String> porHacerIdTEMP = new ArrayList<>();
         List<String> porHacerDescripcionesTEMP = new ArrayList<>();
@@ -478,7 +488,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         for(int i = 0; i<datosTareas.size(); i++){
             for(int j = 0; j<datosTareas.get(0).size(); j++){
                 // Agrega datos (Descripciones) a los JLists
-                if(Integer.parseInt(datosTareas.get(2).get(j)) == 1){
+                if(Integer.parseInt(datosTareas.get(2).get(j)) == (int)datosEstado.get(0).get(0)){
                     if(i==1){
                         var elemento = datosTareas.get(1).get(j);
                         listPorHacerModel.addElement(elemento);
@@ -489,7 +499,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
                         porHacerIdTEMP.add(elemento);
                     }
                 }
-                else if(Integer.parseInt(datosTareas.get(2).get(j)) == 2){
+                else if(Integer.parseInt(datosTareas.get(2).get(j)) == (int)datosEstado.get(0).get(1)){
                     if(i==1){
                         var elemento = datosTareas.get(1).get(j);
                         listEnProcesoModel.addElement(elemento);
@@ -500,7 +510,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
                         enProcesoIdTEMP.add(elemento);
                     }
                 }
-                else if(Integer.parseInt(datosTareas.get(2).get(j)) == 3){
+                else if(Integer.parseInt(datosTareas.get(2).get(j)) == (int)datosEstado.get(0).get(2)){
                     if(i==1){
                         var elemento = datosTareas.get(1).get(j);
                         listFinalizadoModel.addElement(datosTareas.get(1).get(j));

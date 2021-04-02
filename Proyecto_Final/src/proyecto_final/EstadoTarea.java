@@ -2,7 +2,11 @@
 package proyecto_final;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class EstadoTarea {
@@ -65,5 +69,40 @@ public class EstadoTarea {
                 System.out.println(e.getMessage());
             }
         }
+    }
+    
+    public List listarEstadosPorProyecto(int proyectoId){
+        java.sql.Connection cn = null;
+        List<Integer> id = new ArrayList<>();
+        List<String> descripcion = new ArrayList<>();
+
+        List listas = new ArrayList();
+
+        try {
+            cn = connection.getConnection();
+
+            String sqlQuery = "Select * from ESTADOSTAREA where proyectoId = ?";
+            PreparedStatement ps = cn.prepareStatement(sqlQuery);
+            ps.setInt(1, proyectoId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                id.add(rs.getInt("Id"));
+                descripcion.add(rs.getString("Descripcion"));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                cn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        listas.add(id);
+        listas.add(descripcion);
+
+        return listas;
     }
 }

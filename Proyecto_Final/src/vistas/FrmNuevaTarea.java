@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyecto_final.Administrador;
 import proyecto_final.Tarea;
+import proyecto_final.EstadoTarea;
 
 public class FrmNuevaTarea extends javax.swing.JFrame {
     
@@ -195,10 +196,14 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
         int MiembroId = obtenerIdSeleccionado();
         Tarea tarea = new Tarea();
+        EstadoTarea estados = new EstadoTarea();
+        List<List> datosEstados = estados.listarEstadosPorProyecto(Integer.parseInt(this.datos.get(0)));
         int ultimaTareaId = 0;
         if(this.tareaId == null){
                 if(TxtDescripcion.isEnabled()){
-                tarea.Agregar(TxtDescripcion.getText().trim(), 1, Integer.parseInt(this.datos.get(0)));
+                tarea.Agregar(TxtDescripcion.getText().trim(), 
+                        (int)datosEstados.get(0).get(0), 
+                        Integer.parseInt(this.datos.get(0)));
 
                 ultimaTareaId = tarea.buscarUltimaTarea();
                 tarea.AgregarDetalle(MiembroId, ultimaTareaId);
