@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -409,21 +410,25 @@ public class FrmMiembro extends javax.swing.JFrame {
     }//GEN-LAST:event_TxtBuscarKeyPressed
 
     private void BtnAgregarMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarMiembroActionPerformed
-        int Id = 0;
+        int miembroId = 0;
+        int proyectoId = Integer.parseInt(Datos.get(0).toString());
         
         try{
             System.out.println(">: " + GridMiembros.getValueAt(GridMiembros.getSelectedRow(), 0));
-            Id = Integer.parseInt(GridMiembros.getValueAt(GridMiembros.getSelectedRow(), 0).toString());
+            miembroId = Integer.parseInt(GridMiembros.getValueAt(GridMiembros.getSelectedRow(), 0).toString());
         }catch(IndexOutOfBoundsException | NullPointerException e){
             try{
                 System.out.println(">: " + GridMiembros.getModel().getValueAt(0, 0));
-                Id = Integer.parseInt(GridMiembros.getModel().getValueAt(0, 0).toString());
+                miembroId = Integer.parseInt(GridMiembros.getModel().getValueAt(0, 0).toString());
             }catch(NullPointerException ex){
 
             }
         }finally{
             Proyecto proyecto = new Proyecto();
-            proyecto.AgregarDetalleParticipacion(Id, Integer.parseInt(Datos.get(0).toString()));
+            if(!proyecto.validarParticipacion(miembroId, proyectoId))
+                proyecto.AgregarDetalleParticipacion(miembroId, proyectoId);
+            else
+                JOptionPane.showMessageDialog(null, "Miembro seleccionado\n ya pertenece a este proyecto");
         }
     }//GEN-LAST:event_BtnAgregarMiembroActionPerformed
 
