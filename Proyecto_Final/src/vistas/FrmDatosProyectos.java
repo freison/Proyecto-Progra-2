@@ -353,7 +353,6 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         if(!this.listaEstados.get(0).isEmpty()){
             for(int i = 0; i < listaEstados.get(0).size(); i++){
                 estado.setDescripcion(this.listaEstados.get(1).get(i).toString());
-                estado.Agregar(Integer.parseInt(this.datos.get(0)));
 
                 PnLista panel = new PnLista(estado.getDescripcion(),
                         Integer.parseInt(listaEstados.get(0).get(i).toString()),
