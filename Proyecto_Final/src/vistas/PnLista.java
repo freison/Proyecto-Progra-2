@@ -13,6 +13,9 @@ public class PnLista extends javax.swing.JPanel {
     
     private int selected = -1;
     private String valor = null;
+    
+    private int estadoId = 0;
+    private int index = -1;
 
     public PnLista() {
         initComponents();
@@ -21,6 +24,9 @@ public class PnLista extends javax.swing.JPanel {
     public PnLista(String titulo, int estadoId, int index){
         initComponents();
         this.LbTitulo.setText(titulo);
+        this.estadoId = estadoId;
+        this.index = index;
+        
         listModel.addElement("Element1");
         listModel.addElement("Element2");
         listModel.addElement("Element3");
@@ -171,6 +177,22 @@ public class PnLista extends javax.swing.JPanel {
     
     public void removerElemento(int index){
         this.listModel.remove(index);
+    }
+
+    public int getEstadoId() {
+        return estadoId;
+    }
+
+    public void setEstadoId(int estadoId) {
+        this.estadoId = estadoId;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

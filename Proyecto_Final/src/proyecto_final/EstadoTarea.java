@@ -105,4 +105,35 @@ public class EstadoTarea {
 
         return listas;
     }
+    
+    public int ultimoEstadoPorProyecto(int proyectoId){
+        java.sql.Connection cn = null;
+        
+        int ultimoEstadoId = 0;
+
+        try {
+            cn = connection.getConnection();
+
+            String sqlQuery = "select ID from ESTADOSTAREA\n" +
+                            "where PROYECTOID = ?\n" +
+                            "order by Id desc fetch first row only";
+            PreparedStatement ps = cn.prepareStatement(sqlQuery);
+            ps.setInt(1, proyectoId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                ultimoEstadoId = rs.getInt("ID");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                cn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return ultimoEstadoId;
+    }
 }

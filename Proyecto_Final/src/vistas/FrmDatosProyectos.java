@@ -197,11 +197,13 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
-        
+        int proyectoId = Integer.parseInt(this.datos.get(0));
         estado.setDescripcion(this.TxtTituloNuevaLista.getText().trim());
-        estado.Agregar(Integer.parseInt(this.datos.get(0)));
+        estado.Agregar(proyectoId);
         
-        PnLista panel = new PnLista(this.TxtTituloNuevaLista.getText().trim(), 1, listaComponentes.size());
+        PnLista panel = new PnLista(this.TxtTituloNuevaLista.getText().trim(),
+                estado.ultimoEstadoPorProyecto(proyectoId),
+                listaComponentes.size());
         listaComponentes.add(panel);
         
         PnPanel.add(panel);
