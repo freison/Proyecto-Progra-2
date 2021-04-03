@@ -1,15 +1,23 @@
 
 package vistas;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import static java.lang.Thread.sleep;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
 public class PnLista extends javax.swing.JPanel {
     private DefaultListModel listModel = new DefaultListModel();
+    
+    private List<String> datos = new ArrayList<>();
+    private String[] datosUsuario = new String[2];
     
     private int selected = -1;
     private String valor = null;
@@ -21,11 +29,15 @@ public class PnLista extends javax.swing.JPanel {
         initComponents();
     }
     
-    public PnLista(String titulo, int estadoId, int index){
+    public PnLista(String titulo, int estadoId, int index, 
+            List<String> datos, String[] datosUsuario){
         initComponents();
         this.LbTitulo.setText(titulo);
         this.estadoId = estadoId;
         this.index = index;
+        
+        this.datos = datos;
+        this.datosUsuario = datosUsuario;
         
         listModel.addElement("Element1");
         listModel.addElement("Element2");
@@ -75,6 +87,11 @@ public class PnLista extends javax.swing.JPanel {
 
         BtnAgregarTarea.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         BtnAgregarTarea.setText("Agregar Tarea");
+        BtnAgregarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAgregarTareaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PnPanelLayout = new javax.swing.GroupLayout(PnPanel);
         PnPanel.setLayout(PnPanelLayout);
@@ -135,6 +152,17 @@ public class PnLista extends javax.swing.JPanel {
     private void PnPanelFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PnPanelFocusLost
         
     }//GEN-LAST:event_PnPanelFocusLost
+
+    private void BtnAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarTareaActionPerformed
+        FrmNuevaTarea nuevaTarea = new FrmNuevaTarea(this.datos, this.datosUsuario);
+        nuevaTarea.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = screenSize.height;
+        int width = screenSize.width;
+        // miembro.setSize(width/2, height/2);
+        nuevaTarea.setLocationRelativeTo(null);
+        nuevaTarea.setVisible(true);
+    }//GEN-LAST:event_BtnAgregarTareaActionPerformed
 
 
     // GETTERS Y SETTERS DE LA CLASE.

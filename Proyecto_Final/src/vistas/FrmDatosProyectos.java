@@ -4,13 +4,18 @@ package vistas;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
+import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import proyecto_final.Proyecto;
 import proyecto_final.EstadoTarea;
+import proyecto_final.changeListenner;
 
 public class FrmDatosProyectos extends javax.swing.JFrame {
     
@@ -19,6 +24,8 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     private List<PnLista> listaComponentes = new ArrayList<>();
     private List<List> listaEstados = new ArrayList<>();
     private List<Integer> listaId = new ArrayList<>();
+    
+    private changeListenner actualizador;
     
     List<String> datos = new ArrayList<>();
     String[] datosUsuario = new String[2];
@@ -53,6 +60,9 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         
         validarPropietario(Integer.parseInt(datos.get(0).toString()), datosUsuario[0]);
         validarRol(datosUsuario[1]);
+        
+        actualizador = new changeListenner("changeListenner", this);
+        actualizador.start();
     }
 
     @SuppressWarnings("unchecked")
@@ -73,6 +83,11 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         LbMiembros = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                formFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout PnPanelLayout = new javax.swing.GroupLayout(PnPanel);
         PnPanel.setLayout(PnPanelLayout);
@@ -203,7 +218,9 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         
         PnLista panel = new PnLista(this.TxtTituloNuevaLista.getText().trim(),
                 estado.ultimoEstadoPorProyecto(proyectoId),
-                listaComponentes.size());
+                listaComponentes.size(),
+                this.datos,
+                this.datosUsuario);
         listaComponentes.add(panel);
         
         PnPanel.add(panel);
@@ -266,6 +283,10 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         miembro.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnAgregarMiembroActionPerformed
+
+    private void formFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusLost
+        
+    }//GEN-LAST:event_formFocusLost
 
     /**
      * @param args the command line arguments
@@ -358,13 +379,35 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
 
                 PnLista panel = new PnLista(estado.getDescripcion(),
                         Integer.parseInt(listaEstados.get(0).get(i).toString()),
-                        listaComponentes.size());
+                        listaComponentes.size(),
+                        this.datos,
+                        this.datosUsuario);
                 listaComponentes.add(panel);
 
                 PnPanel.add(panel);
                 PnPanel.revalidate();
             }
         }
+    }
+    
+    public void changeListenner(){
+        while(true){
+            try {
+                sleep(3000);
+                this.PnPanel.revalidate();
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
+            
+        }
+    }
+
+    public JPanel getPnPanel() {
+        return PnPanel;
+    }
+
+    public void setPnPanel(JPanel PnPanel) {
+        this.PnPanel = PnPanel;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
