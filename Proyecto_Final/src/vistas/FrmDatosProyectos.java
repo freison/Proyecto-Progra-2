@@ -10,16 +10,20 @@ import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import proyecto_final.Proyecto;
+import proyecto_final.EstadoTarea;
 
 public class FrmDatosProyectos extends javax.swing.JFrame {
     
     private static DefaultListModel listModel;
     
     private List<PnLista> listaComponentes = new ArrayList<>();
+    private List<List> listaEstados = new ArrayList<>();
     private List<Integer> listaId = new ArrayList<>();
     
     List<String> datos = new ArrayList<>();
     String[] datosUsuario = new String[2];
+    
+    private EstadoTarea estado = new EstadoTarea();
     
     private boolean owner = false;
 
@@ -44,9 +48,9 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         
         this.datos = datos;
         this.datosUsuario = datosUsuario;
-//        
-//        llenarListas();
-//        
+        
+        llenarPanel();
+        
         validarPropietario(Integer.parseInt(datos.get(0).toString()), datosUsuario[0]);
         validarRol(datosUsuario[1]);
     }
@@ -193,7 +197,10 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
-      
+        
+        estado.setDescripcion(this.TxtTituloNuevaLista.getText().trim());
+        estado.Agregar(Integer.parseInt(this.datos.get(0)));
+        
         PnLista panel = new PnLista(this.TxtTituloNuevaLista.getText().trim(), 1, listaComponentes.size());
         listaComponentes.add(panel);
         
@@ -338,6 +345,25 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     public void ocultarBotones(){
         this.BtnForward.setVisible(false);
         this.BtnBackward.setVisible(false);
+    }
+    
+    public void llenarPanel(){
+        this.listaEstados = estado.listarEstadosPorProyecto(
+                Integer.parseInt(this.datos.get(0)));
+        if(!this.listaEstados.get(0).isEmpty()){
+            for(int i = 0; i < listaEstados.get(0).size(); i++){
+                estado.setDescripcion(this.listaEstados.get(1).get(i).toString());
+                estado.Agregar(Integer.parseInt(this.datos.get(0)));
+
+                PnLista panel = new PnLista(estado.getDescripcion(),
+                        Integer.parseInt(listaEstados.get(0).get(i).toString()),
+                        listaComponentes.size());
+                listaComponentes.add(panel);
+
+                PnPanel.add(panel);
+                PnPanel.revalidate();
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
