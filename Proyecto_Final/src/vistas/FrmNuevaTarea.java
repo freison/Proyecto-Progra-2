@@ -60,6 +60,42 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         this.TxtDescripcion.setEnabled(true);
         this.TxtDescripcion.setText(datosTarea.get(0));
     }
+    
+    public FrmNuevaTarea(List<String> datos, String[] datosUsuario, Integer tareaId
+                , boolean tipo){
+        Tarea tarea = new Tarea();
+        datosTarea = tarea.buscarTareaPorId(tareaId);
+        
+        this.datos = datos;
+        this.datosUsuario = datosUsuario;
+        this.tareaId = tareaId;
+        listModel.removeAllElements();
+        this.LlenarTabla();
+        this.LlenarLista();
+        initComponents();
+        this.ListMiembrosAgregados.removeAll();
+        
+        this.TxtDescripcion.setEnabled(true);
+        this.TxtDescripcion.setText(datosTarea.get(0));
+    }
+    
+    public FrmNuevaTarea(List<String> datos, String[] datosUsuario, Integer tareaId
+                , boolean tipo, List datosEstados){
+        Tarea tarea = new Tarea();
+        datosTarea = tarea.buscarTareaPorId(tareaId);
+        
+        this.datos = datos;
+        this.datosUsuario = datosUsuario;
+        this.tareaId = tareaId;
+        listModel.removeAllElements();
+        this.LlenarTabla();
+        this.LlenarLista();
+        initComponents();
+        this.ListMiembrosAgregados.removeAll();
+        
+        this.TxtDescripcion.setEnabled(true);
+        this.TxtDescripcion.setText(datosTarea.get(0)); // LAST INTERACTION.
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -199,48 +235,9 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         EstadoTarea estados = new EstadoTarea();
         List<List> datosEstados = estados.listarEstadosPorProyecto(Integer.parseInt(this.datos.get(0)));
         int ultimaTareaId = 0;
-        if(this.tareaId == null){
-                if(TxtDescripcion.isEnabled()){
-                tarea.Agregar(TxtDescripcion.getText().trim(), 
-                        (int)datosEstados.get(0).get(0), 
-                        Integer.parseInt(this.datos.get(0)));
-
-                ultimaTareaId = tarea.buscarUltimaTarea();
-                tarea.AgregarDetalle(MiembroId, ultimaTareaId);
-
-                listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
-                listaIdMiembros.add(tarea.listarUltimoDetalle(ultimaTareaId));
-                listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
-
-                this.TxtDescripcion.setEnabled(false);
-            }
-            else{
-                ultimaTareaId = tarea.buscarUltimaTarea();
-                tarea.AgregarDetalle(MiembroId, ultimaTareaId);
-                listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
-                listaIdMiembros.add(tarea.listarUltimoDetalle(ultimaTareaId));
-                listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
-            }
-        }
-        else{
-            if(!this.TxtDescripcion.getText().trim().equals(this.datosTarea.get(0))){
-                tarea.modificarTarea(this.TxtDescripcion.getText().trim(), this.tareaId);
-                if(MiembroId > 0){
-                    tarea.AgregarDetalle(MiembroId, tareaId);
-                    listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
-                    listaIdMiembros.add(tarea.listarUltimoDetalle(tareaId));
-                    listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
-                    
-                }
-            }
-            else if(this.TxtDescripcion.getText().trim().equals(this.datosTarea.get(0)) && MiembroId > 0){
-                tarea.AgregarDetalle(MiembroId, tareaId);
-                listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
-                listaIdMiembros.add(tarea.listarUltimoDetalle(tareaId));
-                listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
-            }
-            
-        }
+        
+        this.agregarTareaTableroKamban(MiembroId, tarea, ultimaTareaId, datosEstados);
+        
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarActionPerformed
@@ -350,6 +347,51 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         }
         
         return Id;
+    }
+    
+    public void agregarTareaTableroKamban(int MiembroId, Tarea tarea, int ultimaTareaId, List<List> datosEstados){
+        if(this.tareaId == null){
+                if(TxtDescripcion.isEnabled()){
+                tarea.Agregar(TxtDescripcion.getText().trim(), 
+                        (int)datosEstados.get(0).get(0), 
+                        Integer.parseInt(this.datos.get(0)));
+
+                ultimaTareaId = tarea.buscarUltimaTarea();
+                tarea.AgregarDetalle(MiembroId, ultimaTareaId);
+
+                listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
+                listaIdMiembros.add(tarea.listarUltimoDetalle(ultimaTareaId));
+                listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
+
+                this.TxtDescripcion.setEnabled(false);
+            }
+            else{
+                ultimaTareaId = tarea.buscarUltimaTarea();
+                tarea.AgregarDetalle(MiembroId, ultimaTareaId);
+                listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
+                listaIdMiembros.add(tarea.listarUltimoDetalle(ultimaTareaId));
+                listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
+            }
+        }
+        else{
+            if(!this.TxtDescripcion.getText().trim().equals(this.datosTarea.get(0))){
+                tarea.modificarTarea(this.TxtDescripcion.getText().trim(), this.tareaId);
+                if(MiembroId > 0){
+                    tarea.AgregarDetalle(MiembroId, tareaId);
+                    listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
+                    listaIdMiembros.add(tarea.listarUltimoDetalle(tareaId));
+                    listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
+                    
+                }
+            }
+            else if(this.TxtDescripcion.getText().trim().equals(this.datosTarea.get(0)) && MiembroId > 0){
+                tarea.AgregarDetalle(MiembroId, tareaId);
+                listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
+                listaIdMiembros.add(tarea.listarUltimoDetalle(tareaId));
+                listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
+            }
+            
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
