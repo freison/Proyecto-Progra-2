@@ -29,6 +29,15 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
     
     private List<String> datosTarea = new ArrayList<>();
     private Integer tareaId = null;
+    
+    private EstadoTarea estados = new EstadoTarea();
+    
+    /***
+     * datosEstadosTarea contiene de EstadosTarea: Id
+     */
+    private List<List> datosEstadosTarea = new ArrayList<>();
+    
+    private boolean tipo = false;
 
     public FrmNuevaTarea() {
         this.LlenarTabla();
@@ -236,7 +245,12 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         List<List> datosEstados = estados.listarEstadosPorProyecto(Integer.parseInt(this.datos.get(0)));
         int ultimaTareaId = 0;
         
-        this.agregarTareaTableroKamban(MiembroId, tarea, ultimaTareaId, datosEstados);
+        if(!tipo){
+            this.agregarTareaTableroKamban(MiembroId, tarea, ultimaTareaId, datosEstados);
+        }
+        else{
+            // this.agregarTareaTablero();
+        }
         
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
