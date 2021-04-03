@@ -80,6 +80,11 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
 
         BtnBackward.setFont(new java.awt.Font("Open Sans", 1, 24)); // NOI18N
         BtnBackward.setText("<");
+        BtnBackward.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBackwardActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,7 +152,6 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     private void BtnForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnForwardActionPerformed
         
         for(int i=0; i<listaComponentes.size(); i++){
-            // System.out.println(listaComponentes.get(i).getListLista());
             PnLista componeneteActual = listaComponentes.get(i);
             if(listaComponentes.get(i).getSelected() > -1){
                 System.out.println(listaComponentes.get(i).getLbTitulo().getText().trim() + " " + 
@@ -165,6 +169,23 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_BtnForwardActionPerformed
+
+    private void BtnBackwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackwardActionPerformed
+        for(int i=0; i < listaComponentes.size(); i++){
+            PnLista componenteActual = listaComponentes.get(i);
+            if(componenteActual.getSelected() > -1){
+                if((i-1) >= 0){
+                    listaComponentes.get(i-1).agregarElemento(componenteActual.getValor());
+                    componenteActual.removerElemento(componenteActual.getSelected());
+                }
+                else{
+                    System.out.println("Es la primer lista");
+                }
+                
+                componenteActual.setSelected(-1);
+            }
+        }
+    }//GEN-LAST:event_BtnBackwardActionPerformed
 
     /**
      * @param args the command line arguments
