@@ -148,9 +148,13 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         
         for(int i=0; i<listaComponentes.size(); i++){
             // System.out.println(listaComponentes.get(i).getListLista());
+            PnLista componeneteActual = listaComponentes.get(i);
             if(listaComponentes.get(i).getSelected() > -1){
                 System.out.println(listaComponentes.get(i).getLbTitulo().getText().trim() + " " + 
-                        listaComponentes.get(i).getSelected());
+                        listaComponentes.get(i).getSelected() + " -> " + componeneteActual.getValor());
+                
+                listaComponentes.get(i+1).agregarElemento(componeneteActual.getValor());
+                componeneteActual.removerElemento(componeneteActual.getSelected());
                 
                 listaComponentes.get(i).setSelected(-1);
             }

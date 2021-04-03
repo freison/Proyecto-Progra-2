@@ -9,8 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 
 public class PnLista extends javax.swing.JPanel {
+    private DefaultListModel listModel = new DefaultListModel();
     
     private int selected = -1;
+    private String valor = null;
 
     public PnLista() {
         initComponents();
@@ -19,6 +21,9 @@ public class PnLista extends javax.swing.JPanel {
     public PnLista(String titulo, int estadoId, int index){
         initComponents();
         this.LbTitulo.setText(titulo);
+        listModel.addElement("Element1");
+        listModel.addElement("Element2");
+        listModel.addElement("Element3");
     }
     
     public PnLista(String titulo, int estadoId, int index, DefaultListModel model){
@@ -48,11 +53,7 @@ public class PnLista extends javax.swing.JPanel {
         LbTitulo.setText("Titulo");
 
         ListLista.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
-        ListLista.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Elemento1", "Elemento2", "Elemento3" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        ListLista.setModel(listModel);
         ListLista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ListLista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ListLista.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -116,6 +117,7 @@ public class PnLista extends javax.swing.JPanel {
 
     private void ListListaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ListListaFocusLost
         this.setSelected(this.ListLista.getSelectedIndex());
+        this.setValor(this.ListLista.getSelectedValue().toString());
         try {
             sleep(300);
         } catch (InterruptedException e) {
@@ -152,6 +154,23 @@ public class PnLista extends javax.swing.JPanel {
 
     public void setSelected(int selected) {
         this.selected = selected;
+    }
+
+    public String getValor() {
+        return valor;
+    }
+
+    public void setValor(String valor) {
+        this.valor = valor;
+    }
+    
+    // METODOS DE LA CLASE.
+    public void agregarElemento(String elemento){
+        this.listModel.addElement(elemento);
+    }
+    
+    public void removerElemento(int index){
+        this.listModel.remove(index);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
