@@ -9,19 +9,32 @@ import javax.swing.BoxLayout;
 public class FrmDatosProyectos extends javax.swing.JFrame {
     
     private List<PnLista> listaComponentes = new ArrayList<>();
+    private List<Integer> listaId = new ArrayList<>();
+    
+    List<String> datos = new ArrayList<>();
+    String[] datosUsuario = new String[2];
 
     public FrmDatosProyectos() {
         initComponents();
     }
     
+    /***
+     * datos contiene de Proyecto: Id, Nombre, Descripcion.
+     * datosUsuario contiene de Miembro: usuario, rol.
+     * @param datos
+     * @param datosUsuario 
+     */
     public FrmDatosProyectos(List datos, String[] datosUsuario){
 //        llenarListaMiembros(Integer.parseInt(datos.get(0).toString()));
         initComponents();
         PnPanel.setLayout(new BoxLayout(this.PnPanel, BoxLayout.X_AXIS));
-//        LbTitulo.setText(LbTitulo.getText() + " " + datos.get(1));
-//        
-//        this.Datos = datos;
-//        this.datosUsuario = datosUsuario;
+        
+        LbTitulo.setText((datos.get(1).toString().contains("Proyecto"))
+                        ?(datos.get(1).toString())
+                        :("Proyecto " + datos.get(1)));
+        
+        this.datos = datos;
+        this.datosUsuario = datosUsuario;
 //        
 //        llenarListas();
 //        

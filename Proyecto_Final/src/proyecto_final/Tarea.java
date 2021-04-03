@@ -161,26 +161,6 @@ public class Tarea {
             cn = connection.getConnection();
 
             Statement stmt = cn.createStatement();
-//            ResultSet rs = stmt.executeQuery(
-//                    "select t.DESCRIPCION as Tarea,\n" +
-//                    "    p.NOMBRE as Proyecto,\n" +
-//                    "    case t.ESTADOTAREAID\n" +
-//                    "        when = 1 then 'Por Hacer'\n" +
-//                    "        else\n" +
-//                    "            case t.ESTADOTAREAID\n" +
-//                    "                when = 2 then 'En Proceso'\n" +
-//                    "                else 'Finalizada'\n" +
-//                    "            end\n" +
-//                    "        end as Estado\n" +
-//                    "from PROYECTOS as p\n" +
-//                    "inner join Tareas as t\n" +
-//                    "on p.ID = t.PROYECTOID\n" +
-//                    "inner join DETALLE_TAREAS_MIEMBRO as dtm\n" +
-//                    "on t.ID = dtm.TAREAID\n" +
-//                    "inner join MIEMBROS as m\n" +
-//                    "on dtm.MIEMBROID = m.ID\n" +
-//                    "where m.usuario = '"+usuario+"'"
-//            );
             ResultSet rs = stmt.executeQuery("select t.DESCRIPCION as Tarea,\n" +
                                             "    p.NOMBRE as Proyecto,\n" +
                                             "    et.DESCRIPCION as Estado\n" +
