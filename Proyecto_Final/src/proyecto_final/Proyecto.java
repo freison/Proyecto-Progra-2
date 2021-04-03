@@ -342,4 +342,41 @@ public class Proyecto {
         
         return usuario;
     }
+    
+    public boolean validarParticipacion(int miembroId, int proyectoId){
+        boolean participacion = false;
+        
+        java.sql.Connection cn = null;
+        try{
+            cn = connection.getConnection();
+            
+            String sqlQuery = "select p.NOMBRE\n" +
+                            "from PROYECTOS as p\n" +
+                            "inner join DETALLE_PROYECTOS_PARTICIPACION as dpp\n" +
+                            "on p.ID = dpp.PROYECTOID\n" +
+                            "inner join MIEMBROS as m\n" +
+                            "on dpp.MIEMBROID = m.ID\n" +
+                            "where m.ID = ? and p.ID = ?";
+            PreparedStatement ps = cn.prepareStatement(sqlQuery);
+            ps.setInt(1, miembroId);
+            ps.setInt(2, proyectoId);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                participacion = true;
+            }
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }finally{
+            try{
+                cn.close();
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        
+        return participacion;
+    }
 } // Fin de la clase Proyecto.

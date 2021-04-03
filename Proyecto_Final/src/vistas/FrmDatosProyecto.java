@@ -258,7 +258,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarMiembroActionPerformed
-        FrmMiembro miembro = new FrmMiembro(this.Datos, datosUsuario);
+        FrmMiembro miembro = new FrmMiembro(this.Datos, datosUsuario, false);
         miembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int height = screenSize.height;

@@ -25,6 +25,7 @@ public class FrmMiembro extends javax.swing.JFrame {
     
     private static List<String> Datos;
     private String[] datosUsuario = new String[2];
+    private boolean tipo = false;
 
     public FrmMiembro() {
         this.LlenarTabla();
@@ -37,7 +38,7 @@ public class FrmMiembro extends javax.swing.JFrame {
         modelo.addTableModelListener(GridMiembros);
     }
     
-    public FrmMiembro(List<String> datos, String[] datosUsuario){
+    public FrmMiembro(List<String> datos, String[] datosUsuario, boolean tipo){
         this.LlenarTabla();
         initComponents();
         this.BtnEditar.setEnabled(false);
@@ -50,6 +51,7 @@ public class FrmMiembro extends javax.swing.JFrame {
         
         Datos = datos;
         this.datosUsuario = datosUsuario;
+        this.tipo = tipo;
     }
 
     @SuppressWarnings("unchecked")
@@ -426,15 +428,28 @@ public class FrmMiembro extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAgregarMiembroActionPerformed
 
     private void BtnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarActionPerformed
-        FrmDatosProyecto datosMiembro = new FrmDatosProyecto(Datos, datosUsuario);
-        datosMiembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int height = screenSize.height;
-        int width = screenSize.width;
-        // datosMiembro.setSize(width/2, height/2);
-        datosMiembro.setLocationRelativeTo(null);
-        datosMiembro.setVisible(true);
-        this.dispose();
+        if(!tipo){
+            FrmDatosProyecto datosMiembro = new FrmDatosProyecto(Datos, datosUsuario);
+            datosMiembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            int height = screenSize.height;
+            int width = screenSize.width;
+            // datosMiembro.setSize(width/2, height/2);
+            datosMiembro.setLocationRelativeTo(null);
+            datosMiembro.setVisible(true);
+            this.dispose();
+        }
+        else{
+            FrmDatosProyectos datosMiembro = new FrmDatosProyectos(Datos, datosUsuario);
+            datosMiembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            int height = screenSize.height;
+            int width = screenSize.width;
+            // datosMiembro.setSize(width/2, height/2);
+            datosMiembro.setLocationRelativeTo(null);
+            datosMiembro.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_BtnCerrarActionPerformed
 
     // METODOS DE LA CLASE.

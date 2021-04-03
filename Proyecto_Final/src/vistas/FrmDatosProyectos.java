@@ -1,18 +1,27 @@
 
 package vistas;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import proyecto_final.Proyecto;
 
 public class FrmDatosProyectos extends javax.swing.JFrame {
+    
+    private static DefaultListModel listModel;
     
     private List<PnLista> listaComponentes = new ArrayList<>();
     private List<Integer> listaId = new ArrayList<>();
     
     List<String> datos = new ArrayList<>();
     String[] datosUsuario = new String[2];
+    
+    private boolean owner = false;
 
     public FrmDatosProyectos() {
         initComponents();
@@ -25,7 +34,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
      * @param datosUsuario 
      */
     public FrmDatosProyectos(List datos, String[] datosUsuario){
-//        llenarListaMiembros(Integer.parseInt(datos.get(0).toString()));
+        llenarListaMiembros(Integer.parseInt(datos.get(0).toString()));
         initComponents();
         PnPanel.setLayout(new BoxLayout(this.PnPanel, BoxLayout.X_AXIS));
         
@@ -38,8 +47,8 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
 //        
 //        llenarListas();
 //        
-//        validarPropietario(Integer.parseInt(datos.get(0).toString()), datosUsuario[0]);
-//        validarRol(datosUsuario[1]);
+        validarPropietario(Integer.parseInt(datos.get(0).toString()), datosUsuario[0]);
+        validarRol(datosUsuario[1]);
     }
 
     @SuppressWarnings("unchecked")
@@ -54,6 +63,10 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         BtnAgregar = new javax.swing.JButton();
         BtnForward = new javax.swing.JButton();
         BtnBackward = new javax.swing.JButton();
+        BtnAgregarMiembro = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ListMiembros = new javax.swing.JList<>();
+        LbMiembros = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,24 +112,46 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
             }
         });
 
+        BtnAgregarMiembro.setFont(new java.awt.Font("Open Sans", 1, 12)); // NOI18N
+        BtnAgregarMiembro.setText("Agregar Miembro");
+        BtnAgregarMiembro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAgregarMiembroActionPerformed(evt);
+            }
+        });
+
+        ListMiembros.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
+        ListMiembros.setModel(listModel);
+        jScrollPane1.setViewportView(ListMiembros);
+
+        LbMiembros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LbMiembros.setText("Miembros");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 244, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(LbMiembros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnAgregarMiembro, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LbTitulo)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(LbTitulo)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LbAgregarLista)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(TxtTituloNuevaLista, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnAgregar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(BtnAgregar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnBackward)
@@ -129,18 +164,29 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(LbTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LbAgregarLista)
-                    .addComponent(TxtTituloNuevaLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnAgregar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnForward)
-                    .addComponent(BtnBackward))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LbAgregarLista)
+                            .addComponent(TxtTituloNuevaLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnAgregar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnAgregarMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtnForward)
+                            .addComponent(BtnBackward))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(LbMiembros)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -200,6 +246,18 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtnBackwardActionPerformed
 
+    private void BtnAgregarMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarMiembroActionPerformed
+        FrmMiembro miembro = new FrmMiembro(this.datos, datosUsuario, true);
+        miembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = screenSize.height;
+        int width = screenSize.width;
+        miembro.setSize(width/2, height/2);
+        miembro.setLocationRelativeTo(null);
+        miembro.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnAgregarMiembroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -234,15 +292,66 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
             }
         });
     }
+    
+    // METODOS DE LA CLASE.
+    public void llenarListaMiembros(int Id){
+        Proyecto proyecto = new Proyecto();
+        var nombres = proyecto.listarMiembros(Id);
+        listModel = new DefaultListModel();
+        
+        for(int i=0; i<nombres.size(); i++){
+            listModel.addElement(nombres.get(i)); // LAST INTERACTION
+        }
+    }
+    
+    /***
+     * Obtiene el propietario del proyecto en base a proyecto Id.
+     * @param Id
+     * @param usuario 
+     */
+    public void validarPropietario(int Id, String usuario){
+        Proyecto proyecto = new Proyecto();
+        String propietario = proyecto.obtenerCreador(Id);
+        
+        if(!propietario.equalsIgnoreCase(usuario)){
+            this.BtnAgregarMiembro.setEnabled(false);
+            this.BtnAgregarMiembro.setVisible(false);
+        }
+        else{
+            this.owner = true;
+        }
+    }
+    
+    public void validarRol(String rol){
+        if(rol.equals("Invitado")){
+            
+            this.ocultarBotones();
+        }
+        else if(rol.equals("Editor")){
+            
+        }
+        else if(rol.equals("Administrador") && !this.owner){
+            
+        }
+    }
+    
+    public void ocultarBotones(){
+        this.BtnForward.setVisible(false);
+        this.BtnBackward.setVisible(false);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregar;
+    private javax.swing.JButton BtnAgregarMiembro;
     private javax.swing.JButton BtnBackward;
     private javax.swing.JButton BtnForward;
     private javax.swing.JLabel LbAgregarLista;
+    private javax.swing.JLabel LbMiembros;
     private javax.swing.JLabel LbTitulo;
+    private javax.swing.JList<String> ListMiembros;
     private javax.swing.JPanel PnPanel;
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JTextField TxtTituloNuevaLista;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
