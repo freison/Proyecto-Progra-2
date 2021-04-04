@@ -35,7 +35,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
     /***
      * datosEstadosTarea contiene de EstadosTarea: Id
      */
-    private List<String> datosEstadosTarea = new ArrayList<>();
+    private int datosEstadosTarea = 0;
     
     private boolean tipo = false;
 
@@ -136,23 +136,20 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
      * @param datosEstadosTarea (Recibe estadoId)
      */
     public FrmNuevaTarea(List<String> datos, String[] datosUsuario,
-                    boolean tipo, List datosEstadosTarea){
+                    boolean tipo, int datosEstadosTarea){
         Tarea tarea = new Tarea();
-        datosTarea = tarea.buscarTareaPorId(tareaId);
         
         this.datos = datos;
         this.datosUsuario = datosUsuario;
-        this.tareaId = tareaId;
         listModel.removeAllElements();
         this.LlenarTabla();
-        this.LlenarLista();
         initComponents();
         this.ListMiembrosAgregados.removeAll();
         
+        this.tipo = tipo;
         this.datosEstadosTarea = datosEstadosTarea;
         
         this.TxtDescripcion.setEnabled(true);
-        this.TxtDescripcion.setText(datosTarea.get(0)); // LAST INTERACTION.
     }
     
     /***
@@ -164,7 +161,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
      * @param datosEstadosTarea (Recibe estadoId)
      */
     public FrmNuevaTarea(List<String> datos, String[] datosUsuario, Integer tareaId
-                , boolean tipo, List datosEstadosTarea){
+                , boolean tipo, int datosEstadosTarea){
         Tarea tarea = new Tarea();
         datosTarea = tarea.buscarTareaPorId(tareaId);
         
@@ -180,7 +177,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         this.datosEstadosTarea = datosEstadosTarea;
         
         this.TxtDescripcion.setEnabled(true);
-        this.TxtDescripcion.setText(datosTarea.get(0)); // LAST INTERACTION.
+        this.TxtDescripcion.setText(datosTarea.get(0));
     }
 
     @SuppressWarnings("unchecked")
@@ -489,7 +486,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         if(this.tareaId == null){
                 if(TxtDescripcion.isEnabled()){
                 tarea.Agregar(TxtDescripcion.getText().trim(), 
-                        Integer.parseInt(this.datosEstadosTarea.get(0)), 
+                        this.datosEstadosTarea, 
                         Integer.parseInt(this.datos.get(0)));
 
                 ultimaTareaId = tarea.buscarUltimaTarea();
