@@ -319,6 +319,41 @@ public class Tarea {
     public List listarTareasPorEstado(int estadoId){
         List<List> lista = new ArrayList<>();
         
+        java.sql.Connection cn = null;
+        List<String> Id = new ArrayList<>();
+        List<String> descripciones = new ArrayList<>();
+
+        try {
+            cn = connection.getConnection();
+
+            String sqlQuery = "select t.ID,\n" +
+                            "    t.DESCRIPCION\n" +
+                            "from Tareas as t\n" +
+                            "inner join ESTADOSTAREA as et\n" +
+                            "on t.ESTADOTAREAID = et.ID\n" +
+                            "where et.ID = ?";
+            
+            PreparedStatement ps = cn.prepareStatement(sqlQuery);
+            ps.setInt(1, estadoId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Id.add(Integer.toString(rs.getInt("ID")));
+                descripciones.add(rs.getString("DESCRIPCION"));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                cn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        lista.add(Id);
+        lista.add(descripciones);
+        
         return lista;
     }
     
