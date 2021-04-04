@@ -316,6 +316,10 @@ public class Tarea {
         return detalleId;
     }
     
+    public List listarTareasPorEstado(int estadoId){
+        
+    }
+    
     public void modificarEstado(int tareaId, int nuevoEstado){        
         java.sql.Connection cn = null;
 
