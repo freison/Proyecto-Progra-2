@@ -317,7 +317,9 @@ public class Tarea {
     }
     
     public List listarTareasPorEstado(int estadoId){
+        List<List> lista = new ArrayList<>();
         
+        return lista;
     }
     
     public void modificarEstado(int tareaId, int nuevoEstado){        
