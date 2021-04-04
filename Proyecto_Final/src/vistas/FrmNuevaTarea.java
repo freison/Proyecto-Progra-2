@@ -35,7 +35,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
     /***
      * datosEstadosTarea contiene de EstadosTarea: Id
      */
-    private List<List> datosEstadosTarea = new ArrayList<>();
+    private List<String> datosEstadosTarea = new ArrayList<>();
     
     private boolean tipo = false;
 
@@ -89,7 +89,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
     }
     
     public FrmNuevaTarea(List<String> datos, String[] datosUsuario, Integer tareaId
-                , boolean tipo, List datosEstados){
+                , boolean tipo, List datosEstadosTarea){
         Tarea tarea = new Tarea();
         datosTarea = tarea.buscarTareaPorId(tareaId);
         
@@ -101,6 +101,8 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         this.LlenarLista();
         initComponents();
         this.ListMiembrosAgregados.removeAll();
+        
+        this.datosEstadosTarea = datosEstadosTarea;
         
         this.TxtDescripcion.setEnabled(true);
         this.TxtDescripcion.setText(datosTarea.get(0)); // LAST INTERACTION.
@@ -249,7 +251,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
             this.agregarTareaTableroKamban(MiembroId, tarea, ultimaTareaId, datosEstados);
         }
         else{
-            // this.agregarTareaTablero();
+            this.agregarTareaTablero();
         }
         
     }//GEN-LAST:event_BtnAgregarActionPerformed
@@ -406,6 +408,10 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
             }
             
         }
+    }
+    
+    public void agregarTareaTablero(){
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
