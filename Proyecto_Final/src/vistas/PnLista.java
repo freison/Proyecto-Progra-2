@@ -47,6 +47,9 @@ public class PnLista extends javax.swing.JPanel {
     public PnLista(String titulo, int estadoId, int index, DefaultListModel model){
         initComponents();
         this.LbTitulo.setText(titulo);
+        
+        this.estadoId = estadoId;
+        this.index = index;
     }
 
     @SuppressWarnings("unchecked")
