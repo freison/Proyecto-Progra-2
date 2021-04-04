@@ -157,7 +157,7 @@ public class PnLista extends javax.swing.JPanel {
     }//GEN-LAST:event_PnPanelFocusLost
 
     private void BtnAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarTareaActionPerformed
-        FrmNuevaTarea nuevaTarea = new FrmNuevaTarea(this.datos, this.datosUsuario);
+        FrmNuevaTarea nuevaTarea = new FrmNuevaTarea(this.datos, this.datosUsuario, true);
         nuevaTarea.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int height = screenSize.height;
