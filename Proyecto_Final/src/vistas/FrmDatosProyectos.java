@@ -218,14 +218,20 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         int proyectoId = Integer.parseInt(this.datos.get(0));
         estado.setDescripcion(this.TxtTituloNuevaLista.getText().trim());
         estado.Agregar(proyectoId);
+        int estadoId = estado.ultimoEstadoPorProyecto(proyectoId);
         
         PnLista panel = new PnLista(this.TxtTituloNuevaLista.getText().trim(),
-                estado.ultimoEstadoPorProyecto(proyectoId),
+                estadoId,
                 listaComponentes.size(),
                 this.datos,
                 this.datosUsuario,
                 this);
         listaComponentes.add(panel);
+        
+        this.listaEstados = estado.listarEstadosPorProyecto(
+                Integer.parseInt(this.datos.get(0)));
+        
+        this.llenarLista(estadoId, panel);
         
         PnPanel.add(panel);
         PnPanel.revalidate();
@@ -241,7 +247,9 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     private void BtnForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnForwardActionPerformed
         
         Tarea tarea = new Tarea();
+        boolean flag = false;
         for(int i=0; i<listaComponentes.size(); i++){
+            System.out.println("Entry");
             PnLista componeneteActual = listaComponentes.get(i);
             if(listaComponentes.get(i).getSelected() > -1){
                 System.out.println(listaComponentes.get(i).getLbTitulo().getText().trim() + " " + 
@@ -261,8 +269,8 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
                     componenteSiguiente.getListaTareas().get(0).add(tareaAModificar.get(0));
                     componenteSiguiente.getListaTareas().get(1).add(tareaAModificar.get(1));
                     
-                    componeneteActual.getListaTareas().get(0).remove(i);
-                    componeneteActual.getListaTareas().get(1).remove(i);
+                    componeneteActual.getListaTareas().get(0).remove(componeneteActual.getSelected());
+                    componeneteActual.getListaTareas().get(1).remove(componeneteActual.getSelected());
                     
                     componeneteActual.removerElemento(componeneteActual.getSelected());
                     
