@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import proyecto_final.Proyecto;
 import proyecto_final.EstadoTarea;
+import proyecto_final.Tarea;
 import proyecto_final.changeListenner;
 
 public class FrmDatosProyectos extends javax.swing.JFrame {
@@ -24,6 +25,8 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     private List<PnLista> listaComponentes = new ArrayList<>();
     private List<List> listaEstados = new ArrayList<>();
     private List<Integer> listaId = new ArrayList<>();
+    
+    private List listaTareas = new ArrayList();
     
     private changeListenner actualizador;
     
@@ -61,8 +64,8 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         validarPropietario(Integer.parseInt(datos.get(0).toString()), datosUsuario[0]);
         validarRol(datosUsuario[1]);
         
-        actualizador = new changeListenner("changeListenner", this);
-        actualizador.start();
+//        actualizador = new changeListenner("changeListenner", this);
+//        actualizador.start();
     }
 
     @SuppressWarnings("unchecked")
@@ -220,7 +223,8 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
                 estado.ultimoEstadoPorProyecto(proyectoId),
                 listaComponentes.size(),
                 this.datos,
-                this.datosUsuario);
+                this.datosUsuario,
+                this);
         listaComponentes.add(panel);
         
         PnPanel.add(panel);
@@ -381,7 +385,9 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
                         Integer.parseInt(listaEstados.get(0).get(i).toString()),
                         listaComponentes.size(),
                         this.datos,
-                        this.datosUsuario);
+                        this.datosUsuario,
+                        this);
+                this.llenarLista(Integer.parseInt(listaEstados.get(0).get(i).toString()), panel);
                 listaComponentes.add(panel);
 
                 PnPanel.add(panel);
@@ -390,16 +396,13 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         }
     }
     
-    public void changeListenner(){
-        while(true){
-            try {
-                sleep(3000);
-                this.PnPanel.revalidate();
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
-            
-        }
+    public void llenarLista(int estadoId, PnLista componente){
+        Tarea tarea = new Tarea();
+        List<List> lista = tarea.listarTareasPorEstado(estadoId);
+        this.listaTareas.add(tarea);
+        
+        componente.setListaTareas(lista);
+        componente.setModelo();
     }
 
     public JPanel getPnPanel() {
@@ -408,6 +411,14 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
 
     public void setPnPanel(JPanel PnPanel) {
         this.PnPanel = PnPanel;
+    }
+
+    public List<PnLista> getListaComponentes() {
+        return listaComponentes;
+    }
+
+    public void setListaComponentes(List<PnLista> listaComponentes) {
+        this.listaComponentes = listaComponentes;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

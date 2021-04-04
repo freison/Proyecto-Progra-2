@@ -23,6 +23,11 @@ public class changeListenner extends Thread {
             try {
                 System.out.println(getName() + " run");
                 referencia.getPnPanel().revalidate();
+                
+                for(var componente: this.referencia.getListaComponentes()){
+                    componente.revalidate();
+                }
+                
                 sleep(3000);
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());

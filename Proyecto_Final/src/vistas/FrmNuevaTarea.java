@@ -329,15 +329,28 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarActionPerformed
-        FrmDatosProyecto datosMiembro = new FrmDatosProyecto(datos, datosUsuario);
-        datosMiembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int height = screenSize.height;
-        int width = screenSize.width;
-        // datosMiembro.setSize(width/2, height/2);
-        datosMiembro.setLocationRelativeTo(null);
-        datosMiembro.setVisible(true);
-        this.dispose();
+        if(!this.tipo){
+            FrmDatosProyecto datosMiembro = new FrmDatosProyecto(datos, datosUsuario);
+            datosMiembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            int height = screenSize.height;
+            int width = screenSize.width;
+            // datosMiembro.setSize(width/2, height/2);
+            datosMiembro.setLocationRelativeTo(null);
+            datosMiembro.setVisible(true);
+            this.dispose();
+        }
+        else{
+            FrmDatosProyectos datosMiembro = new FrmDatosProyectos(datos, datosUsuario);
+            datosMiembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            int height = screenSize.height;
+            int width = screenSize.width;
+            // datosMiembro.setSize(width/2, height/2);
+            datosMiembro.setLocationRelativeTo(null);
+            datosMiembro.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_BtnCerrarActionPerformed
 
     private void BtnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoverActionPerformed

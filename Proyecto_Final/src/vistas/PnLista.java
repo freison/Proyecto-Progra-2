@@ -12,9 +12,13 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.BoxLayout;
 
 public class PnLista extends javax.swing.JPanel {
     private DefaultListModel listModel = new DefaultListModel();
+    private List<List> listaTareas = new ArrayList();
+    
+    FrmDatosProyectos parent;
     
     private List<String> datos = new ArrayList<>();
     private String[] datosUsuario = new String[2];
@@ -30,7 +34,7 @@ public class PnLista extends javax.swing.JPanel {
     }
     
     public PnLista(String titulo, int estadoId, int index, 
-            List<String> datos, String[] datosUsuario){
+            List<String> datos, String[] datosUsuario, FrmDatosProyectos parent){
         initComponents();
         this.LbTitulo.setText(titulo);
         this.estadoId = estadoId;
@@ -39,9 +43,7 @@ public class PnLista extends javax.swing.JPanel {
         this.datos = datos;
         this.datosUsuario = datosUsuario;
         
-        listModel.addElement("Element1");
-        listModel.addElement("Element2");
-        listModel.addElement("Element3");
+        this.parent = parent;
     }
     
     public PnLista(String titulo, int estadoId, int index, DefaultListModel model){
@@ -165,6 +167,8 @@ public class PnLista extends javax.swing.JPanel {
         // miembro.setSize(width/2, height/2);
         nuevaTarea.setLocationRelativeTo(null);
         nuevaTarea.setVisible(true);
+        
+        this.parent.dispose();
     }//GEN-LAST:event_BtnAgregarTareaActionPerformed
 
 
@@ -224,6 +228,21 @@ public class PnLista extends javax.swing.JPanel {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public List<List> getListaTareas() {
+        return listaTareas;
+    }
+
+    public void setListaTareas(List listaTareas) {
+        this.listaTareas = listaTareas;
+    }
+    
+    // METODOS DE LA CLASE.
+    public void setModelo(){
+        for(var dato: this.getListaTareas().get(1)){
+            this.listModel.addElement(dato);
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
