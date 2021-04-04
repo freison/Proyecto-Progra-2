@@ -276,7 +276,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
                     
                     tarea.modificarEstado(tareaId, Integer.parseInt(this.listaEstados.get(0).get(i+1).toString()));
                     
-                    flag = true;
+                    flag = true; // LAST INTERACTION.
                 }
                 else{
                     System.out.println("Es la ultima lista");
