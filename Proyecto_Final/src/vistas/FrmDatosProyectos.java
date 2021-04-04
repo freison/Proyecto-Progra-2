@@ -240,6 +240,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
 
     private void BtnForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnForwardActionPerformed
         
+        Tarea tarea = new Tarea();
         for(int i=0; i<listaComponentes.size(); i++){
             PnLista componeneteActual = listaComponentes.get(i);
             if(listaComponentes.get(i).getSelected() > -1){
@@ -247,11 +248,28 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
                         listaComponentes.get(i).getSelected() + " -> " + componeneteActual.getValor());
                 
                 if((i+1) < listaComponentes.size()){
+                    PnLista componenteSiguiente = listaComponentes.get(i+1);
+                    int tareaId = Integer.parseInt(componeneteActual.getListaTareas()
+                            .get(0).get(componeneteActual.getSelected()).toString());
+                    
                     listaComponentes.get(i+1).agregarElemento(componeneteActual.getValor());
+                    
+                    List tareaAModificar = new ArrayList();
+                    tareaAModificar.add(componeneteActual.getListaTareas().get(0).get(componeneteActual.getSelected()));
+                    tareaAModificar.add(componeneteActual.getListaTareas().get(1).get(componeneteActual.getSelected()));
+                    
+                    componenteSiguiente.getListaTareas().get(0).add(tareaAModificar.get(0));
+                    componenteSiguiente.getListaTareas().get(1).add(tareaAModificar.get(1));
+                    
+                    componeneteActual.getListaTareas().get(0).remove(i);
+                    componeneteActual.getListaTareas().get(1).remove(i);
+                    
                     componeneteActual.removerElemento(componeneteActual.getSelected());
+                    
+                    tarea.modificarEstado(tareaId, Integer.parseInt(this.listaEstados.get(0).get(i+1).toString()));
                 }
                 else{
-                    System.out.println("Es la ultima lista"); // LAST INTERACTION.
+                    System.out.println("Es la ultima lista");
                 }
                 
                 listaComponentes.get(i).setSelected(-1);
