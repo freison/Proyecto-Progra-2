@@ -248,7 +248,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         
         Tarea tarea = new Tarea();
         boolean flag = false;
-        for(int i=0; i<listaComponentes.size(); i++){
+        for(int i=0; (i<listaComponentes.size() && !flag); i++){
             System.out.println("Entry");
             PnLista componeneteActual = listaComponentes.get(i);
             if(listaComponentes.get(i).getSelected() > -1){
@@ -275,6 +275,8 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
                     componeneteActual.removerElemento(componeneteActual.getSelected());
                     
                     tarea.modificarEstado(tareaId, Integer.parseInt(this.listaEstados.get(0).get(i+1).toString()));
+                    
+                    flag = true;
                 }
                 else{
                     System.out.println("Es la ultima lista");
