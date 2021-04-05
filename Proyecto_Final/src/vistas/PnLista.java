@@ -66,6 +66,9 @@ public class PnLista extends javax.swing.JPanel {
         BtnBackward = new javax.swing.JButton();
         BtnAgregarTarea = new javax.swing.JButton();
 
+        setMaximumSize(new java.awt.Dimension(300, 600));
+
+        PnPanel.setMaximumSize(new java.awt.Dimension(400, 400));
         PnPanel.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 PnPanelFocusLost(evt);
@@ -102,9 +105,9 @@ public class PnLista extends javax.swing.JPanel {
         PnPanel.setLayout(PnPanelLayout);
         PnPanelLayout.setHorizontalGroup(
             PnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(LbTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(PnPanelLayout.createSequentialGroup()
                 .addGroup(PnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(LbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnAgregarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PnPanelLayout.createSequentialGroup()
                         .addComponent(BtnBackward)
