@@ -214,6 +214,10 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Abre una nueva instancia de FrmNuevaTarea.
+     * @param evt 
+     */
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
         int proyectoId = Integer.parseInt(this.datos.get(0));
         estado.setDescripcion(this.TxtTituloNuevaLista.getText().trim());
@@ -244,6 +248,11 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
+    /***
+     * Modifica el estado de una tarea,
+     * moviendola al siguiente panel.
+     * @param evt 
+     */
     private void BtnForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnForwardActionPerformed
         
         Tarea tarea = new Tarea();
@@ -273,7 +282,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
                     
                     tarea.modificarEstado(tareaId, Integer.parseInt(this.listaEstados.get(0).get(i+1).toString()));
                     
-                    flag = true; // LAST INTERACTION.
+                    flag = true;
                 }
                 else{
                     System.out.println("Es la ultima lista");
@@ -284,6 +293,11 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtnForwardActionPerformed
 
+    /***
+     * Modifica el estado de una tarea,
+     * moviendola al panel previo.
+     * @param evt 
+     */
     private void BtnBackwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackwardActionPerformed
         Tarea tarea = new Tarea();
         boolean flag = false;
@@ -323,6 +337,10 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtnBackwardActionPerformed
 
+    /***
+     * Abre una nueva instancia de FrmMiembros
+     * @param evt 
+     */
     private void BtnAgregarMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarMiembroActionPerformed
         FrmMiembro miembro = new FrmMiembro(this.datos, datosUsuario, true);
         miembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
