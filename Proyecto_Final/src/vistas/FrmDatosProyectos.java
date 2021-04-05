@@ -249,11 +249,8 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         Tarea tarea = new Tarea();
         boolean flag = false;
         for(int i=0; (i<listaComponentes.size() && !flag); i++){
-            System.out.println("Entry");
             PnLista componeneteActual = listaComponentes.get(i);
             if(listaComponentes.get(i).getSelected() > -1){
-                System.out.println(listaComponentes.get(i).getLbTitulo().getText().trim() + " " + 
-                        listaComponentes.get(i).getSelected() + " -> " + componeneteActual.getValor());
                 
                 if((i+1) < listaComponentes.size()){
                     PnLista componenteSiguiente = listaComponentes.get(i+1);
@@ -288,12 +285,34 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnForwardActionPerformed
 
     private void BtnBackwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackwardActionPerformed
-        for(int i=0; i < listaComponentes.size(); i++){
+        Tarea tarea = new Tarea();
+        boolean flag = false;
+        
+        for(int i=0; (i < listaComponentes.size() && !flag); i++){
             PnLista componenteActual = listaComponentes.get(i);
             if(componenteActual.getSelected() > -1){
                 if((i-1) >= 0){
+                    PnLista componenteSiguiente = listaComponentes.get(i-1);
+                    int tareaId = Integer.parseInt(componenteActual.getListaTareas()
+                                    .get(0).get(componenteActual.getSelected()).toString());
+                    
                     listaComponentes.get(i-1).agregarElemento(componenteActual.getValor());
+                    
+                    List tareaAModificar = new ArrayList();
+                    tareaAModificar.add(componenteActual.getListaTareas().get(0).get(componenteActual.getSelected()));
+                    tareaAModificar.add(componenteActual.getListaTareas().get(1).get(componenteActual.getSelected()));
+                    
+                    componenteSiguiente.getListaTareas().get(0).add(tareaAModificar.get(0));
+                    componenteSiguiente.getListaTareas().get(1).add(tareaAModificar.get(1));
+                    
+                    componenteActual.getListaTareas().get(0).remove(componenteActual.getSelected());
+                    componenteActual.getListaTareas().get(1).remove(componenteActual.getSelected());
+                    
                     componenteActual.removerElemento(componenteActual.getSelected());
+                    
+                    tarea.modificarEstado(tareaId, Integer.parseInt(this.listaEstados.get(0).get(i-1).toString()));
+                    
+                    flag = true;
                 }
                 else{
                     System.out.println("Es la primer lista");
