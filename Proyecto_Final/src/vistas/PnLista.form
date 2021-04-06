@@ -51,11 +51,7 @@
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="LbTitulo" alignment="1" min="-2" pref="240" max="-2" attributes="0"/>
                       <Component id="BtnAgregarTarea" alignment="1" min="-2" pref="240" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="BtnBackward" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="BtnForward" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="BtnEliminar" min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="240" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -70,10 +66,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="341" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="BtnForward" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="BtnBackward" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="BtnEliminar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="30" max="32767" attributes="0"/>
                   <Component id="BtnAgregarTarea" min="-2" pref="39" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -117,14 +110,15 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="BtnForward">
+        <Component class="javax.swing.JButton" name="BtnEliminar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&gt;"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="BtnBackward">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="ff" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="X"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="BtnAgregarTarea">

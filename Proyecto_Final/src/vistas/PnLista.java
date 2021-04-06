@@ -62,8 +62,7 @@ public class PnLista extends javax.swing.JPanel {
         LbTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListLista = new javax.swing.JList<>();
-        BtnForward = new javax.swing.JButton();
-        BtnBackward = new javax.swing.JButton();
+        BtnEliminar = new javax.swing.JButton();
         BtnAgregarTarea = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(300, 600));
@@ -89,9 +88,9 @@ public class PnLista extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(ListLista);
 
-        BtnForward.setText(">");
-
-        BtnBackward.setText("<");
+        BtnEliminar.setBackground(new java.awt.Color(255, 51, 51));
+        BtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnEliminar.setText("X");
 
         BtnAgregarTarea.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         BtnAgregarTarea.setText("Agregar Tarea");
@@ -109,10 +108,7 @@ public class PnLista extends javax.swing.JPanel {
                 .addGroup(PnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(LbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnAgregarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PnPanelLayout.createSequentialGroup()
-                        .addComponent(BtnBackward)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnForward))
+                    .addComponent(BtnEliminar)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -124,9 +120,7 @@ public class PnLista extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnForward)
-                    .addComponent(BtnBackward))
+                .addComponent(BtnEliminar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(BtnAgregarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -250,8 +244,7 @@ public class PnLista extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregarTarea;
-    private javax.swing.JButton BtnBackward;
-    private javax.swing.JButton BtnForward;
+    private javax.swing.JButton BtnEliminar;
     private javax.swing.JLabel LbTitulo;
     private javax.swing.JList<String> ListLista;
     private javax.swing.JPanel PnPanel;
