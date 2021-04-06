@@ -35,15 +35,21 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
     /***
      * datosEstadosTarea contiene de EstadosTarea: Id
      */
-    private List<List> datosEstadosTarea = new ArrayList<>();
+    private int datosEstadosTarea = 0;
     
     private boolean tipo = false;
 
+    // Constructor sin parametros.
     public FrmNuevaTarea() {
         this.LlenarTabla();
         initComponents();
     }
     
+    /***
+     * Constructor V2 que recibe datos y datosUsuario.
+     * @param datos (Contiene de Proyecto: Id, Nombre y Descripcion)
+     * @param datosUsuario (Contiene de Usuario: Usuario y Rol)
+     */
     public FrmNuevaTarea(List<String> datos, String[] datosUsuario){
         this.datos = datos;
         this.datosUsuario = datosUsuario;
@@ -53,6 +59,12 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         this.ListMiembrosAgregados.removeAll();
     }
     
+    /***
+     * Constructor V3 que recibe datos, datosUsuario y tareaId
+     * @param datos (Contiene de Proyecto: Id, Nombre y Descripcion)
+     * @param datosUsuario (Contiene de Usuario: Usuario y Rol)
+     * @param tareaId 
+     */
     public FrmNuevaTarea(List<String> datos, String[] datosUsuario, Integer tareaId){
         Tarea tarea = new Tarea();
         datosTarea = tarea.buscarTareaPorId(tareaId);
@@ -70,6 +82,34 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         this.TxtDescripcion.setText(datosTarea.get(0));
     }
     
+    /***
+     * Constructor V4 Recibe datos, datosUsuario y tipo
+     * @param datos (Contiene de Proyecto: Id, Nombre y Descripcion)
+     * @param datosUsuario (Contiene de Usuario: Usuario y Rol)
+     * @param tipo (Tipo de Proyecto (Tablero))
+     */
+    public FrmNuevaTarea(List<String> datos, String[] datosUsuario, boolean tipo){
+        Tarea tarea = new Tarea();
+        
+        this.datos = datos;
+        this.datosUsuario = datosUsuario;
+        listModel.removeAllElements();
+        this.LlenarTabla();
+        this.LlenarLista();
+        initComponents();
+        this.ListMiembrosAgregados.removeAll();
+        
+        this.TxtDescripcion.setEnabled(true);
+        this.TxtDescripcion.setText(datosTarea.get(0));
+    }
+    
+    /***
+     * Constructor V5 Recibe datos, datosUsuario, tareaId y tipo
+     * @param datos (Contiene de Proyecto: Id, Nombre y Descripcion)
+     * @param datosUsuario (Contiene de Usuario: Usuario y Rol)
+     * @param tareaId
+     * @param tipo (Tipo de Proyecto (Tablero))
+     */
     public FrmNuevaTarea(List<String> datos, String[] datosUsuario, Integer tareaId
                 , boolean tipo){
         Tarea tarea = new Tarea();
@@ -88,8 +128,40 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         this.TxtDescripcion.setText(datosTarea.get(0));
     }
     
+    /***
+     * Constructor V6 Recibe datos, datosUsuario, tipo y datosEstadoTarea
+     * @param datos (Contiene de Proyecto: Id, Nombre y Descripcion)
+     * @param datosUsuario (Contiene de Usuario: Usuario y Rol)
+     * @param tipo (Tipo de Proyecto (Tablero))
+     * @param datosEstadosTarea (Recibe estadoId)
+     */
+    public FrmNuevaTarea(List<String> datos, String[] datosUsuario,
+                    boolean tipo, int datosEstadosTarea){
+        Tarea tarea = new Tarea();
+        
+        this.datos = datos;
+        this.datosUsuario = datosUsuario;
+        listModel.removeAllElements();
+        this.LlenarTabla();
+        initComponents();
+        this.ListMiembrosAgregados.removeAll();
+        
+        this.tipo = tipo;
+        this.datosEstadosTarea = datosEstadosTarea;
+        
+        this.TxtDescripcion.setEnabled(true);
+    }
+    
+    /***
+     * Constructor V7 Recibe datos, datosUsuario, tareaId, tipo y datosEstadoTarea
+     * @param datos (Contiene de Proyecto: Id, Nombre y Descripcion)
+     * @param datosUsuario (Contiene de Usuario: Usuario y Rol)
+     * @param tareaId
+     * @param tipo (Tipo de Proyecto (Tablero))
+     * @param datosEstadosTarea (Recibe estadoId)
+     */
     public FrmNuevaTarea(List<String> datos, String[] datosUsuario, Integer tareaId
-                , boolean tipo, List datosEstados){
+                , boolean tipo, int datosEstadosTarea){
         Tarea tarea = new Tarea();
         datosTarea = tarea.buscarTareaPorId(tareaId);
         
@@ -102,8 +174,10 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         initComponents();
         this.ListMiembrosAgregados.removeAll();
         
+        this.datosEstadosTarea = datosEstadosTarea;
+        
         this.TxtDescripcion.setEnabled(true);
-        this.TxtDescripcion.setText(datosTarea.get(0)); // LAST INTERACTION.
+        this.TxtDescripcion.setText(datosTarea.get(0));
     }
 
     @SuppressWarnings("unchecked")
@@ -249,21 +323,34 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
             this.agregarTareaTableroKamban(MiembroId, tarea, ultimaTareaId, datosEstados);
         }
         else{
-            // this.agregarTareaTablero();
+            this.agregarTareaTablero(MiembroId, tarea, ultimaTareaId, datosEstados);
         }
         
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarActionPerformed
-        FrmDatosProyecto datosMiembro = new FrmDatosProyecto(datos, datosUsuario);
-        datosMiembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int height = screenSize.height;
-        int width = screenSize.width;
-        // datosMiembro.setSize(width/2, height/2);
-        datosMiembro.setLocationRelativeTo(null);
-        datosMiembro.setVisible(true);
-        this.dispose();
+        if(!this.tipo){
+            FrmDatosProyecto datosMiembro = new FrmDatosProyecto(datos, datosUsuario);
+            datosMiembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            int height = screenSize.height;
+            int width = screenSize.width;
+            // datosMiembro.setSize(width/2, height/2);
+            datosMiembro.setLocationRelativeTo(null);
+            datosMiembro.setVisible(true);
+            this.dispose();
+        }
+        else{
+            FrmDatosProyectos datosMiembro = new FrmDatosProyectos(datos, datosUsuario);
+            datosMiembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            int height = screenSize.height;
+            int width = screenSize.width;
+            // datosMiembro.setSize(width/2, height/2);
+            datosMiembro.setLocationRelativeTo(null);
+            datosMiembro.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_BtnCerrarActionPerformed
 
     private void BtnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoverActionPerformed
@@ -405,6 +492,51 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
                 listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
             }
             
+        }
+    }
+    
+    public void agregarTareaTablero(int MiembroId, Tarea tarea, int ultimaTareaId, List<List> datosEstados){
+        if(this.tareaId == null){
+                if(TxtDescripcion.isEnabled()){
+                tarea.Agregar(TxtDescripcion.getText().trim(), 
+                        this.datosEstadosTarea, 
+                        Integer.parseInt(this.datos.get(0)));
+
+                ultimaTareaId = tarea.buscarUltimaTarea();
+                tarea.AgregarDetalle(MiembroId, ultimaTareaId);
+
+                listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
+                listaIdMiembros.add(tarea.listarUltimoDetalle(ultimaTareaId));
+                listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
+
+                this.TxtDescripcion.setEnabled(false);
+            }
+            else{
+                ultimaTareaId = tarea.buscarUltimaTarea();
+                tarea.AgregarDetalle(MiembroId, ultimaTareaId);
+                listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
+                listaIdMiembros.add(tarea.listarUltimoDetalle(ultimaTareaId));
+                listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
+            }
+        }
+        else{
+            if(!this.TxtDescripcion.getText().trim().equals(this.datosTarea.get(0))){
+                tarea.modificarTarea(this.TxtDescripcion.getText().trim(), this.tareaId);
+                if(MiembroId > 0){
+                    tarea.AgregarDetalle(MiembroId, tareaId);
+                    listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
+                    listaIdMiembros.add(tarea.listarUltimoDetalle(tareaId));
+                    listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
+                    
+                }
+            }
+            else if(this.TxtDescripcion.getText().trim().equals(this.datosTarea.get(0)) && MiembroId > 0){
+                tarea.AgregarDetalle(MiembroId, tareaId);
+                listModel.addElement(TableMiembros.getValueAt(TableMiembros.getSelectedRow(), 1));
+                listaIdMiembros.add(tarea.listarUltimoDetalle(tareaId));
+                listaNombresMiembros.add(listModel.get(listModel.size() - 1).toString());
+            }
+           
         }
     }
 

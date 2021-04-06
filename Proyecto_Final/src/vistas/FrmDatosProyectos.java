@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import proyecto_final.Proyecto;
 import proyecto_final.EstadoTarea;
+import proyecto_final.Tarea;
 import proyecto_final.changeListenner;
 
 public class FrmDatosProyectos extends javax.swing.JFrame {
@@ -24,6 +25,8 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     private List<PnLista> listaComponentes = new ArrayList<>();
     private List<List> listaEstados = new ArrayList<>();
     private List<Integer> listaId = new ArrayList<>();
+    
+    private List listaTareas = new ArrayList();
     
     private changeListenner actualizador;
     
@@ -61,8 +64,8 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         validarPropietario(Integer.parseInt(datos.get(0).toString()), datosUsuario[0]);
         validarRol(datosUsuario[1]);
         
-        actualizador = new changeListenner("changeListenner", this);
-        actualizador.start();
+//        actualizador = new changeListenner("changeListenner", this);
+//        actualizador.start();
     }
 
     @SuppressWarnings("unchecked")
@@ -83,6 +86,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         LbMiembros = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 formFocusLost(evt);
@@ -161,16 +165,14 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(LbTitulo)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(LbTitulo)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LbAgregarLista)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(TxtTituloNuevaLista, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnAgregar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(BtnAgregar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnBackward)
@@ -211,17 +213,28 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Abre una nueva instancia de FrmNuevaTarea.
+     * @param evt 
+     */
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
         int proyectoId = Integer.parseInt(this.datos.get(0));
         estado.setDescripcion(this.TxtTituloNuevaLista.getText().trim());
         estado.Agregar(proyectoId);
+        int estadoId = estado.ultimoEstadoPorProyecto(proyectoId);
         
         PnLista panel = new PnLista(this.TxtTituloNuevaLista.getText().trim(),
-                estado.ultimoEstadoPorProyecto(proyectoId),
+                estadoId,
                 listaComponentes.size(),
                 this.datos,
-                this.datosUsuario);
+                this.datosUsuario,
+                this);
         listaComponentes.add(panel);
+        
+        this.listaEstados = estado.listarEstadosPorProyecto(
+                Integer.parseInt(this.datos.get(0)));
+        
+        this.llenarLista(estadoId, panel);
         
         PnPanel.add(panel);
         PnPanel.revalidate();
@@ -234,20 +247,44 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
+    /***
+     * Modifica el estado de una tarea,
+     * moviendola al siguiente panel.
+     * @param evt 
+     */
     private void BtnForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnForwardActionPerformed
         
-        for(int i=0; i<listaComponentes.size(); i++){
+        Tarea tarea = new Tarea();
+        boolean flag = false;
+        for(int i=0; (i<listaComponentes.size() && !flag); i++){
             PnLista componeneteActual = listaComponentes.get(i);
             if(listaComponentes.get(i).getSelected() > -1){
-                System.out.println(listaComponentes.get(i).getLbTitulo().getText().trim() + " " + 
-                        listaComponentes.get(i).getSelected() + " -> " + componeneteActual.getValor());
                 
                 if((i+1) < listaComponentes.size()){
+                    PnLista componenteSiguiente = listaComponentes.get(i+1);
+                    int tareaId = Integer.parseInt(componeneteActual.getListaTareas()
+                            .get(0).get(componeneteActual.getSelected()).toString());
+                    
                     listaComponentes.get(i+1).agregarElemento(componeneteActual.getValor());
+                    
+                    List tareaAModificar = new ArrayList();
+                    tareaAModificar.add(componeneteActual.getListaTareas().get(0).get(componeneteActual.getSelected()));
+                    tareaAModificar.add(componeneteActual.getListaTareas().get(1).get(componeneteActual.getSelected()));
+                    
+                    componenteSiguiente.getListaTareas().get(0).add(tareaAModificar.get(0));
+                    componenteSiguiente.getListaTareas().get(1).add(tareaAModificar.get(1));
+                    
+                    componeneteActual.getListaTareas().get(0).remove(componeneteActual.getSelected());
+                    componeneteActual.getListaTareas().get(1).remove(componeneteActual.getSelected());
+                    
                     componeneteActual.removerElemento(componeneteActual.getSelected());
+                    
+                    tarea.modificarEstado(tareaId, Integer.parseInt(this.listaEstados.get(0).get(i+1).toString()));
+                    
+                    flag = true;
                 }
                 else{
-                    System.out.println("Es la ultima lista"); // LAST INTERACTION.
+                    System.out.println("Es la ultima lista");
                 }
                 
                 listaComponentes.get(i).setSelected(-1);
@@ -255,13 +292,40 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtnForwardActionPerformed
 
+    /***
+     * Modifica el estado de una tarea,
+     * moviendola al panel previo.
+     * @param evt 
+     */
     private void BtnBackwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackwardActionPerformed
-        for(int i=0; i < listaComponentes.size(); i++){
+        Tarea tarea = new Tarea();
+        boolean flag = false;
+        
+        for(int i=0; (i < listaComponentes.size() && !flag); i++){
             PnLista componenteActual = listaComponentes.get(i);
             if(componenteActual.getSelected() > -1){
                 if((i-1) >= 0){
+                    PnLista componenteSiguiente = listaComponentes.get(i-1);
+                    int tareaId = Integer.parseInt(componenteActual.getListaTareas()
+                                    .get(0).get(componenteActual.getSelected()).toString());
+                    
                     listaComponentes.get(i-1).agregarElemento(componenteActual.getValor());
+                    
+                    List tareaAModificar = new ArrayList();
+                    tareaAModificar.add(componenteActual.getListaTareas().get(0).get(componenteActual.getSelected()));
+                    tareaAModificar.add(componenteActual.getListaTareas().get(1).get(componenteActual.getSelected()));
+                    
+                    componenteSiguiente.getListaTareas().get(0).add(tareaAModificar.get(0));
+                    componenteSiguiente.getListaTareas().get(1).add(tareaAModificar.get(1));
+                    
+                    componenteActual.getListaTareas().get(0).remove(componenteActual.getSelected());
+                    componenteActual.getListaTareas().get(1).remove(componenteActual.getSelected());
+                    
                     componenteActual.removerElemento(componenteActual.getSelected());
+                    
+                    tarea.modificarEstado(tareaId, Integer.parseInt(this.listaEstados.get(0).get(i-1).toString()));
+                    
+                    flag = true;
                 }
                 else{
                     System.out.println("Es la primer lista");
@@ -272,6 +336,10 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtnBackwardActionPerformed
 
+    /***
+     * Abre una nueva instancia de FrmMiembros
+     * @param evt 
+     */
     private void BtnAgregarMiembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarMiembroActionPerformed
         FrmMiembro miembro = new FrmMiembro(this.datos, datosUsuario, true);
         miembro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -381,7 +449,9 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
                         Integer.parseInt(listaEstados.get(0).get(i).toString()),
                         listaComponentes.size(),
                         this.datos,
-                        this.datosUsuario);
+                        this.datosUsuario,
+                        this);
+                this.llenarLista(Integer.parseInt(listaEstados.get(0).get(i).toString()), panel);
                 listaComponentes.add(panel);
 
                 PnPanel.add(panel);
@@ -390,16 +460,13 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         }
     }
     
-    public void changeListenner(){
-        while(true){
-            try {
-                sleep(3000);
-                this.PnPanel.revalidate();
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
-            
-        }
+    public void llenarLista(int estadoId, PnLista componente){
+        Tarea tarea = new Tarea();
+        List<List> lista = tarea.listarTareasPorEstado(estadoId);
+        this.listaTareas.add(tarea);
+        
+        componente.setListaTareas(lista);
+        componente.setModelo();
     }
 
     public JPanel getPnPanel() {
@@ -408,6 +475,14 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
 
     public void setPnPanel(JPanel PnPanel) {
         this.PnPanel = PnPanel;
+    }
+
+    public List<PnLista> getListaComponentes() {
+        return listaComponentes;
+    }
+
+    public void setListaComponentes(List<PnLista> listaComponentes) {
+        this.listaComponentes = listaComponentes;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

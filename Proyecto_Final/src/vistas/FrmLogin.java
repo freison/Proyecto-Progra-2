@@ -153,6 +153,7 @@ public class FrmLogin extends javax.swing.JFrame {
             Main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             Main.setLocationRelativeTo(null);
             Main.setVisible(true);
+            Main.setExtendedState(MAXIMIZED_BOTH);
             this.dispose();
         }
         else{

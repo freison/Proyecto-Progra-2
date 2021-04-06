@@ -12,9 +12,13 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.BoxLayout;
 
 public class PnLista extends javax.swing.JPanel {
     private DefaultListModel listModel = new DefaultListModel();
+    private List<List> listaTareas = new ArrayList();
+    
+    FrmDatosProyectos parent;
     
     private List<String> datos = new ArrayList<>();
     private String[] datosUsuario = new String[2];
@@ -30,7 +34,7 @@ public class PnLista extends javax.swing.JPanel {
     }
     
     public PnLista(String titulo, int estadoId, int index, 
-            List<String> datos, String[] datosUsuario){
+            List<String> datos, String[] datosUsuario, FrmDatosProyectos parent){
         initComponents();
         this.LbTitulo.setText(titulo);
         this.estadoId = estadoId;
@@ -39,14 +43,15 @@ public class PnLista extends javax.swing.JPanel {
         this.datos = datos;
         this.datosUsuario = datosUsuario;
         
-        listModel.addElement("Element1");
-        listModel.addElement("Element2");
-        listModel.addElement("Element3");
+        this.parent = parent;
     }
     
     public PnLista(String titulo, int estadoId, int index, DefaultListModel model){
         initComponents();
         this.LbTitulo.setText(titulo);
+        
+        this.estadoId = estadoId;
+        this.index = index;
     }
 
     @SuppressWarnings("unchecked")
@@ -57,10 +62,12 @@ public class PnLista extends javax.swing.JPanel {
         LbTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListLista = new javax.swing.JList<>();
-        BtnForward = new javax.swing.JButton();
-        BtnBackward = new javax.swing.JButton();
+        BtnEliminar = new javax.swing.JButton();
         BtnAgregarTarea = new javax.swing.JButton();
 
+        setMaximumSize(new java.awt.Dimension(300, 600));
+
+        PnPanel.setMaximumSize(new java.awt.Dimension(400, 400));
         PnPanel.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 PnPanelFocusLost(evt);
@@ -81,9 +88,9 @@ public class PnLista extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(ListLista);
 
-        BtnForward.setText(">");
-
-        BtnBackward.setText("<");
+        BtnEliminar.setBackground(new java.awt.Color(255, 51, 51));
+        BtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnEliminar.setText("X");
 
         BtnAgregarTarea.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         BtnAgregarTarea.setText("Agregar Tarea");
@@ -97,14 +104,11 @@ public class PnLista extends javax.swing.JPanel {
         PnPanel.setLayout(PnPanelLayout);
         PnPanelLayout.setHorizontalGroup(
             PnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(LbTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(PnPanelLayout.createSequentialGroup()
                 .addGroup(PnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(LbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnAgregarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PnPanelLayout.createSequentialGroup()
-                        .addComponent(BtnBackward)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnForward))
+                    .addComponent(BtnEliminar)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -116,9 +120,7 @@ public class PnLista extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnForward)
-                    .addComponent(BtnBackward))
+                .addComponent(BtnEliminar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(BtnAgregarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -154,7 +156,7 @@ public class PnLista extends javax.swing.JPanel {
     }//GEN-LAST:event_PnPanelFocusLost
 
     private void BtnAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarTareaActionPerformed
-        FrmNuevaTarea nuevaTarea = new FrmNuevaTarea(this.datos, this.datosUsuario);
+        FrmNuevaTarea nuevaTarea = new FrmNuevaTarea(this.datos, this.datosUsuario, true, this.estadoId);
         nuevaTarea.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int height = screenSize.height;
@@ -162,6 +164,8 @@ public class PnLista extends javax.swing.JPanel {
         // miembro.setSize(width/2, height/2);
         nuevaTarea.setLocationRelativeTo(null);
         nuevaTarea.setVisible(true);
+        
+        this.parent.dispose();
     }//GEN-LAST:event_BtnAgregarTareaActionPerformed
 
 
@@ -222,11 +226,25 @@ public class PnLista extends javax.swing.JPanel {
     public void setIndex(int index) {
         this.index = index;
     }
+
+    public List<List> getListaTareas() {
+        return listaTareas;
+    }
+
+    public void setListaTareas(List listaTareas) {
+        this.listaTareas = listaTareas;
+    }
+    
+    // METODOS DE LA CLASE.
+    public void setModelo(){
+        for(var dato: this.getListaTareas().get(1)){
+            this.listModel.addElement(dato);
+        }
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregarTarea;
-    private javax.swing.JButton BtnBackward;
-    private javax.swing.JButton BtnForward;
+    private javax.swing.JButton BtnEliminar;
     private javax.swing.JLabel LbTitulo;
     private javax.swing.JList<String> ListLista;
     private javax.swing.JPanel PnPanel;
