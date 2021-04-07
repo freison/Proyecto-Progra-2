@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
 
 public class PnLista extends javax.swing.JPanel {
     private DefaultListModel listModel = new DefaultListModel();
@@ -141,14 +142,18 @@ public class PnLista extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ListListaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ListListaFocusLost
-        this.setSelected(this.ListLista.getSelectedIndex());
-        this.setValor(this.ListLista.getSelectedValue().toString());
-        try {
-            sleep(300);
-        } catch (InterruptedException e) {
-            System.out.println(e.getMessage());
+        try{
+            this.setSelected(this.ListLista.getSelectedIndex());
+            this.setValor(this.ListLista.getSelectedValue().toString());
+            try {
+                sleep(250);
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
+            this.ListLista.clearSelection();
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Debe de seleccionar una tarea");
         }
-        this.ListLista.clearSelection();
     }//GEN-LAST:event_ListListaFocusLost
 
     private void PnPanelFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PnPanelFocusLost
