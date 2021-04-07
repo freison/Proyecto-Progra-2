@@ -87,6 +87,11 @@ public class PnLista extends javax.swing.JPanel {
                 ListListaFocusLost(evt);
             }
         });
+        ListLista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ListListaMouseExited(evt);
+            }
+        });
         jScrollPane1.setViewportView(ListLista);
 
         BtnEliminar.setBackground(new java.awt.Color(255, 51, 51));
@@ -149,8 +154,9 @@ public class PnLista extends javax.swing.JPanel {
                 sleep(250);
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
+            }finally{
+                this.ListLista.clearSelection();
             }
-            this.ListLista.clearSelection();
         }catch(NullPointerException e){
             JOptionPane.showMessageDialog(null, "Debe de seleccionar una tarea");
         }
@@ -172,6 +178,10 @@ public class PnLista extends javax.swing.JPanel {
         
         this.parent.dispose();
     }//GEN-LAST:event_BtnAgregarTareaActionPerformed
+
+    private void ListListaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListListaMouseExited
+        
+    }//GEN-LAST:event_ListListaMouseExited
 
 
     // GETTERS Y SETTERS DE LA CLASE.
