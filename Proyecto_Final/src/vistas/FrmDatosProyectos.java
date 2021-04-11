@@ -106,12 +106,13 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
 
         ScrollPane.setViewportView(PnPanel);
 
-        LbTitulo.setFont(new java.awt.Font("Open Sans", 1, 16)); // NOI18N
+        LbTitulo.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         LbTitulo.setText("Proyecto");
 
-        LbAgregarLista.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        LbAgregarLista.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         LbAgregarLista.setText("Agregar Lista");
 
+        BtnAgregar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         BtnAgregar.setText("Agregar");
         BtnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,7 +136,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
             }
         });
 
-        BtnAgregarMiembro.setFont(new java.awt.Font("Open Sans", 1, 12)); // NOI18N
+        BtnAgregarMiembro.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         BtnAgregarMiembro.setText("Agregar Miembro");
         BtnAgregarMiembro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +148,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         ListMiembros.setModel(listModel);
         jScrollPane1.setViewportView(ListMiembros);
 
+        LbMiembros.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         LbMiembros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LbMiembros.setText("Miembros");
 
@@ -154,14 +156,6 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(LbMiembros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnAgregarMiembro, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,12 +167,20 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnAgregar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BtnBackward)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BtnForward)
-                .addGap(513, 513, 513))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnBackward)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnForward))
+                    .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 944, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(LbMiembros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BtnAgregarMiembro, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,7 +189,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
                 .addComponent(LbTitulo)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LbAgregarLista)
                             .addComponent(TxtTituloNuevaLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,7 +201,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BtnAgregarMiembro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BtnForward)
                             .addComponent(BtnBackward))

@@ -3,7 +3,7 @@
  * Proyecto Programación Cliente Servidor.
  * Elaborado por:
  * - Freison Castro Sánchez
- * - Jose Carlo Morales
+ * - Jose Carlo Morales Morales
  * - Joshua Vega
  */
 
@@ -20,6 +20,7 @@ import vistas.FrmLogin;
 public class Proyecto_Final {
 
     public static void main(String[] args) {
+        
         LoadMainForm();
     }
     
