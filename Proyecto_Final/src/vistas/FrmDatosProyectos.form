@@ -27,16 +27,6 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="ScrollPane" min="-2" pref="944" max="-2" attributes="0"/>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
-                  <Component id="LbMiembros" alignment="0" max="32767" attributes="0"/>
-                  <Component id="BtnAgregarMiembro" alignment="0" pref="204" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -51,12 +41,23 @@
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="BtnBackward" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="BtnForward" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="513" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="BtnBackward" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="BtnForward" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="ScrollPane" min="-2" pref="944" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                  <Component id="LbMiembros" alignment="0" max="32767" attributes="0"/>
+                  <Component id="BtnAgregarMiembro" alignment="0" pref="204" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,7 +68,7 @@
               <Component id="LbTitulo" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="LbAgregarLista" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="TxtTituloNuevaLista" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -82,7 +83,7 @@
                               <Component id="BtnAgregarMiembro" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="35" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="BtnForward" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="BtnBackward" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -124,7 +125,7 @@
     <Component class="javax.swing.JLabel" name="LbTitulo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Open Sans" size="16" style="1"/>
+          <Font name="Roboto" size="24" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Proyecto"/>
       </Properties>
@@ -132,7 +133,7 @@
     <Component class="javax.swing.JLabel" name="LbAgregarLista">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Open Sans" size="14" style="0"/>
+          <Font name="Roboto" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Agregar Lista"/>
       </Properties>
@@ -141,6 +142,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="BtnAgregar">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Roboto" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Agregar"/>
       </Properties>
       <Events>
@@ -172,7 +176,7 @@
     <Component class="javax.swing.JButton" name="BtnAgregarMiembro">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Open Sans" size="12" style="1"/>
+          <Font name="Roboto" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Agregar Miembro"/>
       </Properties>
@@ -204,6 +208,9 @@
     </Container>
     <Component class="javax.swing.JLabel" name="LbMiembros">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Roboto" size="18" style="1"/>
+        </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Miembros"/>
       </Properties>
