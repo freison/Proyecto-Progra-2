@@ -3,7 +3,8 @@ package vistas;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,6 +30,8 @@ public class PnLista extends javax.swing.JPanel {
     
     private int estadoId = 0;
     private int index = -1;
+    
+    private LocalTime date = LocalTime.now();
 
     public PnLista() {
         initComponents();
@@ -83,6 +86,9 @@ public class PnLista extends javax.swing.JPanel {
         ListLista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ListLista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ListLista.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ListListaFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 ListListaFocusLost(evt);
             }
@@ -150,6 +156,7 @@ public class PnLista extends javax.swing.JPanel {
         try{
             this.setSelected(this.ListLista.getSelectedIndex());
             this.setValor(this.ListLista.getSelectedValue().toString());
+            this.setDate(LocalTime.now());
             try {
                 sleep(250);
             } catch (InterruptedException e) {
@@ -182,6 +189,10 @@ public class PnLista extends javax.swing.JPanel {
     private void ListListaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListListaMouseExited
         
     }//GEN-LAST:event_ListListaMouseExited
+
+    private void ListListaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ListListaFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ListListaFocusGained
 
 
     // GETTERS Y SETTERS DE LA CLASE.
@@ -248,6 +259,14 @@ public class PnLista extends javax.swing.JPanel {
 
     public void setListaTareas(List listaTareas) {
         this.listaTareas = listaTareas;
+    }
+
+    public LocalTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalTime date) {
+        this.date = date;
     }
     
     // METODOS DE LA CLASE.

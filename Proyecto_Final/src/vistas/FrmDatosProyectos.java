@@ -260,7 +260,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         boolean flag = false;
         for(int i=0; (i<listaComponentes.size() && !flag); i++){
             PnLista componeneteActual = listaComponentes.get(i);
-            if(listaComponentes.get(i).getSelected() > -1){
+            if((listaComponentes.get(i).getSelected() > -1 && (i+1)<listaComponentes.size() && this.isUltimoSeleccionado(i))){
                 
                 if((i+1) < listaComponentes.size()){
                     PnLista componenteSiguiente = listaComponentes.get(i+1);
@@ -485,6 +485,23 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
 
     public void setListaComponentes(List<PnLista> listaComponentes) {
         this.listaComponentes = listaComponentes;
+    }
+    
+    public boolean isUltimoSeleccionado(int indice){
+        PnLista mayor = listaComponentes.get(indice);
+        System.out.println(listaComponentes.get(indice).getLbTitulo().getText().trim() + 
+                               " : " + listaComponentes.get(indice).getDate());
+        
+        for(int i = 1; i < listaComponentes.size(); i++){
+            System.out.println(listaComponentes.get(i).getLbTitulo().getText().trim() + 
+                               " : " + listaComponentes.get(i).getDate());
+            if(listaComponentes.get(i).getDate().compareTo(mayor.getDate()) == 1){
+                return false;
+            }
+        }
+        System.out.println("");
+        
+        return true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
