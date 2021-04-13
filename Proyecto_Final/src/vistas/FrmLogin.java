@@ -2,22 +2,30 @@
 package vistas;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import proyecto_final.Miembro;
 import proyecto_final.Administrador;
 
 public class FrmLogin extends javax.swing.JFrame {
-
+    
+FondoPanel fondo= new FondoPanel();
     public FrmLogin() {
+        this.setContentPane(fondo);
         initComponents();
+        
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         LbTitulo = new javax.swing.JLabel();
         LbUsuario = new javax.swing.JLabel();
         LbClave = new javax.swing.JLabel();
@@ -25,24 +33,43 @@ public class FrmLogin extends javax.swing.JFrame {
         TxtClave = new javax.swing.JPasswordField();
         BtnLogin = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jButton1.setText("jButton1");
 
-        LbTitulo.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
+
+        LbTitulo.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        LbTitulo.setForeground(new java.awt.Color(52, 73, 85));
         LbTitulo.setText("LOGIN");
 
-        LbUsuario.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        LbUsuario.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        LbUsuario.setForeground(new java.awt.Color(35, 47, 52));
         LbUsuario.setText("Usuario");
 
-        LbClave.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
+        LbClave.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        LbClave.setForeground(new java.awt.Color(35, 47, 52));
         LbClave.setText("Clave");
 
+        TxtUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        TxtUsuario.setForeground(new java.awt.Color(114, 54, 18));
+        TxtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtUsuarioActionPerformed(evt);
+            }
+        });
+
+        TxtClave.setBackground(new java.awt.Color(255, 255, 255));
         TxtClave.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TxtClaveKeyPressed(evt);
             }
         });
 
-        BtnLogin.setText("Iniciar Sesión");
+        BtnLogin.setBackground(new java.awt.Color(216, 161, 60));
+        BtnLogin.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        BtnLogin.setForeground(new java.awt.Color(35, 47, 52));
+        BtnLogin.setText("Ingresar");
         BtnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnLoginActionPerformed(evt);
@@ -55,42 +82,44 @@ public class FrmLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addComponent(LbTitulo)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(TxtClave)
+                            .addComponent(TxtUsuario)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(LbClave)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtClave, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(TxtUsuario)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LbUsuario)
-                                    .addComponent(LbClave))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addComponent(LbUsuario)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(LbTitulo)
+                .addGap(260, 260, 260))
             .addGroup(layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addComponent(BtnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addGap(232, 232, 232)
+                .addComponent(BtnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(251, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(LbTitulo)
-                .addGap(39, 39, 39)
+                .addGap(33, 33, 33)
+                .addComponent(LbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(289, 289, 289)
                 .addComponent(LbUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(LbClave)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TxtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(TxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(BtnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                .addGap(30, 30, 30))
+                .addComponent(LbClave)
+                .addGap(18, 18, 18)
+                .addComponent(TxtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BtnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -106,6 +135,10 @@ public class FrmLogin extends javax.swing.JFrame {
             this.iniciarSession();
         }
     }//GEN-LAST:event_TxtClaveKeyPressed
+
+    private void TxtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,6 +195,22 @@ public class FrmLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Usuario y/o clave incorrectos");
         }
     }
+    class FondoPanel extends JPanel{
+    private Image imagen;
+    @Override
+    public void paint(Graphics g){
+    try{
+        
+        imagen = new ImageIcon(getClass().getResource("/imagenes/programmer-group-computers.jpg")).getImage();
+    g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+        
+        //setOpaque(false);
+        super.paint(g);
+        
+        }catch(Exception e){}
+    }
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnLogin;
@@ -170,5 +219,6 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel LbUsuario;
     private javax.swing.JPasswordField TxtClave;
     private javax.swing.JTextField TxtUsuario;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
