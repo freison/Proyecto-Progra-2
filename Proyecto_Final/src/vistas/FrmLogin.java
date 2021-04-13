@@ -204,7 +204,7 @@ FondoPanel fondo= new FondoPanel();
         imagen = new ImageIcon(getClass().getResource("/imagenes/programmer-group-computers.jpg")).getImage();
     g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
         
-        //setOpaque(false);
+        setOpaque(false);
         super.paint(g);
         
         }catch(Exception e){}
