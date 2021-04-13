@@ -36,6 +36,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
     private EstadoTarea estado = new EstadoTarea();
     
     private boolean owner = false;
+    private int lastIndex = -1;
 
     public FrmDatosProyectos() {
         initComponents();
@@ -260,7 +261,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         boolean flag = false;
         for(int i=0; (i<listaComponentes.size() && !flag); i++){
             PnLista componeneteActual = listaComponentes.get(i);
-            if((listaComponentes.get(i).getSelected() > -1 && (i+1)<listaComponentes.size() && this.isUltimoSeleccionado(i))){
+            if((listaComponentes.get(i).getSelected() > -1 && (i+1)<listaComponentes.size() && this.getLastIndex() == i)){ // && this.isUltimoSeleccionado(i)
                 
                 if((i+1) < listaComponentes.size()){
                     PnLista componenteSiguiente = listaComponentes.get(i+1);
@@ -305,7 +306,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
         
         for(int i=0; (i < listaComponentes.size() && !flag); i++){
             PnLista componenteActual = listaComponentes.get(i);
-            if(componenteActual.getSelected() > -1){
+            if(componenteActual.getSelected() > -1 && (i-1)>=0 && this.getLastIndex() == i){
                 if((i-1) >= 0){
                     PnLista componenteSiguiente = listaComponentes.get(i-1);
                     int tareaId = Integer.parseInt(componenteActual.getListaTareas()
@@ -391,6 +392,15 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
                 new FrmDatosProyectos().setVisible(true);
             }
         });
+    }
+    
+    // GETTERS Y SETTERS.
+    public int getLastIndex(){
+        return this.lastIndex;
+    }
+    
+    public void setLastIndex(int lastIndex){
+        this.lastIndex = lastIndex;
     }
     
     // METODOS DE LA CLASE.

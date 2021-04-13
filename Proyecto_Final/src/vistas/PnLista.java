@@ -157,6 +157,7 @@ public class PnLista extends javax.swing.JPanel {
             this.setSelected(this.ListLista.getSelectedIndex());
             this.setValor(this.ListLista.getSelectedValue().toString());
             this.setDate(LocalTime.now());
+            this.parent.setLastIndex(index);
             try {
                 sleep(250);
             } catch (InterruptedException e) {
