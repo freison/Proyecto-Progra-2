@@ -3,7 +3,8 @@ package vistas;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import static java.lang.Thread.sleep;
+import static java.lang.Thread.sleep;;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,6 +30,8 @@ public class PnLista extends javax.swing.JPanel {
     
     private int estadoId = 0;
     private int index = -1;
+    
+    private LocalTime date = LocalTime.now();
 
     public PnLista() {
         initComponents();
@@ -68,6 +71,8 @@ public class PnLista extends javax.swing.JPanel {
 
         setMaximumSize(new java.awt.Dimension(300, 600));
 
+        PnPanel.setBackground(new java.awt.Color(255, 255, 255));
+        PnPanel.setForeground(new java.awt.Color(52, 73, 85));
         PnPanel.setMaximumSize(new java.awt.Dimension(400, 400));
         PnPanel.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -75,14 +80,21 @@ public class PnLista extends javax.swing.JPanel {
             }
         });
 
+        LbTitulo.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        LbTitulo.setForeground(new java.awt.Color(52, 73, 85));
         LbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LbTitulo.setText("Titulo");
 
+        ListLista.setBackground(new java.awt.Color(255, 255, 255));
         ListLista.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
+        ListLista.setForeground(new java.awt.Color(114, 54, 18));
         ListLista.setModel(listModel);
         ListLista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ListLista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ListLista.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ListListaFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 ListListaFocusLost(evt);
             }
@@ -98,7 +110,9 @@ public class PnLista extends javax.swing.JPanel {
         BtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         BtnEliminar.setText("X");
 
+        BtnAgregarTarea.setBackground(new java.awt.Color(216, 161, 60));
         BtnAgregarTarea.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
+        BtnAgregarTarea.setForeground(new java.awt.Color(52, 73, 85));
         BtnAgregarTarea.setText("Agregar Tarea");
         BtnAgregarTarea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,7 +141,7 @@ public class PnLista extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtnEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(BtnAgregarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -141,8 +155,9 @@ public class PnLista extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(PnPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -150,6 +165,8 @@ public class PnLista extends javax.swing.JPanel {
         try{
             this.setSelected(this.ListLista.getSelectedIndex());
             this.setValor(this.ListLista.getSelectedValue().toString());
+            this.setDate(LocalTime.now());
+            this.parent.setLastIndex(index);
             try {
                 sleep(250);
             } catch (InterruptedException e) {
@@ -182,6 +199,10 @@ public class PnLista extends javax.swing.JPanel {
     private void ListListaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListListaMouseExited
         
     }//GEN-LAST:event_ListListaMouseExited
+
+    private void ListListaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ListListaFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ListListaFocusGained
 
 
     // GETTERS Y SETTERS DE LA CLASE.
@@ -248,6 +269,14 @@ public class PnLista extends javax.swing.JPanel {
 
     public void setListaTareas(List listaTareas) {
         this.listaTareas = listaTareas;
+    }
+
+    public LocalTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalTime date) {
+        this.date = date;
     }
     
     // METODOS DE LA CLASE.

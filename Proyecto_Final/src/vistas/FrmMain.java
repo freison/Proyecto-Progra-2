@@ -50,8 +50,12 @@ public class FrmMain extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        BtnProyectos.setBackground(new java.awt.Color(255, 255, 255));
-        BtnProyectos.setForeground(new java.awt.Color(0, 51, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+
+        BtnProyectos.setBackground(new java.awt.Color(216, 161, 60));
+        BtnProyectos.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        BtnProyectos.setForeground(new java.awt.Color(35, 47, 52));
         BtnProyectos.setText("PROYECTOS");
         BtnProyectos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,8 +63,9 @@ public class FrmMain extends javax.swing.JFrame {
             }
         });
 
-        BtnMiembros.setBackground(new java.awt.Color(255, 255, 255));
-        BtnMiembros.setForeground(new java.awt.Color(0, 51, 255));
+        BtnMiembros.setBackground(new java.awt.Color(216, 161, 60));
+        BtnMiembros.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        BtnMiembros.setForeground(new java.awt.Color(35, 47, 52));
         BtnMiembros.setText("MIEMBROS");
         BtnMiembros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,9 +74,21 @@ public class FrmMain extends javax.swing.JFrame {
         });
 
         TreeTareas.setModel(model);
+        TreeTareas.setBackground(new java.awt.Color(255, 255, 255));
         TreeTareas.setBorder(null);
         TreeTareas.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
+        TreeTareas.setForeground(new java.awt.Color(114, 54, 18));
         jScrollPane2.setViewportView(TreeTareas);
+
+        BtnRefresh.setBackground(new java.awt.Color(216, 161, 60));
+        BtnRefresh.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        BtnRefresh.setForeground(new java.awt.Color(35, 47, 52));
+        BtnRefresh.setText("Refresh");
+        BtnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRefreshActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,13 +96,15 @@ public class FrmMain extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(BtnMiembros, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnProyectos, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(724, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane2)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(BtnMiembros, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(BtnProyectos, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(BtnRefresh))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,15 +115,10 @@ public class FrmMain extends javax.swing.JFrame {
                     .addComponent(BtnProyectos, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(BtnRefresh)
+                .addGap(34, 34, 34))
         );
-
-        BtnRefresh.setText("Refresh");
-        BtnRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnRefreshActionPerformed(evt);
-            }
-        });
 
         jMenu1.setText("Miembros");
         jMenuBar1.add(jMenu1);
@@ -119,18 +133,12 @@ public class FrmMain extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(BtnRefresh)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnRefresh)
-                .addContainerGap())
+                .addGap(46, 46, 46))
         );
 
         pack();
