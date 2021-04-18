@@ -92,9 +92,9 @@ FondoPanelNuevoMiembro fondo=new FondoPanelNuevoMiembro();
             }
         });
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setBackground(new java.awt.Color(216, 161, 60));
         jLabel7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(35, 47, 52));
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Tipo Miembro");
 
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N

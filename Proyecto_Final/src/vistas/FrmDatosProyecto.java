@@ -126,7 +126,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
 
         ListFinalizado.setBackground(new java.awt.Color(255, 255, 255));
         ListFinalizado.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
-        ListFinalizado.setForeground(new java.awt.Color(114, 54, 18));
+        ListFinalizado.setForeground(new java.awt.Color(0, 153, 51));
         ListFinalizado.setModel(listFinalizadoModel);
         jScrollPane3.setViewportView(ListFinalizado);
 
