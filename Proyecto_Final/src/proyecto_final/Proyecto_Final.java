@@ -4,7 +4,6 @@
  * Elaborado por:
  * - Freison Castro Sánchez
  * - Jose Carlo Morales Morales
- * - Joshua Vega
  */
 
 package proyecto_final;
