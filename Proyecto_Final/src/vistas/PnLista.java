@@ -103,6 +103,11 @@ public class PnLista extends javax.swing.JPanel {
         BtnEliminar.setBackground(new java.awt.Color(255, 51, 51));
         BtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         BtnEliminar.setText("X");
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
 
         BtnAgregarTarea.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         BtnAgregarTarea.setText("Agregar Tarea");
@@ -194,6 +199,10 @@ public class PnLista extends javax.swing.JPanel {
     private void ListListaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ListListaFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_ListListaFocusGained
+
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnEliminarActionPerformed
 
 
     // GETTERS Y SETTERS DE LA CLASE.
