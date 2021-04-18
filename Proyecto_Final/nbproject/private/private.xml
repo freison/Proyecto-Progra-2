@@ -1,7 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/vistas/FrmDatosProyectos.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>345</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/josecarlo/Documents/Ingeniería%20en%20sistemas%20de%20computación/III%20Cuatrimestre/Progamación%20Cliente-Servidor%20(Proga%20II)/Netbeans%20Proyects/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmLogin.java</file>
+            <file>file:/Users/josecarlo/Documents/Ingeniería%20en%20sistemas%20de%20computación/III%20Cuatrimestre/Progamación%20Cliente-Servidor%20(Proga%20II)/Netbeans%20Proyects/Proyecto-Progra-2/Proyecto_Final/src/vistas/PnLista.java</file>
+            <file>file:/Users/josecarlo/Documents/Ingeniería%20en%20sistemas%20de%20computación/III%20Cuatrimestre/Progamación%20Cliente-Servidor%20(Proga%20II)/Netbeans%20Proyects/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmProyecto.java</file>
+            <file>file:/Users/josecarlo/Documents/Ingeniería%20en%20sistemas%20de%20computación/III%20Cuatrimestre/Progamación%20Cliente-Servidor%20(Proga%20II)/Netbeans%20Proyects/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmMiembro.java</file>
+            <file>file:/Users/josecarlo/Documents/Ingeniería%20en%20sistemas%20de%20computación/III%20Cuatrimestre/Progamación%20Cliente-Servidor%20(Proga%20II)/Netbeans%20Proyects/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmNuevoProyecto.java</file>
+            <file>file:/Users/josecarlo/Documents/Ingeniería%20en%20sistemas%20de%20computación/III%20Cuatrimestre/Progamación%20Cliente-Servidor%20(Proga%20II)/Netbeans%20Proyects/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmDatosProyecto.java</file>
+            <file>file:/Users/josecarlo/Documents/Ingeniería%20en%20sistemas%20de%20computación/III%20Cuatrimestre/Progamación%20Cliente-Servidor%20(Proga%20II)/Netbeans%20Proyects/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmNuevoMiembroProyecto.java</file>
+            <file>file:/Users/josecarlo/Documents/Ingeniería%20en%20sistemas%20de%20computación/III%20Cuatrimestre/Progamación%20Cliente-Servidor%20(Proga%20II)/Netbeans%20Proyects/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmMain.java</file>
+            <file>file:/Users/josecarlo/Documents/Ingeniería%20en%20sistemas%20de%20computación/III%20Cuatrimestre/Progamación%20Cliente-Servidor%20(Proga%20II)/Netbeans%20Proyects/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmDatosMiembro.java</file>
+            <file>file:/Users/josecarlo/Documents/Ingeniería%20en%20sistemas%20de%20computación/III%20Cuatrimestre/Progamación%20Cliente-Servidor%20(Proga%20II)/Netbeans%20Proyects/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmDatosProyectos.java</file>
+            <file>file:/Users/josecarlo/Documents/Ingeniería%20en%20sistemas%20de%20computación/III%20Cuatrimestre/Progamación%20Cliente-Servidor%20(Proga%20II)/Netbeans%20Proyects/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmNuevaTarea.java</file>
+            <file>file:/Users/josecarlo/Documents/Ingeniería%20en%20sistemas%20de%20computación/III%20Cuatrimestre/Progamación%20Cliente-Servidor%20(Proga%20II)/Netbeans%20Proyects/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmNuevoMiembro.java</file>
+=======
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+=======
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+>>>>>>> 74eaa2dcafe5bc9b52ef97b727cfdc6ed592eabf
+=======
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+>>>>>>> 74eaa2dcafe5bc9b52ef97b727cfdc6ed592eabf
+=======
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+>>>>>>> 74eaa2dcafe5bc9b52ef97b727cfdc6ed592eabf
+=======
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+>>>>>>> 74eaa2dcafe5bc9b52ef97b727cfdc6ed592eabf
+            <file>file:/D:/Disco/OthersRepositories/Proyecto-Progra-2/Proyecto_Final/src/proyecto_final/Proyecto_Final.java</file>
+            <file>file:/D:/Disco/OthersRepositories/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmDatosProyectos.java</file>
+            <file>file:/D:/Disco/OthersRepositories/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmMain.java</file>
+            <file>file:/D:/Disco/OthersRepositories/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmDatosProyecto.java</file>
+            <file>file:/D:/Disco/OthersRepositories/Proyecto-Progra-2/Proyecto_Final/src/vistas/PnLista.java</file>
+            <file>file:/D:/Disco/OthersRepositories/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmLogin.java</file>
+            <file>file:/D:/Disco/OthersRepositories/Proyecto-Progra-2/Proyecto_Final/src/vistas/FrmDatosMiembro.java</file>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 74eaa2dcafe5bc9b52ef97b727cfdc6ed592eabf
+=======
+>>>>>>> 74eaa2dcafe5bc9b52ef97b727cfdc6ed592eabf
+=======
+>>>>>>> 74eaa2dcafe5bc9b52ef97b727cfdc6ed592eabf
+=======
+>>>>>>> 74eaa2dcafe5bc9b52ef97b727cfdc6ed592eabf
+=======
+>>>>>>> 74eaa2dcafe5bc9b52ef97b727cfdc6ed592eabf
+        </group>
+>>>>>>> 1e5d68387647e53c863d2b4e1c9c63ce5defec74
     </open-files>
 </project-private>

@@ -71,6 +71,8 @@ public class PnLista extends javax.swing.JPanel {
 
         setMaximumSize(new java.awt.Dimension(300, 600));
 
+        PnPanel.setBackground(new java.awt.Color(255, 255, 255));
+        PnPanel.setForeground(new java.awt.Color(52, 73, 85));
         PnPanel.setMaximumSize(new java.awt.Dimension(400, 400));
         PnPanel.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -78,10 +80,14 @@ public class PnLista extends javax.swing.JPanel {
             }
         });
 
+        LbTitulo.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        LbTitulo.setForeground(new java.awt.Color(52, 73, 85));
         LbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LbTitulo.setText("Titulo");
 
+        ListLista.setBackground(new java.awt.Color(255, 255, 255));
         ListLista.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
+        ListLista.setForeground(new java.awt.Color(114, 54, 18));
         ListLista.setModel(listModel);
         ListLista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ListLista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -109,7 +115,9 @@ public class PnLista extends javax.swing.JPanel {
             }
         });
 
+        BtnAgregarTarea.setBackground(new java.awt.Color(216, 161, 60));
         BtnAgregarTarea.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
+        BtnAgregarTarea.setForeground(new java.awt.Color(52, 73, 85));
         BtnAgregarTarea.setText("Agregar Tarea");
         BtnAgregarTarea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +146,7 @@ public class PnLista extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtnEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(BtnAgregarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -152,8 +160,9 @@ public class PnLista extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(PnPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

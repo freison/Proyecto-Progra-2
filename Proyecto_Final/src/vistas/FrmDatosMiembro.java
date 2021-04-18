@@ -2,20 +2,26 @@
 package vistas;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 import proyecto_final.Connection;
 import proyecto_final.Miembro;
 import proyecto_final.Administrador;
 
 public class FrmDatosMiembro extends javax.swing.JFrame {
+    FondoPanelDatosMiembro fondo= new FondoPanelDatosMiembro();
     private static int ID = 0;
     
     // CONSTRUCTOR DE LA CLASE.
     public FrmDatosMiembro(int Id, String nombres, String apellidos,
                     String usuario, String cedula, String rol){
+       this.setContentPane(fondo);
         initComponents();;
         ID = Id;
         this.TxtNombres.setText(nombres);
@@ -38,7 +44,7 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Panel = new javax.swing.JPanel();
+        Panel = new FondoPanelDatosMiembro();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -57,19 +63,39 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        Panel.setBackground(new java.awt.Color(255, 255, 255));
+        Panel.setToolTipText("Modificar Miembros");
+
+        jLabel3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(216, 161, 60));
         jLabel3.setText("Apellidos");
 
-        jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(216, 161, 60));
         jLabel4.setText("Usuario");
 
-        jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(216, 161, 60));
         jLabel5.setText("Clave");
 
-        jLabel6.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(216, 161, 60));
         jLabel6.setText("Cedula");
 
-        BtnCerrar.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        TxtNombres.setBackground(new java.awt.Color(255, 255, 255));
+        TxtNombres.setForeground(new java.awt.Color(114, 54, 18));
+
+        TxtApellidos.setBackground(new java.awt.Color(255, 255, 255));
+        TxtApellidos.setForeground(new java.awt.Color(114, 54, 18));
+        TxtApellidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtApellidosActionPerformed(evt);
+            }
+        });
+
+        BtnCerrar.setBackground(new java.awt.Color(216, 161, 60));
+        BtnCerrar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        BtnCerrar.setForeground(new java.awt.Color(35, 47, 52));
         BtnCerrar.setText("CERRAR");
         BtnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,14 +103,43 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Raanana", 0, 18)); // NOI18N
+        TxtUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        TxtUsuario.setForeground(new java.awt.Color(114, 54, 18));
+
+        TxtClave.setBackground(new java.awt.Color(255, 255, 255));
+        TxtClave.setForeground(new java.awt.Color(114, 54, 18));
+        TxtClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtClaveActionPerformed(evt);
+            }
+        });
+
+        TxtCedula.setBackground(new java.awt.Color(255, 255, 255));
+        TxtCedula.setForeground(new java.awt.Color(114, 54, 18));
+        TxtCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtCedulaActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(216, 161, 60));
         jLabel7.setText("Tipo Miembro");
 
-        TipoMiembroComboBox.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        TipoMiembroComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        TipoMiembroComboBox.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        TipoMiembroComboBox.setForeground(new java.awt.Color(216, 161, 60));
         TipoMiembroComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         TipoMiembroComboBox.setName("TipoMiembroComboBox"); // NOI18N
+        TipoMiembroComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TipoMiembroComboBoxActionPerformed(evt);
+            }
+        });
 
-        btnGuardar.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnGuardar.setBackground(new java.awt.Color(216, 161, 60));
+        btnGuardar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(35, 47, 52));
         btnGuardar.setText("GUARDAR");
         btnGuardar.setMaximumSize(new java.awt.Dimension(77, 24));
         btnGuardar.setMinimumSize(new java.awt.Dimension(77, 24));
@@ -95,9 +150,11 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(216, 161, 60));
         jLabel1.setText("Modificar Miembro");
 
-        jLabel2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(216, 161, 60));
         jLabel2.setText("Nombres");
 
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
@@ -105,67 +162,77 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
         PanelLayout.setHorizontalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(70, 70, 70))
+            .addGroup(PanelLayout.createSequentialGroup()
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(70, 70, 70))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
+                    .addGroup(PanelLayout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(jLabel7))
+                    .addGroup(PanelLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(TipoMiembroComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(PanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(PanelLayout.createSequentialGroup()
                         .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel2)
                             .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(PanelLayout.createSequentialGroup()
                                     .addComponent(BtnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(50, 50, 50)
+                                    .addGap(95, 95, 95)
                                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel7)
-                                    .addComponent(TipoMiembroComboBox, 0, 261, Short.MAX_VALUE)
-                                    .addComponent(TxtApellidos)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(TxtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(TxtNombres)
                                     .addComponent(TxtUsuario)
                                     .addComponent(TxtClave)
-                                    .addComponent(TxtCedula)
-                                    .addComponent(TxtNombres))))
-                        .addGap(62, 62, 62))))
+                                    .addComponent(TxtCedula))))
+                        .addGap(0, 30, Short.MAX_VALUE))))
         );
         PanelLayout.setVerticalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addGap(17, 17, 17)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TxtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
+                .addComponent(TxtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TxtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGap(18, 18, 18)
+                .addComponent(TxtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
+                .addComponent(TxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TxtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
+                .addComponent(TxtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TxtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
+                .addComponent(TxtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(TipoMiembroComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGap(56, 56, 56)
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(51, 51, 51))
+                    .addComponent(BtnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -210,6 +277,22 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(null, "Se ha modificado correctamente");
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void TxtApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtApellidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtApellidosActionPerformed
+
+    private void TxtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtClaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtClaveActionPerformed
+
+    private void TxtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtCedulaActionPerformed
+
+    private void TipoMiembroComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoMiembroComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoMiembroComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,6 +346,23 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
                         : (rol.equals("Editor") ? 1 
                                 : 2)
         );
+   
+    }
+            class FondoPanelDatosMiembro extends JPanel{
+    private Image imagen;
+    @Override
+    public void paint(Graphics g){
+    try{
+        
+        imagen = new ImageIcon(getClass().getResource("/imagenes/tec.png")).getImage();
+    g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+        
+        setOpaque(false);
+        super.paint(g);
+        
+        }catch(Exception e){}
+    }
+    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

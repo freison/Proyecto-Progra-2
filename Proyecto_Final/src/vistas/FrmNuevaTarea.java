@@ -201,24 +201,42 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        LbTitle.setFont(new java.awt.Font("Open Sans", 0, 14)); // NOI18N
-        LbTitle.setForeground(new java.awt.Color(0, 0, 0));
+        Panel.setBackground(new java.awt.Color(255, 255, 255));
+
+        LbTitle.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        LbTitle.setForeground(new java.awt.Color(35, 47, 52));
         LbTitle.setText("Tarea");
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        TableMiembros.setBackground(new java.awt.Color(255, 255, 255));
+        TableMiembros.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TableMiembros.setForeground(new java.awt.Color(114, 54, 18));
         TableMiembros.setModel(modelo);
         jScrollPane1.setViewportView(TableMiembros);
 
+        LbDescripcion.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        LbDescripcion.setForeground(new java.awt.Color(35, 47, 52));
         LbDescripcion.setText("Descripción");
 
+        TxtDescripcion.setBackground(new java.awt.Color(255, 255, 255));
+        TxtDescripcion.setForeground(new java.awt.Color(114, 54, 18));
+
+        LbMiembros.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        LbMiembros.setForeground(new java.awt.Color(35, 47, 52));
         LbMiembros.setText("Miembros");
 
+        ListMiembrosAgregados.setBackground(new java.awt.Color(255, 255, 255));
+        ListMiembrosAgregados.setForeground(new java.awt.Color(114, 54, 18));
         ListMiembrosAgregados.setModel(listModel);
         jScrollPane2.setViewportView(ListMiembrosAgregados);
 
+        jLabel1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(35, 47, 52));
         jLabel1.setText("Miembros Agregados");
 
-        BtnAgregar.setBackground(new java.awt.Color(51, 153, 0));
-        BtnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnAgregar.setBackground(new java.awt.Color(216, 161, 60));
+        BtnAgregar.setForeground(new java.awt.Color(35, 47, 52));
         BtnAgregar.setText("Agregar");
         BtnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,6 +244,8 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
             }
         });
 
+        BtnCerrar.setBackground(new java.awt.Color(216, 161, 60));
+        BtnCerrar.setForeground(new java.awt.Color(35, 47, 52));
         BtnCerrar.setText("Cerrar");
         BtnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,8 +253,8 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
             }
         });
 
-        BtnRemover.setBackground(new java.awt.Color(255, 51, 51));
-        BtnRemover.setForeground(new java.awt.Color(255, 255, 255));
+        BtnRemover.setBackground(new java.awt.Color(216, 161, 60));
+        BtnRemover.setForeground(new java.awt.Color(35, 47, 52));
         BtnRemover.setText("Remover");
         BtnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,7 +278,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
                                     .addComponent(LbDescripcion, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)))
                             .addComponent(LbMiembros))
-                        .addGap(50, 50, 50)
+                        .addGap(26, 26, 26)
                         .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -277,23 +297,25 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(LbDescripcion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TxtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LbMiembros)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
-                .addGap(40, 40, 40))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnAgregar)
-                    .addComponent(BtnCerrar)
-                    .addComponent(BtnRemover))
-                .addContainerGap())
+                .addComponent(TxtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelLayout.createSequentialGroup()
+                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LbMiembros)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
+                        .addGap(40, 40, 40))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
+                        .addGap(401, 401, 401)
+                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtnAgregar)
+                            .addComponent(BtnCerrar)
+                            .addComponent(BtnRemover))
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
