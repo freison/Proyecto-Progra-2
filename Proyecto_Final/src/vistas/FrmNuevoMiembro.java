@@ -15,12 +15,12 @@ import proyecto_final.Editor;
 import proyecto_final.Invitado;
 
 public class FrmNuevoMiembro extends javax.swing.JFrame {
-FondoPanelNuevoMiembro fondo=new FondoPanelNuevoMiembro();
+
     /**
      * Creates new form FrmNuevoMiembro
      */
     public FrmNuevoMiembro() {
-        this.setContentPane(fondo);
+       
         initComponents();
         llenarComboBox();
     }
@@ -33,7 +33,7 @@ FondoPanelNuevoMiembro fondo=new FondoPanelNuevoMiembro();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new FondoPanelNuevoMiembro();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -53,7 +53,7 @@ FondoPanelNuevoMiembro fondo=new FondoPanelNuevoMiembro();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 42, 104));
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(216, 161, 60));
@@ -94,7 +94,7 @@ FondoPanelNuevoMiembro fondo=new FondoPanelNuevoMiembro();
 
         jLabel7.setBackground(new java.awt.Color(216, 161, 60));
         jLabel7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setForeground(new java.awt.Color(216, 161, 60));
         jLabel7.setText("Tipo Miembro");
 
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -343,22 +343,7 @@ FondoPanelNuevoMiembro fondo=new FondoPanelNuevoMiembro();
     public void mensaje(){
         JOptionPane.showMessageDialog(null, "Miembro Agregado");
     }
-        class FondoPanelNuevoMiembro extends JPanel{
-    private Image imagen;
-    @Override
-    public void paint(Graphics g){
-    try{
         
-        imagen = new ImageIcon(getClass().getResource("/imagenes/tec.png")).getImage();
-    g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-        
-        setOpaque(false);
-        super.paint(g);
-        
-        }catch(Exception e){}
-    }
-    
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCerrar;

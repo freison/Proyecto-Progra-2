@@ -15,13 +15,13 @@ import proyecto_final.Miembro;
 import proyecto_final.Administrador;
 
 public class FrmDatosMiembro extends javax.swing.JFrame {
-    FondoPanelDatosMiembro fondo= new FondoPanelDatosMiembro();
+   
     private static int ID = 0;
     
     // CONSTRUCTOR DE LA CLASE.
     public FrmDatosMiembro(int Id, String nombres, String apellidos,
                     String usuario, String cedula, String rol){
-       this.setContentPane(fondo);
+       
         initComponents();;
         ID = Id;
         this.TxtNombres.setText(nombres);
@@ -44,7 +44,7 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Panel = new FondoPanelDatosMiembro();
+        Panel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -55,15 +55,15 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
         TxtUsuario = new javax.swing.JTextField();
         TxtClave = new javax.swing.JTextField();
         TxtCedula = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         TipoMiembroComboBox = new javax.swing.JComboBox<>();
         btnGuardar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Panel.setBackground(new java.awt.Color(255, 255, 255));
+        Panel.setBackground(new java.awt.Color(0, 42, 104));
         Panel.setToolTipText("Modificar Miembros");
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -122,10 +122,6 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(216, 161, 60));
-        jLabel7.setText("Tipo Miembro");
-
         TipoMiembroComboBox.setBackground(new java.awt.Color(255, 255, 255));
         TipoMiembroComboBox.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         TipoMiembroComboBox.setForeground(new java.awt.Color(216, 161, 60));
@@ -157,78 +153,78 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(216, 161, 60));
         jLabel2.setText("Nombres");
 
+        jLabel7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(216, 161, 60));
+        jLabel7.setText("Tipo Miembro");
+
         javax.swing.GroupLayout PanelLayout = new javax.swing.GroupLayout(Panel);
         Panel.setLayout(PanelLayout);
         PanelLayout.setHorizontalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(70, 70, 70))
             .addGroup(PanelLayout.createSequentialGroup()
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelLayout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(jLabel7))
+                        .addGap(30, 30, 30)
+                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PanelLayout.createSequentialGroup()
+                                .addComponent(BtnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(95, 95, 95)
+                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(TxtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                                .addComponent(TxtNombres)
+                                .addComponent(TxtUsuario)
+                                .addComponent(TxtClave)
+                                .addComponent(TxtCedula))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(PanelLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(TipoMiembroComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel1)))
+                .addGap(0, 30, Short.MAX_VALUE))
             .addGroup(PanelLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(47, 47, 47)
+                        .addComponent(TipoMiembroComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelLayout.createSequentialGroup()
-                        .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(PanelLayout.createSequentialGroup()
-                                    .addComponent(BtnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(95, 95, 95)
-                                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4)
-                                    .addComponent(TxtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(TxtNombres)
-                                    .addComponent(TxtUsuario)
-                                    .addComponent(TxtClave)
-                                    .addComponent(TxtCedula))))
-                        .addGap(0, 30, Short.MAX_VALUE))))
+                        .addGap(119, 119, 119)
+                        .addComponent(jLabel7)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelLayout.setVerticalGroup(
             PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(13, 13, 13)
                 .addComponent(jLabel1)
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(20, 20, 20)
                 .addComponent(TxtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(TxtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(TxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel5)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(TxtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(TxtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addComponent(TipoMiembroComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addGap(42, 42, 42)
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -348,13 +344,13 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
         );
    
     }
-            class FondoPanelDatosMiembro extends JPanel{
+     /*       class FondoPanelDatosMiembro extends JPanel{
     private Image imagen;
     @Override
     public void paint(Graphics g){
     try{
         
-        imagen = new ImageIcon(getClass().getResource("/imagenes/tec.png")).getImage();
+        imagen = new ImageIcon(getClass().getResource("/imagenes/fondoazul.jpg")).getImage();
     g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
         
         setOpaque(false);
@@ -363,7 +359,7 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
         }catch(Exception e){}
     }
     
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCerrar;

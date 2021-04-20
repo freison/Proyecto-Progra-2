@@ -42,7 +42,7 @@ public class FrmNuevoProyecto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         LbTitulo.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         LbTitulo.setForeground(new java.awt.Color(52, 73, 85));
@@ -88,7 +88,7 @@ public class FrmNuevoProyecto extends javax.swing.JFrame {
             }
         });
 
-        ChkTablero.setBackground(new java.awt.Color(255, 255, 255));
+        ChkTablero.setBackground(new java.awt.Color(204, 204, 204));
         ChkTablero.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         ChkTablero.setForeground(new java.awt.Color(52, 73, 85));
         ChkTablero.setText("Tablero");

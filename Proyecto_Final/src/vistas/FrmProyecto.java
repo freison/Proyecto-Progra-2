@@ -43,7 +43,7 @@ public class FrmProyecto extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         ListProyectos.setBackground(new java.awt.Color(255, 255, 255));
         ListProyectos.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
