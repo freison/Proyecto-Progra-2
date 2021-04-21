@@ -179,20 +179,24 @@ FondoPanel fondo= new FondoPanel();
     // METODOS DE LA CLASE.
     public void iniciarSession(){
         Miembro miembro = new Administrador();
-        if(miembro.IniciarSesion(TxtUsuario.getText().trim(), TxtClave.getText().trim())){
-            String usuario = TxtUsuario.getText().trim();
-            String rol = miembro.getRol(TxtUsuario.getText().trim());
-            String[] datosUsuario = new String[]{usuario, rol};
-            
-            FrmMain Main = new FrmMain(datosUsuario);
-            Main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            Main.setLocationRelativeTo(null);
-            Main.setVisible(true);
-            Main.setExtendedState(MAXIMIZED_BOTH);
-            this.dispose();
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Usuario y/o clave incorrectos");
+        try{
+            if(miembro.IniciarSesion(TxtUsuario.getText().trim(), TxtClave.getText().trim())){
+                String usuario = TxtUsuario.getText().trim();
+                String rol = miembro.getRol(TxtUsuario.getText().trim());
+                String[] datosUsuario = new String[]{usuario, rol};
+
+                FrmMain Main = new FrmMain(datosUsuario);
+                Main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                Main.setLocationRelativeTo(null);
+                Main.setVisible(true);
+                Main.setExtendedState(MAXIMIZED_BOTH);
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Usuario y/o clave incorrectos");
+            }
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Servidor Derby No Inicializado");
         }
     }
     class FondoPanel extends JPanel{
