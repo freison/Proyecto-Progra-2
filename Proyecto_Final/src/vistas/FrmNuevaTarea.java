@@ -201,7 +201,7 @@ public class FrmNuevaTarea extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        Panel.setBackground(new java.awt.Color(255, 255, 255));
+        Panel.setBackground(new java.awt.Color(204, 204, 204));
 
         LbTitle.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         LbTitle.setForeground(new java.awt.Color(35, 47, 52));
