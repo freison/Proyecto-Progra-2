@@ -45,7 +45,7 @@ public class FrmMain extends javax.swing.JFrame {
         BtnRefresh = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        guiMenuItemSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(83647, 83647));
@@ -121,11 +121,17 @@ public class FrmMain extends javax.swing.JFrame {
                 .addGap(34, 34, 34))
         );
 
-        jMenu1.setText("Miembros");
-        jMenuBar1.add(jMenu1);
+        jMenu1.setText("File");
 
-        jMenu2.setText("Projectos");
-        jMenuBar1.add(jMenu2);
+        guiMenuItemSalir.setText("Salir");
+        guiMenuItemSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guiMenuItemSalirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(guiMenuItemSalir);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -171,6 +177,10 @@ public class FrmMain extends javax.swing.JFrame {
         TreeTareas.setModel(model);
         this.TreeTareas.revalidate();
     }//GEN-LAST:event_BtnRefreshActionPerformed
+
+    private void guiMenuItemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiMenuItemSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_guiMenuItemSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,8 +245,8 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JButton BtnProyectos;
     private javax.swing.JButton BtnRefresh;
     private javax.swing.JTree TreeTareas;
+    private javax.swing.JMenuItem guiMenuItemSalir;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
