@@ -94,6 +94,6 @@ create table Detalle_Tareas_Miembro(
 insert into Miembros(nombres, apellidos, usuario, clave, cedula) values('admin', 'admin', 'admin', 'admin', '001');
 insert into Administradores(MiembroId) values(1);
 
-insert into ESTADOSTAREA(Descripcion) values('Por Hacer');
-insert into ESTADOSTAREA(Descripcion) values('En Proceso');
-insert into ESTADOSTAREA(Descripcion) values('Finalizada');
+-- insert into ESTADOSTAREA(Descripcion) values('Por Hacer');
+-- insert into ESTADOSTAREA(Descripcion) values('En Proceso');
+-- insert into ESTADOSTAREA(Descripcion) values('Finalizada');
