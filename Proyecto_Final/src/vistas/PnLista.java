@@ -66,12 +66,11 @@ public class PnLista extends javax.swing.JPanel {
         LbTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListLista = new javax.swing.JList<>();
-        BtnEliminar = new javax.swing.JButton();
         BtnAgregarTarea = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(300, 600));
 
-        PnPanel.setBackground(new java.awt.Color(255, 255, 255));
+        PnPanel.setBackground(new java.awt.Color(204, 204, 204));
         PnPanel.setForeground(new java.awt.Color(52, 73, 85));
         PnPanel.setMaximumSize(new java.awt.Dimension(400, 400));
         PnPanel.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -106,15 +105,6 @@ public class PnLista extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(ListLista);
 
-        BtnEliminar.setBackground(new java.awt.Color(255, 51, 51));
-        BtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        BtnEliminar.setText("X");
-        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnEliminarActionPerformed(evt);
-            }
-        });
-
         BtnAgregarTarea.setBackground(new java.awt.Color(216, 161, 60));
         BtnAgregarTarea.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         BtnAgregarTarea.setForeground(new java.awt.Color(52, 73, 85));
@@ -133,7 +123,6 @@ public class PnLista extends javax.swing.JPanel {
                 .addGroup(PnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(LbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnAgregarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnEliminar)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -144,11 +133,9 @@ public class PnLista extends javax.swing.JPanel {
                 .addComponent(LbTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BtnAgregarTarea, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -205,10 +192,6 @@ public class PnLista extends javax.swing.JPanel {
     private void ListListaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ListListaFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_ListListaFocusGained
-
-    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnEliminarActionPerformed
 
 
     // GETTERS Y SETTERS DE LA CLASE.
@@ -294,7 +277,6 @@ public class PnLista extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregarTarea;
-    private javax.swing.JButton BtnEliminar;
     private javax.swing.JLabel LbTitulo;
     private javax.swing.JList<String> ListLista;
     private javax.swing.JPanel PnPanel;

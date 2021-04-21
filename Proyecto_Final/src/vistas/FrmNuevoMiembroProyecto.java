@@ -54,7 +54,6 @@ public class FrmNuevoMiembroProyecto extends javax.swing.JFrame {
         CmbMiembros.setBackground(new java.awt.Color(204, 204, 204));
         CmbMiembros.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         CmbMiembros.setForeground(new java.awt.Color(35, 47, 52));
-        CmbMiembros.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

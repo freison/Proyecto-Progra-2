@@ -124,8 +124,7 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
 
         TipoMiembroComboBox.setBackground(new java.awt.Color(255, 255, 255));
         TipoMiembroComboBox.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        TipoMiembroComboBox.setForeground(new java.awt.Color(216, 161, 60));
-        TipoMiembroComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        TipoMiembroComboBox.setForeground(new java.awt.Color(114, 54, 18));
         TipoMiembroComboBox.setName("TipoMiembroComboBox"); // NOI18N
         TipoMiembroComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

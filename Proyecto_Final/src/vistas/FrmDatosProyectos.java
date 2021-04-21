@@ -97,7 +97,7 @@ public class FrmDatosProyectos extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         PnPanel.setBackground(new java.awt.Color(255, 255, 255));
 

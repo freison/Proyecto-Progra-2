@@ -51,7 +51,7 @@ public class FrmMain extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(83647, 83647));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         BtnProyectos.setBackground(new java.awt.Color(216, 161, 60));
