@@ -101,7 +101,7 @@ public class FrmNuevoMiembro extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(216, 161, 60));
         jLabel2.setText("Nombres");
 
-        TipoMiembroComboBox.setBackground(new java.awt.Color(255, 255, 255));
+        TipoMiembroComboBox.setBackground(new java.awt.Color(204, 204, 204));
         TipoMiembroComboBox.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         TipoMiembroComboBox.setForeground(new java.awt.Color(114, 54, 18));
         TipoMiembroComboBox.setName("TipoMiembroComboBox"); // NOI18N
