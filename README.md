@@ -1,6 +1,6 @@
 # Proyecto Final del curso de Programación Cliente Servidor de la Universidad Fidélitas.
 
-### Diagrama Entidad - Relación (MySql Designer)
+### Diagrama Entidad - Relación
 ![image](https://user-images.githubusercontent.com/26367496/113432445-9d67bc00-939a-11eb-9744-b90efb157260.png)
 
 ## Como ejecutarlo?
