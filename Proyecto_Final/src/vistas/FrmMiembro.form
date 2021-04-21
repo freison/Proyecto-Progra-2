@@ -78,11 +78,11 @@
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="CheckAdministradores" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="47" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="CheckEditores" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="CheckInvitados" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                  <EmptySpace pref="118" max="32767" attributes="0"/>
                                   <Component id="TxtBuscar" min="-2" pref="213" max="-2" attributes="0"/>
                               </Group>
                           </Group>
