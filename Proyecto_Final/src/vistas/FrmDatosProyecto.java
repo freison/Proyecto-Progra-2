@@ -93,6 +93,9 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         BtnEnProceso_To_Finalizado = new javax.swing.JButton();
         BtnEnProceso_To_PorHacer = new javax.swing.JButton();
         BtnFinalizado_To_EnProceso = new javax.swing.JButton();
+        PnIssues = new javax.swing.JPanel();
+        BtnNewIssue = new java.awt.Button();
+        PnRescursos = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -301,6 +304,41 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Tareas", jPanel1);
 
+        BtnNewIssue.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        BtnNewIssue.setLabel("Agregar");
+
+        javax.swing.GroupLayout PnIssuesLayout = new javax.swing.GroupLayout(PnIssues);
+        PnIssues.setLayout(PnIssuesLayout);
+        PnIssuesLayout.setHorizontalGroup(
+            PnIssuesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PnIssuesLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(BtnNewIssue, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1033, Short.MAX_VALUE))
+        );
+        PnIssuesLayout.setVerticalGroup(
+            PnIssuesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnIssuesLayout.createSequentialGroup()
+                .addContainerGap(487, Short.MAX_VALUE)
+                .addComponent(BtnNewIssue, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+        );
+
+        jTabbedPane1.addTab("Issues", PnIssues);
+
+        javax.swing.GroupLayout PnRescursosLayout = new javax.swing.GroupLayout(PnRescursos);
+        PnRescursos.setLayout(PnRescursosLayout);
+        PnRescursosLayout.setHorizontalGroup(
+            PnRescursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1150, Short.MAX_VALUE)
+        );
+        PnRescursosLayout.setVerticalGroup(
+            PnRescursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 555, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Recursos", PnRescursos);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -309,7 +347,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -645,6 +683,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     private javax.swing.JButton BtnEnProceso_To_Finalizado;
     private javax.swing.JButton BtnEnProceso_To_PorHacer;
     private javax.swing.JButton BtnFinalizado_To_EnProceso;
+    private java.awt.Button BtnNewIssue;
     private javax.swing.JButton BtnPorHacer_To_EnProceso;
     private javax.swing.JLabel LbEnProceso;
     private javax.swing.JLabel LbFinalizadas;
@@ -655,6 +694,8 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     private javax.swing.JList<String> ListFinalizado;
     private javax.swing.JList<String> ListMiembros;
     private javax.swing.JList<String> ListPorHacer;
+    private javax.swing.JPanel PnIssues;
+    private javax.swing.JPanel PnRescursos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
