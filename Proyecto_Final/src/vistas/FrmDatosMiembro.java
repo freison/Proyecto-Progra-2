@@ -258,7 +258,7 @@ public class FrmDatosMiembro extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnCerrarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        Miembro miembro = new Administrador();
+        Miembro miembro = new Administrador(); // POLIMORFISMO
         String rolPrevio = miembro.getRol(ID).toString().trim();
         String rol = TipoMiembroComboBox.getSelectedItem().toString().trim();
         
