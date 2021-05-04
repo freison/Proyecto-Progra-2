@@ -1,7 +1,13 @@
 
 package proyecto_final;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import proyecto_final.Connection;
 
 public class Issue {
     // ATRIBUTOS DE LA CLASE.
@@ -10,6 +16,8 @@ public class Issue {
     private int proyectoId;
     private int miembroId;
     private LocalDate fechaCreado;
+    
+    private Connection connection = new Connection();
     
     // CONSTRUCTORES DE LA CLASE.
     // Constructor sin parametros.
@@ -67,4 +75,36 @@ public class Issue {
         this.fechaCreado = fechaCreado;
     }
     
+    // METODOS DE LA CLASE.
+    public void Agregar(){
+        java.sql.Connection cn = null;
+        
+        try{
+            cn = connection.getConnection();
+            
+            PreparedStatement stmt = cn.prepareStatement(
+                    "insert into ISSUES(TITULO, DESCRIPCION, PROYECTOID, MIEMBROID, FECHA_CREADO) values(?, ?, ?, ?, ?)"
+            );
+            stmt.setString(1, this.getTitulo());
+            stmt.setString(2, this.getDescripcion());
+            stmt.setInt(3, this.getProyectoId());
+            stmt.setInt(4, this.getMiembroId());
+            stmt.setDate(5, java.sql.Date.valueOf(fechaCreado));
+            stmt.executeUpdate();
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }finally{
+            try{
+                cn.close();
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
+    public void Listar(){
+        
+    }
 }

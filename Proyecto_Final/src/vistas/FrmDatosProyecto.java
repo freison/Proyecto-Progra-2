@@ -45,8 +45,8 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
 
     /**
      * *
-     * List datos posee el Id, Nombre y Descripcion del Proyecto []datosUsuario
-     * posee el usuario y rol del Miembro.
+     * List datos posee el Id, Nombre y Descripcion del Proyecto
+     * []datosUsuario posee el usuario y rol del Miembro.
      *
      * @param datos
      * @param datosUsuario
@@ -632,7 +632,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     }//GEN-LAST:event_ListPorHacerMouseClicked
 
     private void BtnNewIssueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNewIssueActionPerformed
-        FrmNuevoIssue issue = new FrmNuevoIssue();
+        FrmNuevoIssue issue = new FrmNuevoIssue(this.Datos, this.datosUsuario);
         issue.setLocationRelativeTo(null);
         issue.setVisible(true);
         this.dispose();
