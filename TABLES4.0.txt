@@ -1,0 +1,120 @@
+create table Miembros(
+    Id int not null generated always as identity (start with 1, increment by 1),
+    nombres varchar(50) not null,
+    apellidos varchar(50) not null,
+    cedula varchar(50) not null,
+    usuario varchar(50) not null,
+    clave varchar(50) not null,
+    primary key(Id)
+);
+
+create table Invitados(
+    Id int not null primary key generated always as identity (start with 1, increment by 1),
+    MiembroId int not null,
+    foreign key(MiembroId) references Miembros(Id)
+);
+
+create table Editores(
+    Id int not null primary key generated always as identity (start with 1, increment by 1),
+    MiembroId int not null,
+    foreign key(MiembroId) references Miembros(Id)
+);
+
+create table Administradores(
+    Id int not null primary key generated always as identity (start with 1, increment by 1),
+    MiembroId int not null,
+    foreign key(MiembroId) references Miembros(Id)
+);
+
+create table Proyectos(
+    Id int not null primary key generated always as identity(start with 1, increment by 1),
+    nombre varchar(250) not null,
+    Descripcion varchar(250) not null,
+    AdministradorId int not null,
+    Tipo Boolean not null,
+    foreign key(AdministradorId) references Administradores(Id)
+);
+
+create table Issues(
+    Id int not null primary key generated always as identity(start with 1, increment by 1),
+    Titulo vachar(100) not null,
+    Descripcion varchar(250) not null,
+    ProyectoId int not null,
+    MiembroId int not null,
+    Fecha_Creado Date not null,
+    foreign key(ProyectoId) references Proyectos(Id),
+    foreign key (MiembroId) references Miembros(Id)
+);
+
+create Comentarios(
+    Id int not null primary key generated always as identity(start with 1, increment by 1),
+    Descripcion varchar(250) not null,
+    IssueId int not null,
+    MiembroId int not null,
+    Fecha_Creado Date not null,
+    foreign key(IssueId) references Issues(Id),
+    foreign key(MiembroId) references Miembros(Id)
+);
+
+create table EstadosTarea(
+    Id int not null primary key generated always as identity (start with 1, increment by 1),
+    descripcion varchar(50) not null,
+    proyectoId int not null,
+    foreign key(ProyectoId) references Proyectos(Id)
+);
+
+create table Tareas(
+    Id int not null primary key generated always as identity (start with 1, increment by 1),
+    descripcion varchar(250) not null,
+    EstadoTareaId int not null,
+    ProyectoId int not null,
+    foreign key(EstadoTareaId) references EstadosTarea(Id),
+    foreign key(ProyectoId) references Proyectos(Id)
+);
+
+--create table Detalle_Tareas_Proyecto(
+--    Id int not null primary key generated always as identity(start with 1, increment by 1),
+--    TareaId int not null,
+--    ProyectoId int not null,
+--    foreign key(TareaId) references Tareas(Id),
+--    foreign key(ProyectoId) references Proyectos(Id)
+--);
+
+--create table Detalle_Proyectos_Creados(
+--    Id int not null primary key generated always as identity(start with 1, increment by 1),
+--    AdministradorId int not null,
+--    ProyectoId int not null,
+--    foreign key(AdministradorId) references Administradores(Id),
+--    foreign key (ProyectoId) references Proyectos(Id)
+--);
+
+create table Detalle_Miembros_Proyecto(
+    Id int not null primary key generated always as identity(start with 1, increment by 1),
+    MiembroId int not null,
+    ProyectoId int not null,
+    foreign key(MiembroId) references Miembros(Id),
+    foreign key(ProyectoId) references Proyectos(Id)
+);
+
+create table Detalle_Proyectos_Participacion(
+    Id int not null primary key generated always as identity(start with 1, increment by 1),
+    MiembroId int not null,
+    ProyectoId int not null,
+    foreign key(MiembroId) references Miembros(Id),
+    foreign key(ProyectoId) references Proyectos(Id)
+);
+
+create table Detalle_Tareas_Miembro(
+    Id int not null primary key generated always as identity(start with 1, increment by 1),
+    MiembroId int not null,
+    TareaId int not null,
+    foreign key(MiembroId) references Miembros(Id),
+    foreign key(TareaId) references Tareas(Id)
+);
+
+insert into Miembros(nombres, apellidos, usuario, clave, cedula) values('admin', 'admin', 'admin', 'admin', '001');
+insert into Administradores(MiembroId) values(1);
+
+-- insert into ESTADOSTAREA(Descripcion) values('Por Hacer');
+-- insert into ESTADOSTAREA(Descripcion) values('En Proceso');
+-- insert into ESTADOSTAREA(Descripcion) values('Finalizada');
