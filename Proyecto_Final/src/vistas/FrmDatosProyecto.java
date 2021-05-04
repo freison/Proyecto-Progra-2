@@ -75,7 +75,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     private void initComponents() {
 
         TabPanel = new javax.swing.JTabbedPane();
-        jPanel1 = new FondoPanelDatosProyecto();
+        PnPanelTareasProyecto = new FondoPanelDatosProyecto();
         LbTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListEnProceso = new javax.swing.JList<>();
@@ -100,12 +100,17 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         ListIssues = new javax.swing.JList<>();
         PnDetallesIssue = new javax.swing.JPanel();
+        LbIssueTitulo = new javax.swing.JLabel();
+        LbDescripcion = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        ScrollComentariosIssue = new javax.swing.JScrollPane();
+        PnComentariosIssue = new javax.swing.JPanel();
         PnRescursos = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        PnPanelTareasProyecto.setBackground(new java.awt.Color(255, 255, 255));
 
         LbTitulo.setFont(new java.awt.Font("Open Sans", 1, 36)); // NOI18N
         LbTitulo.setForeground(new java.awt.Color(52, 73, 85));
@@ -217,97 +222,97 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout PnPanelTareasProyectoLayout = new javax.swing.GroupLayout(PnPanelTareasProyecto);
+        PnPanelTareasProyecto.setLayout(PnPanelTareasProyectoLayout);
+        PnPanelTareasProyectoLayout.setHorizontalGroup(
+            PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PnPanelTareasProyectoLayout.createSequentialGroup()
+                .addGroup(PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PnPanelTareasProyectoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(LbPorHacer)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnPanelTareasProyectoLayout.createSequentialGroup()
                                 .addComponent(BtnAgregarTarea)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(BtnPorHacer_To_EnProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PnPanelTareasProyectoLayout.createSequentialGroup()
                                 .addGap(76, 76, 76)
                                 .addComponent(BtnEnProceso_To_PorHacer, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(BtnEnProceso_To_Finalizado, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnPanelTareasProyectoLayout.createSequentialGroup()
                                 .addGap(28, 28, 28)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(LbEnProceso)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(LbTitulo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PnPanelTareasProyectoLayout.createSequentialGroup()
+                        .addGroup(PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(LbFinalizadas))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PnPanelTareasProyectoLayout.createSequentialGroup()
                                 .addGap(144, 144, 144)
                                 .addComponent(LbMiembros)
                                 .addGap(156, 156, 156))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnPanelTareasProyectoLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(PnPanelTareasProyectoLayout.createSequentialGroup()
                         .addComponent(BtnFinalizado_To_EnProceso, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(356, 356, 356)
                         .addComponent(BtnAgregarMiembro)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        PnPanelTareasProyectoLayout.setVerticalGroup(
+            PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnPanelTareasProyectoLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PnPanelTareasProyectoLayout.createSequentialGroup()
                         .addComponent(LbTitulo)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PnPanelTareasProyectoLayout.createSequentialGroup()
                                 .addComponent(LbMiembros)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(PnPanelTareasProyectoLayout.createSequentialGroup()
+                        .addGroup(PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PnPanelTareasProyectoLayout.createSequentialGroup()
+                                .addGroup(PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(LbEnProceso)
                                     .addComponent(LbFinalizadas))
                                 .addGap(6, 6, 6))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(PnPanelTareasProyectoLayout.createSequentialGroup()
                                 .addComponent(LbPorHacer)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(PnPanelTareasProyectoLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PnPanelTareasProyectoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(BtnPorHacer_To_EnProceso)
                                 .addComponent(BtnEnProceso_To_PorHacer)
                                 .addComponent(BtnEnProceso_To_Finalizado)
                                 .addComponent(BtnFinalizado_To_EnProceso))
                             .addComponent(BtnAgregarMiembro)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(PnPanelTareasProyectoLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(BtnAgregarTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        TabPanel.addTab("Tareas", jPanel1);
+        TabPanel.addTab("Tareas", PnPanelTareasProyecto);
 
         BtnNewIssue.setBackground(new java.awt.Color(255, 255, 153));
         BtnNewIssue.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -331,15 +336,64 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
 
         PnDetallesIssue.setBackground(new java.awt.Color(255, 255, 204));
 
+        LbIssueTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        LbIssueTitulo.setForeground(new java.awt.Color(0, 0, 0));
+        LbIssueTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LbIssueTitulo.setText("jLabel1");
+
+        LbDescripcion.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        LbDescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        LbDescripcion.setText("jLabel1");
+
+        jButton1.setText("jButton1");
+
+        ScrollComentariosIssue.setBackground(new java.awt.Color(255, 153, 51));
+
+        PnComentariosIssue.setBackground(new java.awt.Color(255, 204, 51));
+
+        javax.swing.GroupLayout PnComentariosIssueLayout = new javax.swing.GroupLayout(PnComentariosIssue);
+        PnComentariosIssue.setLayout(PnComentariosIssueLayout);
+        PnComentariosIssueLayout.setHorizontalGroup(
+            PnComentariosIssueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 826, Short.MAX_VALUE)
+        );
+        PnComentariosIssueLayout.setVerticalGroup(
+            PnComentariosIssueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 341, Short.MAX_VALUE)
+        );
+
+        ScrollComentariosIssue.setViewportView(PnComentariosIssue);
+
         javax.swing.GroupLayout PnDetallesIssueLayout = new javax.swing.GroupLayout(PnDetallesIssue);
         PnDetallesIssue.setLayout(PnDetallesIssueLayout);
         PnDetallesIssueLayout.setHorizontalGroup(
             PnDetallesIssueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 868, Short.MAX_VALUE)
+            .addGroup(PnDetallesIssueLayout.createSequentialGroup()
+                .addGroup(PnDetallesIssueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PnDetallesIssueLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(LbIssueTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(PnDetallesIssueLayout.createSequentialGroup()
+                        .addGroup(PnDetallesIssueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LbDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ScrollComentariosIssue))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         PnDetallesIssueLayout.setVerticalGroup(
             PnDetallesIssueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(PnDetallesIssueLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(LbIssueTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(LbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PnDetallesIssueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PnDetallesIssueLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(ScrollComentariosIssue)))
         );
 
         javax.swing.GroupLayout PnIssuesLayout = new javax.swing.GroupLayout(PnIssues);
@@ -352,8 +406,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
                     .addComponent(jScrollPane4)
                     .addComponent(BtnNewIssue, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PnDetallesIssue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(PnDetallesIssue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PnIssuesLayout.setVerticalGroup(
             PnIssuesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,7 +414,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(PnIssuesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PnIssuesLayout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnNewIssue, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(PnDetallesIssue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -736,8 +789,10 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     private javax.swing.JButton BtnFinalizado_To_EnProceso;
     private java.awt.Button BtnNewIssue;
     private javax.swing.JButton BtnPorHacer_To_EnProceso;
+    private javax.swing.JLabel LbDescripcion;
     private javax.swing.JLabel LbEnProceso;
     private javax.swing.JLabel LbFinalizadas;
+    private javax.swing.JLabel LbIssueTitulo;
     private javax.swing.JLabel LbMiembros;
     private javax.swing.JLabel LbPorHacer;
     private javax.swing.JLabel LbTitulo;
@@ -746,11 +801,14 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     private javax.swing.JList<String> ListIssues;
     private javax.swing.JList<String> ListMiembros;
     private javax.swing.JList<String> ListPorHacer;
+    private javax.swing.JPanel PnComentariosIssue;
     private javax.swing.JPanel PnDetallesIssue;
     private javax.swing.JPanel PnIssues;
+    private javax.swing.JPanel PnPanelTareasProyecto;
     private javax.swing.JPanel PnRescursos;
+    private javax.swing.JScrollPane ScrollComentariosIssue;
     private javax.swing.JTabbedPane TabPanel;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
