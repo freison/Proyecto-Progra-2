@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import proyecto_final.Proyecto;
 import proyecto_final.Tarea;
 import proyecto_final.EstadoTarea;
+import vistas.Issues.FrmNuevoIssue;
 
 public class FrmDatosProyecto extends javax.swing.JFrame {
 
@@ -66,13 +67,14 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
 
         validarPropietario(Integer.parseInt(datos.get(0).toString()), datosUsuario[0]);
         validarRol(datosUsuario[1]);
+        this.TabPanel.setSelectedIndex(1);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        TabPanel = new javax.swing.JTabbedPane();
         jPanel1 = new FondoPanelDatosProyecto();
         LbTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -305,12 +307,17 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Tareas", jPanel1);
+        TabPanel.addTab("Tareas", jPanel1);
 
         BtnNewIssue.setBackground(new java.awt.Color(255, 255, 153));
         BtnNewIssue.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         BtnNewIssue.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         BtnNewIssue.setLabel("Agregar");
+        BtnNewIssue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNewIssueActionPerformed(evt);
+            }
+        });
 
         ListIssues.setBackground(new java.awt.Color(255, 255, 255));
         ListIssues.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -361,7 +368,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Issues", PnIssues);
+        TabPanel.addTab("Issues", PnIssues);
 
         javax.swing.GroupLayout PnRescursosLayout = new javax.swing.GroupLayout(PnRescursos);
         PnRescursos.setLayout(PnRescursosLayout);
@@ -374,17 +381,17 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
             .addGap(0, 555, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Recursos", PnRescursos);
+        TabPanel.addTab("Recursos", PnRescursos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(TabPanel)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(TabPanel)
         );
 
         pack();
@@ -545,6 +552,13 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No ha sido asignado a esta tarea");
         }
     }//GEN-LAST:event_ListPorHacerMouseClicked
+
+    private void BtnNewIssueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNewIssueActionPerformed
+        FrmNuevoIssue issue = new FrmNuevoIssue();
+        issue.setLocationRelativeTo(null);
+        issue.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnNewIssueActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -735,12 +749,12 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     private javax.swing.JPanel PnDetallesIssue;
     private javax.swing.JPanel PnIssues;
     private javax.swing.JPanel PnRescursos;
+    private javax.swing.JTabbedPane TabPanel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }
