@@ -34,8 +34,8 @@ public class FrmNuevoIssue extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TxtDescripcion = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BtnCerrar = new javax.swing.JButton();
+        BtnGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo Issue");
@@ -65,18 +65,23 @@ public class FrmNuevoIssue extends javax.swing.JFrame {
         TxtDescripcion.setRows(5);
         jScrollPane1.setViewportView(TxtDescripcion);
 
-        jButton1.setBackground(new java.awt.Color(216, 161, 60));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Cerrar");
-
-        jButton2.setBackground(new java.awt.Color(0, 204, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Guardar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BtnCerrar.setBackground(new java.awt.Color(216, 161, 60));
+        BtnCerrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnCerrar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnCerrar.setText("Cerrar");
+        BtnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BtnCerrarActionPerformed(evt);
+            }
+        });
+
+        BtnGuardar.setBackground(new java.awt.Color(0, 204, 0));
+        BtnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnGuardar.setText("Guardar");
+        BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGuardarActionPerformed(evt);
             }
         });
 
@@ -101,9 +106,9 @@ public class FrmNuevoIssue extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(PnPanelLayout.createSequentialGroup()
                 .addGap(175, 175, 175)
-                .addComponent(jButton1)
+                .addComponent(BtnCerrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(BtnGuardar)
                 .addContainerGap(175, Short.MAX_VALUE))
         );
         PnPanelLayout.setVerticalGroup(
@@ -121,8 +126,8 @@ public class FrmNuevoIssue extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(PnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(BtnCerrar)
+                    .addComponent(BtnGuardar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -140,9 +145,13 @@ public class FrmNuevoIssue extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BtnGuardarActionPerformed
+
+    private void BtnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCerrarActionPerformed
+        
+    }//GEN-LAST:event_BtnCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,12 +189,12 @@ public class FrmNuevoIssue extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCerrar;
+    private javax.swing.JButton BtnGuardar;
     private javax.swing.JLabel LbTitulo;
     private javax.swing.JPanel PnPanel;
     private javax.swing.JTextArea TxtDescripcion;
     private javax.swing.JTextField TxtTitulo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

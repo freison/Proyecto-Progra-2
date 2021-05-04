@@ -67,7 +67,25 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
 
         validarPropietario(Integer.parseInt(datos.get(0).toString()), datosUsuario[0]);
         validarRol(datosUsuario[1]);
-        this.TabPanel.setSelectedIndex(1);
+    }
+    
+    public FrmDatosProyecto(List datos, String[] datosUsuario, int tabIndex) {
+        llenarListaMiembros(Integer.parseInt(datos.get(0).toString()));
+        initComponents();
+        LbTitulo.setText(LbTitulo.getText() + " " + datos.get(1));
+
+        this.Datos = datos;
+        this.datosUsuario = datosUsuario;
+
+        proyectoId = Integer.parseInt(this.Datos.get(0));
+
+        datosEstado = estados.listarEstadosPorProyecto(proyectoId);
+
+        llenarListas();
+
+        validarPropietario(Integer.parseInt(datos.get(0).toString()), datosUsuario[0]);
+        validarRol(datosUsuario[1]);
+        this.TabPanel.setSelectedIndex(tabIndex);
     }
 
     @SuppressWarnings("unchecked")
@@ -102,7 +120,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         PnDetallesIssue = new javax.swing.JPanel();
         LbIssueTitulo = new javax.swing.JLabel();
         LbDescripcion = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BtnAgregarComentarioAIssue = new javax.swing.JButton();
         ScrollComentariosIssue = new javax.swing.JScrollPane();
         PnComentariosIssue = new javax.swing.JPanel();
         PnRescursos = new javax.swing.JPanel();
@@ -345,7 +363,14 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         LbDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         LbDescripcion.setText("jLabel1");
 
-        jButton1.setText("jButton1");
+        BtnAgregarComentarioAIssue.setBackground(new java.awt.Color(0, 153, 0));
+        BtnAgregarComentarioAIssue.setForeground(new java.awt.Color(255, 255, 255));
+        BtnAgregarComentarioAIssue.setText("+");
+        BtnAgregarComentarioAIssue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAgregarComentarioAIssueActionPerformed(evt);
+            }
+        });
 
         ScrollComentariosIssue.setBackground(new java.awt.Color(255, 153, 51));
 
@@ -378,7 +403,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
                             .addComponent(LbDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ScrollComentariosIssue))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(BtnAgregarComentarioAIssue, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         PnDetallesIssueLayout.setVerticalGroup(
@@ -391,7 +416,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PnDetallesIssueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PnDetallesIssueLayout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(BtnAgregarComentarioAIssue)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(ScrollComentariosIssue)))
         );
@@ -613,6 +638,10 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BtnNewIssueActionPerformed
 
+    private void BtnAgregarComentarioAIssueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarComentarioAIssueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnAgregarComentarioAIssueActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -782,6 +811,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAgregarComentarioAIssue;
     private javax.swing.JButton BtnAgregarMiembro;
     private javax.swing.JButton BtnAgregarTarea;
     private javax.swing.JButton BtnEnProceso_To_Finalizado;
@@ -808,7 +838,6 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     private javax.swing.JPanel PnRescursos;
     private javax.swing.JScrollPane ScrollComentariosIssue;
     private javax.swing.JTabbedPane TabPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
