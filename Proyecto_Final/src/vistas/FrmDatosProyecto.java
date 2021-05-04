@@ -95,6 +95,9 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         BtnFinalizado_To_EnProceso = new javax.swing.JButton();
         PnIssues = new javax.swing.JPanel();
         BtnNewIssue = new java.awt.Button();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        ListIssues = new javax.swing.JList<>();
+        PnDetallesIssue = new javax.swing.JPanel();
         PnRescursos = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -304,24 +307,58 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Tareas", jPanel1);
 
+        BtnNewIssue.setBackground(new java.awt.Color(255, 255, 153));
         BtnNewIssue.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        BtnNewIssue.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         BtnNewIssue.setLabel("Agregar");
+
+        ListIssues.setBackground(new java.awt.Color(255, 255, 255));
+        ListIssues.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ListIssues.setForeground(new java.awt.Color(51, 51, 51));
+        ListIssues.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(ListIssues);
+
+        PnDetallesIssue.setBackground(new java.awt.Color(255, 255, 204));
+
+        javax.swing.GroupLayout PnDetallesIssueLayout = new javax.swing.GroupLayout(PnDetallesIssue);
+        PnDetallesIssue.setLayout(PnDetallesIssueLayout);
+        PnDetallesIssueLayout.setHorizontalGroup(
+            PnDetallesIssueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 868, Short.MAX_VALUE)
+        );
+        PnDetallesIssueLayout.setVerticalGroup(
+            PnDetallesIssueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout PnIssuesLayout = new javax.swing.GroupLayout(PnIssues);
         PnIssues.setLayout(PnIssuesLayout);
         PnIssuesLayout.setHorizontalGroup(
             PnIssuesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PnIssuesLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(BtnNewIssue, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1033, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(PnIssuesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4)
+                    .addComponent(BtnNewIssue, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PnDetallesIssue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         PnIssuesLayout.setVerticalGroup(
             PnIssuesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnIssuesLayout.createSequentialGroup()
-                .addContainerGap(487, Short.MAX_VALUE)
-                .addComponent(BtnNewIssue, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+            .addGroup(PnIssuesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PnIssuesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PnIssuesLayout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnNewIssue, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PnDetallesIssue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Issues", PnIssues);
@@ -692,14 +729,17 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     private javax.swing.JLabel LbTitulo;
     private javax.swing.JList<String> ListEnProceso;
     private javax.swing.JList<String> ListFinalizado;
+    private javax.swing.JList<String> ListIssues;
     private javax.swing.JList<String> ListMiembros;
     private javax.swing.JList<String> ListPorHacer;
+    private javax.swing.JPanel PnDetallesIssue;
     private javax.swing.JPanel PnIssues;
     private javax.swing.JPanel PnRescursos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
