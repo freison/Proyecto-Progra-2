@@ -37,7 +37,7 @@ create table Proyectos(
 
 create table Issues(
     Id int not null primary key generated always as identity(start with 1, increment by 1),
-    Titulo vachar(100) not null,
+    Titulo varchar(100) not null,
     Descripcion varchar(250) not null,
     ProyectoId int not null,
     MiembroId int not null,
@@ -46,7 +46,7 @@ create table Issues(
     foreign key (MiembroId) references Miembros(Id)
 );
 
-create Comentarios(
+create table Comentarios(
     Id int not null primary key generated always as identity(start with 1, increment by 1),
     Descripcion varchar(250) not null,
     IssueId int not null,
