@@ -167,7 +167,7 @@ public class FrmNuevoIssue extends javax.swing.JFrame {
         int width = screenSize.width;
         datosProyecto.setLocationRelativeTo(null);
         datosProyecto.setVisible(true);
-        this.dispose();
+        this.dispose(); // LAST INTERACTION.
     }//GEN-LAST:event_BtnCerrarActionPerformed
 
     /**

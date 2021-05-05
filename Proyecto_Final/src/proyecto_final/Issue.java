@@ -83,13 +83,14 @@ public class Issue {
             cn = connection.getConnection();
             
             PreparedStatement stmt = cn.prepareStatement(
-                    "insert into ISSUES(TITULO, DESCRIPCION, PROYECTOID, MIEMBROID, FECHA_CREADO) values(?, ?, ?, ?, ?)"
+                    "insert into ISSUES(TITULO, DESCRIPCION, PROYECTOID, MIEMBROID, FECHA_CREADO, ESTADO) values(?, ?, ?, ?, ?, ?)"
             );
             stmt.setString(1, this.getTitulo());
             stmt.setString(2, this.getDescripcion());
             stmt.setInt(3, this.getProyectoId());
             stmt.setInt(4, this.getMiembroId());
             stmt.setDate(5, java.sql.Date.valueOf(fechaCreado));
+            stmt.setBoolean(6, true);
             stmt.executeUpdate();
 
         }catch(Exception e){

@@ -42,6 +42,7 @@ create table Issues(
     ProyectoId int not null,
     MiembroId int not null,
     Fecha_Creado Date not null,
+    Estado Boolean not null,
     foreign key(ProyectoId) references Proyectos(Id),
     foreign key (MiembroId) references Miembros(Id)
 );
