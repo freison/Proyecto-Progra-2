@@ -16,7 +16,9 @@ import javax.swing.JPanel;
 import proyecto_final.Proyecto;
 import proyecto_final.Tarea;
 import proyecto_final.EstadoTarea;
+import proyecto_final.Issue;
 import vistas.Issues.FrmNuevoIssue;
+import vistas.Issues.PnIssue;
 
 public class FrmDatosProyecto extends javax.swing.JFrame {
 
@@ -37,6 +39,10 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     private List<List> datosEstado;
 
     private boolean owner = false;
+    
+    // Issues.
+    private DefaultListModel<JPanel> listIssuesModel = new DefaultListModel<JPanel>();
+    private List<List> listIssues = new ArrayList<>();
 
     public FrmDatosProyecto() {
         this.setContentPane(fondo);
@@ -64,6 +70,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         datosEstado = estados.listarEstadosPorProyecto(proyectoId);
 
         llenarListas();
+        llenarListaIssues();
 
         validarPropietario(Integer.parseInt(datos.get(0).toString()), datosUsuario[0]);
         validarRol(datosUsuario[1]);
@@ -116,7 +123,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         PnIssues = new javax.swing.JPanel();
         BtnNewIssue = new java.awt.Button();
         jScrollPane4 = new javax.swing.JScrollPane();
-        ListIssues = new javax.swing.JList<>();
+        ListIssues = new javax.swing.JList<JPanel>(listIssuesModel);
         PnDetallesIssue = new javax.swing.JPanel();
         LbIssueTitulo = new javax.swing.JLabel();
         LbDescripcion = new javax.swing.JLabel();
@@ -345,11 +352,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         ListIssues.setBackground(new java.awt.Color(255, 255, 255));
         ListIssues.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         ListIssues.setForeground(new java.awt.Color(51, 51, 51));
-        ListIssues.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        // ListIssues.setModel(listIssuesModel);
         jScrollPane4.setViewportView(ListIssues);
 
         PnDetallesIssue.setBackground(new java.awt.Color(255, 255, 204));
@@ -401,7 +404,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
                     .addGroup(PnDetallesIssueLayout.createSequentialGroup()
                         .addGroup(PnDetallesIssueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LbDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ScrollComentariosIssue))
+                            .addComponent(ScrollComentariosIssue, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BtnAgregarComentarioAIssue, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -429,7 +432,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(PnIssuesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane4)
-                    .addComponent(BtnNewIssue, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
+                    .addComponent(BtnNewIssue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PnDetallesIssue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -809,6 +812,23 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
         }
 
     }
+    
+    // ISSUES.
+    public void llenarListaIssues(){
+        Issue issues = new Issue();
+        List<List> listaIssues = issues.Listar(Integer.parseInt(this.Datos.get(0).toString()));
+        
+        for(int i = 0; i < listaIssues.get(0).size(); i++){
+            List listaTemporal = new ArrayList();
+            for(int j = 0; j < listaIssues.size(); j++){
+                listaTemporal.add(listaIssues.get(j).get(i));
+            }
+            
+            PnIssue panelIssue = new PnIssue(listaTemporal);
+            this.listIssues.add(listaTemporal);
+            this.listIssuesModel.addElement(panelIssue);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAgregarComentarioAIssue;
@@ -828,7 +848,7 @@ public class FrmDatosProyecto extends javax.swing.JFrame {
     private javax.swing.JLabel LbTitulo;
     private javax.swing.JList<String> ListEnProceso;
     private javax.swing.JList<String> ListFinalizado;
-    private javax.swing.JList<String> ListIssues;
+    private javax.swing.JList<JPanel> ListIssues;
     private javax.swing.JList<String> ListMiembros;
     private javax.swing.JList<String> ListPorHacer;
     private javax.swing.JPanel PnComentariosIssue;

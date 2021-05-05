@@ -2,10 +2,13 @@
 package proyecto_final;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 import proyecto_final.Connection;
 
@@ -105,7 +108,61 @@ public class Issue {
         }
     }
     
-    public void Listar(){
-        
+    public List<List> Listar(int proyectoId){
+        java.sql.Connection cn = null;
+        List<Integer> id = new ArrayList<>();
+        List<String> titulos = new ArrayList<>();
+        List<String> descripciones = new ArrayList<>();
+        List<LocalDate> fechaCreado = new ArrayList<>();
+        List<Boolean> estado = new ArrayList<>();
+        List<String> owner = new ArrayList<>();
+
+        List<List> listas = new ArrayList<>();
+
+        try {
+            cn = connection.getConnection();
+            
+            String sqlQuery = "Select i.ID,\n" +
+                            "    i.TITULO,\n" +
+                            "    i.DESCRIPCION,\n" +
+                            "    i.PROYECTOID,\n" +
+                            "    i.FECHA_CREADO,\n" +
+                            "    i.ESTADO,\n" +
+                            "    m.NOMBRES as Owner\n" +
+                            "from Issues as i\n" +
+                            "inner join MIEMBROS as m\n" +
+                            "on i.MIEMBROID = m.ID\n" +
+                            "where i.PROYECTOID = ?";
+            
+            PreparedStatement ps = cn.prepareStatement(sqlQuery);
+            ps.setInt(1, proyectoId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                id.add(rs.getInt("Id"));
+                titulos.add(rs.getString("TITULO"));
+                descripciones.add(rs.getString("DESCRIPCION"));
+                fechaCreado.add(rs.getDate("FECHA_CREADO").toLocalDate());
+                estado.add(rs.getBoolean("ESTADO"));
+                owner.add(rs.getString("Owner"));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                cn.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        listas.add(id);
+        listas.add(titulos);
+        listas.add(descripciones);
+        listas.add(fechaCreado);
+        listas.add(estado);
+        listas.add(owner);
+
+        return listas;
     }
 }
